@@ -17,6 +17,7 @@ Reglas: cada dato verificado en la web (anota las fuentes en un comentario `#` d
 Ceuta/Melilla en la voz (enciende insultos y TikTok limita el vídeo); números en letra en darija para la voz.
 
 ## 2 · Lo visual (listón: los vídeos de Prográmelo)
+- **Modelo a imitar: `guias/referencia-google-maps.md`** (léelo antes de dibujar): un mundo continuo y la cámara viaja de posición en posición dentro de él, con parallax. Lo que se mueve es la cámara, nunca el fotograma temblando.
 - **Un solo mundo continuo**, no escenas sueltas: la cámara viaja (mapa visto desde arriba → zoom a la ciudad → calle → edificio).
 - **Cámara de verdad, no imagen temblando**: `Camara2D` hace UN movimiento continuo por escena (acercarse, paneo, alejarse, subir…),
   alternando entre escenas; nunca va y vuelve. Para que se sienta profundidad, divide cada dibujo en capas con
