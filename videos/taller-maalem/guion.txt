@@ -1,9 +1,9 @@
-# formato: leccion
 # tema: sketch cómico · taller de costura · personajes ficticios
-المعلم دخل للورشة… وبدا كيعيط! | El mâalem entra al taller… ¡y empieza a *gritar*! [sewing workshop]
-علا! فين هو الخيط؟ | ¡Ola! ¿Dónde está *el hilo*? [thread spool]
-جلول! هادي ماشي خياطة، هادي شبكة د الصيد! | ¡Jalloul! Esto no es costura, ¡es *una red de pesca*! [sewing machine]
-حوسسا! دابا نعسان؟ [short pause] مرة أخرى؟ | ¡Hossa! ¿Dormido… *otra vez*? [fabric]
-كلشي ساكت… حتى الماكينة خافت. | Todos callados… hasta la máquina *tiene miedo*. [needle]
-ولكن فاش جا الزبون… [short pause] ضحك المعلم. | Pero cuando llegó el cliente… el mâalem *sonrió*. [tailor measuring tape]
-[warmly] واش عندك معلم بحال هادا؟ صيفطها ليه! | ¿Tienes un jefe así? *¡Mándaselo!* [scissors]
+# [búsqueda en inglés] darija | subtítulo en español con *clave*
+[sewing needle] المعلم دخل للورشة… وبدا كيعيط! | El mâalem entra al taller… ¡y empieza a *gritar*!
+[orange fabric] علا! فين هو الخيط؟ | ¡Ola! ¿Dónde está *el hilo*?
+[fabric] جلول! هادي ماشي خياطة، هادي شبكة د الصيد! | ¡Jalloul! Esto no es costura, ¡es *una red de pesca*!
+[sewing needle] حوسسا! دابا نعسان؟ [short pause] مرة أخرى؟ | ¡Hossa! ¿Dormido… *otra vez*?
+[cloth] كلشي ساكت… حتى الماكينة خافت. | Todos callados… hasta la máquina *tiene miedo*.
+[tape measure] ولكن فاش جا الزبون… [short pause] ضحك المعلم. | Pero cuando llegó el cliente… el mâalem *sonrió*.
+[fabric cutting] [warmly] واش عندك معلم بحال هادا؟ صيفطها ليه! | ¿Tienes un jefe así? *¡Mándaselo!*
