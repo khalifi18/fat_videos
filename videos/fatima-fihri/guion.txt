@@ -4,8 +4,6 @@
 [caravana] واحد البنت سميتها فاطمة الفهرية، جات من الْقِيرْوَانْ لفاس. | Una mujer, *Fatima al-Fihri*, que llegó de Kairouan a Fez.
 [herencia] مات الوالد ديالها وخلا ليها ورث كبير. | Su padre murió y le dejó *una gran herencia*.
 [planos] بلاصة ما تصرفو على راسها، بنات بيه جامع ومدرسة. | En vez de gastarlo en ella, construyó *una mezquita y una escuela*.
-[obra] بدات البني فأول نهار ديال رمضان، عام تمنمية وتسعة وخمسين. | Empezó la obra el primer día de Ramadán *del año 859*.
+[obra] بدات البني فرمضان، عام تمنمية وتسعة وخمسين. | Empezó la obra en Ramadán *del año 859*.
 [sabios] ومن تما خرجو علماء، وباقا كَتْقْرَا حتى لليوم. | De allí salieron sabios, y *sigue enseñando hasta hoy*.
-[ano1956] وكاين اللي كيقول المغرب تزاد فألف وتسعمية وستة وخمسين… | Y hay quien dice que Marruecos *nació en 1956*…
-[milanos] وْالْقَرَوِيِّينْ وحدها عندها كثر من ألف عام! | ¡…y solo la Qarawiyyin tiene *más de mil años*!
-[cta] شنو الْقِصَّة اللي بغيتو نحكيها ليكم فالفيديو الجاي؟ كتبوها فالكومونتير! | ¿Qué historia queréis que os cuente en el próximo vídeo? *¡Escribidla en los comentarios!*
+[cta] شنو الْقِصَّة اللي بغيتو نحكيها ليكم فالجاي؟ كتبوها فالكومونتير! | ¿Qué historia queréis que os cuente en el próximo? *¡Escribidla en los comentarios!*
