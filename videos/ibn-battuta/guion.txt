@@ -1,0 +1,13 @@
+# tema: ابن بطوطة  ·  serie: Historia de Marruecos que no te contaron · parte 2
+# formato: historia
+# fuentes: worldhistory.org (Ibn Battuta: Tánger 1304, sale en 1325 hacia La Meca, ~120.000 km en casi 30 años, juez en Delhi, China, dicta la Rihla a Ibn Juzayy en Fez ~1355); history.com (más recorrido que Marco Polo)
+# escenas: tanja, giro, salida, ruta, delhi, china, contador, rihla, cta (un solo mundo: mapa del Viejo Mundo con la ruta)
+[tanja] كلشي كيعرف ماركو بولو… ولكن شحال من واحد كيعرف ابن بطوطة؟ | Todos conocen a Marco Polo… pero ¿cuántos conocen a *Ibn Battuta*?
+[giro] غير تسناو، هاد الطنجاوي سافر كثر منو بزاف. | Esperad: este tangerino viajó *mucho más que él*.
+[salida] عام ألف وتلتمية وخمسة وعشرين، خرج من طنجة بوحدو، عندو واحد وعشرين عام، باغي يمشي للحج. | En 1325 salió solo de Tánger, con 21 años, *para ir a La Meca*.
+[ruta] ومن مكة ما رجعش… كمل لمصر، للشام، لبلاد فارس، حتى للهند. | Y desde La Meca no volvió… siguió a Egipto, Siria, Persia… *hasta la India*.
+[delhi] ف دلهي، السلطان دارو قَاضِي. | En Delhi, el sultán lo nombró *juez*.
+[china] ومن تما ركب البحر حتى وصل للصين. | De allí cruzó el mar *hasta China*.
+[contador] تقريبا تلاتين عام ديال السفر، كثر من مية وعشرين ألف كيلومتر. | Casi 30 años de viaje, *más de 120.000 kilómetros*.
+[rihla] رجع لفاس، وحكا كلشي فكتاب سماوه: الرحلة. | Volvió a Fez y lo contó todo en un libro: *la Rihla*.
+[cta] وأنتوما، واش كنتو كتعرفوه؟ وشنو الْقِصَّة الجاية؟ كتبوها فالكومونتير! | ¿Lo conocíais? ¿Y qué historia queréis ahora? *¡Escribidla en los comentarios!*
