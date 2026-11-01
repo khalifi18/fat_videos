@@ -10,7 +10,7 @@ export type Foco = {x: number; y: number}; // punto de interés de la escena (px
 /** Foco fijo, o que se mueve con la escena (p. ej. seguir a la caravana por el mapa) */
 export type FocoEscena = Foco | ((f: number, d: number) => Foco);
 
-const ALTO = 0.36; // altura de pantalla donde queda el foco (los subtítulos van debajo)
+const ALTO = 0.42; // altura de pantalla donde queda el foco (los subtítulos van debajo)
 const PASO = 45; // fotogramas entre puntos de la cámara (1,5 s a 30 fps) → cambia de movimiento antes de 2 s
 
 type Key = {s: number; x: number; y: number};
@@ -22,10 +22,10 @@ const cr = (a: number, b: number, c: number, d: number, t: number) =>
 const claves = (n: number, semilla: number, foco: Foco): Key[] =>
   Array.from({length: n}).map((_, i) => {
     const cerca = i % 2 === 1;
-    const s = cerca ? 1.32 + 0.12 * rnd(semilla + i) : 1.12 + 0.06 * rnd(semilla + i * 3);
+    const s = cerca ? 1.16 + 0.06 * rnd(semilla + i) : 1.05 + 0.03 * rnd(semilla + i * 3);
     const lado = (i + Math.floor(semilla)) % 4; // izquierda, arriba, derecha, abajo
-    const dx = [-1, 0.3, 1, -0.3][lado] * 70;
-    const dy = [0.3, -1, -0.3, 1][lado] * 90;
+    const dx = [-1, 0.3, 1, -0.3][lado] * 40;
+    const dy = [0.3, -1, -0.3, 1][lado] * 50;
     return {s, x: foco.x + dx, y: foco.y + dy};
   });
 
@@ -37,7 +37,7 @@ export const encuadre = (f: number, d: number, semilla: number, foco: Foco) => {
   const t = (f % PASO) / PASO;
   const g = (j: number) => k[Math.max(0, Math.min(n - 1, j))];
   const [a, b, c, e] = [g(i - 1), g(i), g(i + 1), g(i + 2)];
-  const s = Math.max(1.08, cr(a.s, b.s, c.s, e.s, t));
+  const s = Math.max(1.04, cr(a.s, b.s, c.s, e.s, t));
   // el foco va a la altura ALTO de la pantalla (por encima de los subtítulos) y nunca se ve el borde del dibujo
   const mx = W / (2 * s);
   const x = Math.min(W - mx, Math.max(mx, cr(a.x, b.x, c.x, e.x, t)));
