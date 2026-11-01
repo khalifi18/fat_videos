@@ -43,6 +43,7 @@ export type VideoProps = {
   elemento?: string | null; // hikma: nombre de ELEMENTOS
   mundo?: string | null; // historia en 3D: nombre de MUNDOS
   tramos?: Tramo[]; // historia en 3D: a qué plano va la cámara y cuándo
+  historia?: string | null; // historia 2D: carpeta del vídeo; sus escenas propias se buscan como '<historia>/<escena>'
   firma: string;
   cierre: string;
   finVoz: number;
@@ -148,7 +149,7 @@ export const Video: React.FC<VideoProps> = (p) => {
           const op = Math.min(i === 0 ? 1 : prog(frame, a, 10), 1 - prog(frame, b - 10, 10));
           return (
             <Sequence key={i} from={a} durationInFrames={b - a}>
-              <Plano pl={pl} d={b - a} opacidad={op} />
+              <Plano pl={pl} d={b - a} opacidad={op} historia={p.historia} />
             </Sequence>
           );
         })
@@ -198,13 +199,15 @@ export const Video: React.FC<VideoProps> = (p) => {
   );
 };
 
-const Plano: React.FC<{pl: Plano; d: number; opacidad: number}> = ({pl, d, opacidad}) => {
+const Plano: React.FC<{pl: Plano; d: number; opacidad: number; historia?: string | null}> = ({pl, d, opacidad, historia}) => {
   const f = useCurrentFrame();
-  if (pl.escena && ESCENAS[pl.escena]) {
-    const E = ESCENAS[pl.escena];
+  const propia = historia && pl.escena ? `${historia}/${pl.escena}` : null;
+  const nombre = propia && ESCENAS[propia] ? propia : pl.escena;
+  if (nombre && ESCENAS[nombre]) {
+    const E = ESCENAS[nombre];
     return (
       <AbsoluteFill style={{opacity: opacidad}}>
-        <Camara2D f={f} d={d} semilla={[...pl.escena].reduce((a, c) => a + c.charCodeAt(0), 0)} foco={FOCOS[pl.escena]}>
+        <Camara2D f={f} d={d} semilla={[...nombre].reduce((a, c) => a + c.charCodeAt(0), 0)} foco={FOCOS[nombre]}>
           <E f={f} d={d} k={pl.k ?? Math.round(d * 0.4)} opts={pl.opts ?? []} />
         </Camara2D>
       </AbsoluteFill>

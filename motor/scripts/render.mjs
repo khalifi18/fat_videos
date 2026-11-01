@@ -116,6 +116,7 @@ const lineasProps = lineas.map((l, i) => ({
 }));
 
 const props = {audio: null, modo, firma: cfg.firma, cierre: cfg.cierre, finVoz, duracion, lineas: lineasProps, planos, pov: pov || modo === 'hikma' ? lineas.pov || '' : null, color: lineas.color, elemento: lineas.elemento};
+if (modo === 'historia') props.historia = path.basename(dir);
 if (modo === 'historia' && lineas.mundo) {
   props.mundo = lineas.mundo;
   let previo = 'general';

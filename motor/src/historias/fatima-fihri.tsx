@@ -7,17 +7,17 @@ import type {FocoEscena} from '../dibujos/camara2d';
 import {Luna} from '../dibujos/escenas1';
 
 /** Posición de la caravana en la ruta real (t de 0 a 1) */
-const enRuta = (t: number) => {
+export const enRuta = (t: number) => {
   const u = Math.max(0, Math.min(1, t)) * (RUTA.length - 1);
   const i = Math.min(RUTA.length - 2, Math.floor(u));
   const r = u - i;
   return {x: RUTA[i][0] + (RUTA[i + 1][0] - RUTA[i][0]) * r, y: RUTA[i][1] + (RUTA[i + 1][1] - RUTA[i][1]) * r};
 };
-const viaje = (f: number, d: number) => easeIO(p(f, 8, d * 0.8));
+export const viaje = (f: number, d: number) => easeIO(p(f, 8, d * 0.8));
 const linea = (pts: number[][]) => pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x},${y}`).join(' ');
 
 /** Mapa del norte de África con la costa real, cordilleras y la ruta Kairouan → Fez (vista desde arriba) */
-const Caravana: React.FC<EscenaProps> = ({f, d}) => {
+export const Caravana: React.FC<EscenaProps> = ({f, d}) => {
   const t = viaje(f, d);
   const pos = enRuta(t);
   const pos2 = enRuta(t + 0.01);
