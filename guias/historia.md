@@ -17,8 +17,12 @@ Reglas: cada dato verificado en la web (anota las fuentes en un comentario `#` d
 Ceuta/Melilla en la voz (enciende insultos y TikTok limita el vídeo); números en letra en darija para la voz.
 
 ## 2 · Lo visual (listón: los vídeos de Prográmelo)
+- **Modelo a imitar: `guias/referencia-google-maps.md`** (léelo antes de dibujar): un mundo continuo y la cámara viaja de posición en posición dentro de él, con parallax. Lo que se mueve es la cámara, nunca el fotograma temblando.
 - **Un solo mundo continuo**, no escenas sueltas: la cámara viaja (mapa visto desde arriba → zoom a la ciudad → calle → edificio).
-- **La cámara nunca quieta**: cada 1,5–2 s cambia (acercar, paneo, alejar). Usa `motor/src/dibujos/camara2d.tsx`.
+- **Cámara de verdad, no imagen temblando**: `Camara2D` hace UN movimiento continuo por escena (acercarse, paneo, alejarse, subir…),
+  alternando entre escenas; nunca va y vuelve. Para que se sienta profundidad, divide cada dibujo en capas con
+  `<Capa z={0}>` (cielo/fondo), `<Capa z={0.5}>` (edificios) y `<Capa z={1}>` (primer plano): el parallax hace que la cámara
+  parezca moverse dentro del mundo. Para viajes (Kairouan → Fez) usa un foco que se mueve con la ruta.
 - **Cada frase = una imagen nueva que muestra exactamente lo que se dice**: fecha → número grande que se tacha;
   viaje → ruta sobre el mapa (`mapa-norte-africa`); edificio → el edificio real replicado (Qarawiyyin: patio con fuente,
   arcos de herradura, tejas verdes, alminar blanco cuadrado); comparación → línea de tiempo con las tres fechas; cifra → contador que corre.
