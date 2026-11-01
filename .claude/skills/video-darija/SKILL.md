@@ -21,7 +21,8 @@ palabras: "falta configurar la voz; pídele a tu hermano que revise la clave de 
 
 - Colores hikma: noche, terracota, verde, arena, azul, rosa, ciruela. Elementos: luna, estrella, te, vela, hoja, corazon, llave, arco, pajaro.
 - Historia: verifica los hechos en la web; dibuja con las piezas de `motor/src/dibujos/base.tsx`; la cámara nunca quieta
-  (mapas vistos desde arriba para viajes, zooms, paneos). Última línea = CTA: que propongan la próxima historia.
+  (mapas vistos desde arriba para viajes, zooms, paneos). **Nunca más de 2 s sin moverse**: `motor/src/dibujos/camara2d.tsx`
+  ya encadena zoom/paneo cada 1,5 s; en cada historia define el foco de cada escena (`FOCOS_<HISTORIA>`, puede seguir algo que se mueve). Última línea = CTA: que propongan la próxima historia.
 - Trato: historia en plural (نتوما); hikma y lección en femenino (نتي) cuando encaje.
 - Voz: tono de cuentacuentos, pausado; al principio del guion puedes poner `[storytelling]` en la primera línea.
 - Si dudas, pregúntale a Fatima qué formato quiere.

@@ -1,41 +1,77 @@
 // Escenas a medida: «Fatima al-Fihri y la Qarawiyyin»
 import React from 'react';
 import {P, W, sans} from '../tema';
-import {Cielo, Colinas, EscenaProps, Estrellas, Halo, Lienzo, Polvo, Silueta, Zellige, ease, easeIO, mix, p, rnd} from '../dibujos/base';
+import {Cielo, EscenaProps, Estrellas, Halo, Lienzo, Polvo, Silueta, Zellige, ease, easeIO, mix, p, rnd} from '../dibujos/base';
+import type {FocoEscena} from '../dibujos/camara2d';
 import {Luna} from '../dibujos/escenas1';
 
-/** Camello en silueta (mirando a la derecha) */
-const Camello: React.FC<{x: number; y: number; s: number; f: number}> = ({x, y, s, f}) => {
-  const pata = Math.sin(f * 0.25) * 8;
-  return (
-    <g transform={`translate(${x} ${y}) scale(${s})`} fill={P.silueta}>
-      <path d="M-90,-120 C-80,-190 -30,-200 -10,-160 C10,-200 50,-190 60,-140 L90,-160 C110,-200 130,-230 150,-230 C170,-230 175,-210 160,-200 C140,-185 120,-150 110,-110 C100,-90 70,-80 40,-80 L-70,-80 C-90,-85 -95,-100 -90,-120 Z" />
-      <rect x={-70} y={-85} width={14} height={85} transform={`rotate(${pata} -63 -85)`} />
-      <rect x={-40} y={-85} width={14} height={85} transform={`rotate(${-pata} -33 -85)`} />
-      <rect x={30} y={-85} width={14} height={85} transform={`rotate(${-pata} 37 -85)`} />
-      <rect x={60} y={-85} width={14} height={85} transform={`rotate(${pata} 67 -85)`} />
-      <rect x={-50} y={-215} width={70} height={40} rx={10} fill={P.terracota} />
-    </g>
-  );
+/** Ruta Kairouan → Fez sobre el mapa (vista desde arriba). Kairouan al este (derecha), Fez al oeste. */
+const RUTA = {a: {x: 900, y: 860}, c1: {x: 720, y: 700}, c2: {x: 420, y: 1040}, b: {x: 190, y: 900}};
+const enRuta = (t: number) => {
+  const {a, c1, c2, b} = RUTA;
+  const u = 1 - t;
+  return {
+    x: u * u * u * a.x + 3 * u * u * t * c1.x + 3 * u * t * t * c2.x + t * t * t * b.x,
+    y: u * u * u * a.y + 3 * u * u * t * c1.y + 3 * u * t * t * c2.y + t * t * t * b.y,
+  };
 };
+const viaje = (f: number, d: number) => easeIO(p(f, 8, d * 0.8));
 
 const Caravana: React.FC<EscenaProps> = ({f, d}) => {
-  const t = f / Math.max(1, d);
-  const x = mix(-150, 760, t);
+  const t = viaje(f, d);
+  const pos = enRuta(t);
+  const pos2 = enRuta(Math.min(1, t + 0.01));
+  const ang = (Math.atan2(pos2.y - pos.y, pos2.x - pos.x) * 180) / Math.PI;
+  const {a, c1, c2, b} = RUTA;
+  const llega = ease(p(f, d * 0.85, 14));
   return (
     <Lienzo>
-      <Cielo id="cv-c" colores={P.cieloAtardecer} />
-      <Halo x={780} y={880} r={300} color={P.oroClaro} />
-      <circle cx={780} cy={900} r={120} fill="#ffe2a8" />
-      <Colinas y={960} colores={['#c98a5a', '#a86a44']} f={f} />
-      <path d={`M0,1120 C300,1060 700,1180 1080,1100 L1080,1920 L0,1920 Z`} fill="#8a4e30" />
-      <path d="M100,1000 C300,980 500,1010 700,990" stroke={P.oroClaro} strokeWidth={4} strokeDasharray="6 14" fill="none" opacity={0.7} />
-      <text x={170} y={970} fill={P.crema} fontFamily={sans} fontWeight={700} fontSize={38} opacity={0.85}>Kairouan</text>
-      <text x={910} y={970} fill={P.crema} fontFamily={sans} fontWeight={700} fontSize={38} textAnchor="end" opacity={0.85}>Fez</text>
-      <Camello x={x} y={1150} s={0.9} f={f} />
-      <Camello x={x - 260} y={1160} s={0.8} f={f + 7} />
-      <Silueta x={x + 200} y={1150} s={0.75} tipo="mujer" />
-      <Polvo f={f} color={P.arena} />
+      {/* tierra */}
+      <rect width={W} height={1920} fill="#e8d3a9" />
+      {Array.from({length: 40}).map((_, i) => (
+        <circle key={i} cx={rnd(i) * W} cy={600 + rnd(i + 9) * 1000} r={30 + rnd(i + 4) * 80} fill="#dcc193" opacity={0.5} />
+      ))}
+      {/* mar Mediterráneo arriba, con olas */}
+      <path d="M0,0 L1080,0 L1080,620 C980,660 900,600 820,640 C700,700 600,600 470,640 C350,680 260,610 150,650 C90,670 40,640 0,660 Z" fill="#5d8fa8" />
+      {[0, 1, 2, 3, 4].map((i) => (
+        <path key={i} d={`M${100 + i * 190 + Math.sin(f * 0.05 + i) * 10},${420 + (i % 2) * 70} q20,-12 40,0 q20,12 40,0`} stroke="#9cc3d4" strokeWidth={5} fill="none" />
+      ))}
+      <text x={540} y={575} fill="#e8f2f6" fontFamily={sans} fontWeight={700} fontSize={32} textAnchor="middle" opacity={0.85} letterSpacing={6}>
+        MAR MEDITERRÁNEO
+      </text>
+      {/* montañas del Atlas */}
+      {Array.from({length: 9}).map((_, i) => {
+        const x = 230 + i * 70, y = 1000 + Math.sin(i) * 30;
+        return <path key={i} d={`M${x - 40},${y} L${x},${y - 60} L${x + 40},${y} Z`} fill="#b8936a" stroke="#9a7650" strokeWidth={3} />;
+      })}
+      {/* ruta: punteada completa y dibujada hasta la caravana */}
+      <path d={`M${a.x},${a.y} C${c1.x},${c1.y} ${c2.x},${c2.y} ${b.x},${b.y}`} stroke="#8a6a48" strokeWidth={6} strokeDasharray="4 18" strokeLinecap="round" fill="none" opacity={0.6} />
+      <path d={`M${a.x},${a.y} C${c1.x},${c1.y} ${c2.x},${c2.y} ${b.x},${b.y}`} stroke={P.terracota} strokeWidth={10} strokeLinecap="round" fill="none" pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - t} />
+      {/* ciudades */}
+      {[
+        {...a, n: 'Kairouan', anc: 'end', dy: 80},
+        {...b, n: 'Fez', anc: 'middle', dy: -40},
+      ].map((c, i) => (
+        <g key={i}>
+          <circle cx={c.x} cy={c.y} r={i === 1 ? 20 + 14 * llega : 20} fill={i === 1 ? P.oro : '#6a4a3a'} stroke="#fff6e6" strokeWidth={6} />
+          <text x={c.anc === 'end' ? c.x + 40 : c.x} y={c.y + c.dy} fill="#3a2418" fontFamily={sans} fontWeight={800} fontSize={44} textAnchor={c.anc}>
+            {c.n}
+          </text>
+        </g>
+      ))}
+      {/* la caravana vista desde arriba: tres camellos en fila */}
+      <g transform={`translate(${pos.x} ${pos.y}) rotate(${ang})`}>
+        <Halo x={0} y={0} r={90} color={P.oroClaro} o={0.7} />
+        {[0, 1, 2].map((i) => (
+          <g key={i} transform={`translate(${-i * 46} ${Math.sin(f * 0.4 + i) * 3})`}>
+            <ellipse cx={0} cy={0} rx={22} ry={12} fill="#7a4a2a" />
+            <ellipse cx={-8} cy={0} rx={8} ry={8} fill="#5a341c" />
+            <circle cx={20} cy={0} r={7} fill="#7a4a2a" />
+            {i === 0 && <rect x={-6} y={-9} width={14} height={18} rx={4} fill={P.terracota} />}
+          </g>
+        ))}
+      </g>
+      <Polvo f={f} color={P.arena} o={0.5} />
     </Lienzo>
   );
 };
@@ -233,4 +269,14 @@ export const FATIMA_FIHRI: Record<string, React.FC<EscenaProps>> = {
   ano1956: Texto1956,
   milanos: MilAnos,
   cta: Cta,
+};
+
+/** Hacia dónde mira la cámara en cada escena (la cámara se mueve siempre alrededor de este punto) */
+export const FOCOS_FATIMA_FIHRI: Record<string, FocoEscena> = {
+  caravana: (f, d) => enRuta(viaje(f, d)),
+  herencia: {x: 540, y: 1000},
+  planos: {x: 540, y: 760},
+  obra: {x: 680, y: 960},
+  sabios: {x: 540, y: 1000},
+  cta: {x: 540, y: 820},
 };

@@ -3,7 +3,8 @@ import {AbsoluteFill, Html5Audio, OffthreadVideo, Sequence, staticFile, useCurre
 import {C, W, amiri, sans, serif} from './tema';
 import {easeOut, lerp, prog} from './util';
 import {Subtitulo, trozosEs} from './Subtitulos';
-import {ESCENAS} from './dibujos';
+import {ESCENAS, FOCOS} from './dibujos';
+import {Camara2D} from './dibujos/camara2d';
 import {COLORES, ELEMENTOS} from './dibujos/elementos';
 import {Estrella8Fondo} from './dibujos/fondo';
 import {ThreeCanvas} from '@remotion/three';
@@ -202,8 +203,10 @@ const Plano: React.FC<{pl: Plano; d: number; opacidad: number}> = ({pl, d, opaci
   if (pl.escena && ESCENAS[pl.escena]) {
     const E = ESCENAS[pl.escena];
     return (
-      <AbsoluteFill style={{opacity: opacidad, transform: `scale(${1.02 + 0.04 * (f / Math.max(1, d))})`}}>
-        <E f={f} d={d} k={pl.k ?? Math.round(d * 0.4)} opts={pl.opts ?? []} />
+      <AbsoluteFill style={{opacity: opacidad}}>
+        <Camara2D f={f} d={d} semilla={[...pl.escena].reduce((a, c) => a + c.charCodeAt(0), 0)} foco={FOCOS[pl.escena]}>
+          <E f={f} d={d} k={pl.k ?? Math.round(d * 0.4)} opts={pl.opts ?? []} />
+        </Camara2D>
       </AbsoluteFill>
     );
   }
