@@ -1,0 +1,13 @@
+# tema: المغرب ماشي 1956  ·  serie: Historia de Marruecos que no te contaron
+# formato: historia
+# fuentes: Protectorado 1912–1956; Idris I funda el estado idrisí en 788; Qarawiyyin 859 (worldhistory.org); Bolonia 1088; Oxford 1096
+# escenas a dibujar (motor/src/historias/marruecos-1956.tsx): ano1956, grieta, independencia, lineatiempo, mapa, herencia-obra, comparativa, contador, cta
+[ano1956] كاين اللي كيقول: المغرب تزاد فألف وتسعمية وستة وخمسين. | Hay quien dice: "Marruecos *nació en 1956*".
+[grieta] وأنا كنقول ليهم: غير تسناو شوية… | Y yo les digo: *esperad un momento*…
+[independencia] ستة وخمسين هي العام اللي خرجات فيه فرنسا، ماشي العام اللي تزاد فيه المغرب. | 1956 es el año en que se fue Francia, *no el año en que nació Marruecos*.
+[lineatiempo] رجعو معايا لعام سبعمية وتمنية وتمانين: إدريس الأول كيبني أول دولة مغربية. | Volved conmigo al 788: Idris I funda *el primer estado marroquí*.
+[mapa] وبعد شي سنين، جات لفاس واحد المرا من الْقِيرْوَانْ، سميتها فاطمة الفهرية. | Unos años después llega a Fez una mujer de Kairouan: *Fatima al-Fihri*.
+[herencia-obra] الوالد ديالها خلا ليها ورث، وهي بنات بيه الْقَرَوِيِّينْ، عام تمنمية وتسعة وخمسين. | Su padre le dejó una herencia, y con ella construyó *la Qarawiyyin* en el año 859.
+[comparativa] قبل بولونيا، قبل أوكسفورد… أقدم جامعة فالعالم مازال كتْقْرَا حتى لليوم. | Antes que Bolonia, antes que Oxford… *la universidad más antigua del mundo*, y sigue enseñando hoy.
+[contador] يعني المغرب ماشي عندو سبعين عام… عندو كثر من ألف ومتين عام ديال التاريخ. | O sea, Marruecos no tiene 70 años… tiene *más de 1.200 años de historia*.
+[cta] وأنتوما، شنو القصة اللي بغيتو نحكيها فالفيديو الجاي؟ كتبوها فالكومونتير! | ¿Y vosotros? ¿Qué historia queréis en el próximo vídeo? *¡Escribidla en los comentarios!*

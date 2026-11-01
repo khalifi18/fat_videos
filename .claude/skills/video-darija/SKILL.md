@@ -20,6 +20,7 @@ palabras: "falta configurar la voz; pídele a tu hermano que revise la clave de 
 | **leccion** | consejos de vida | `# formato: leccion` — líneas con `[búsqueda en inglés]` (un clip de Mixkit por frase) |
 
 - Colores hikma: noche, terracota, verde, arena, azul, rosa, ciruela. Elementos: luna, estrella, te, vela, hoja, corazon, llave, arco, pajaro.
+- Historia: lee SIEMPRE `guias/historia.md` (receta de guion, visual e interacción; ejemplo `videos/marruecos-1956`). 40–45 s permitidos.
 - Historia: verifica los hechos en la web; dibuja con las piezas de `motor/src/dibujos/base.tsx`; la cámara nunca quieta
   (mapas vistos desde arriba para viajes, zooms, paneos). **Nunca más de 2 s sin moverse**: `motor/src/dibujos/camara2d.tsx`
   ya encadena zoom/paneo cada 1,5 s; en cada historia define el foco de cada escena (`FOCOS_<HISTORIA>`, puede seguir algo que se mueve). Última línea = CTA: que propongan la próxima historia.
