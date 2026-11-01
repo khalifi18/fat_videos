@@ -2,6 +2,7 @@ import React from 'react';
 import {EscenaProps} from './base';
 import {Arbol, Camino, Luna, Madre, Puerta, Semilla, Te, Vela} from './escenas1';
 import {Casa, Corazon, Gente, Lluvia, Mar, Pajaro, Reloj} from './escenas2';
+import {HISTORIAS} from '../historias';
 
 /** Catálogo de escenas del formato historia: [nombre opciones] al principio de la línea del guion */
 export const ESCENAS: Record<string, React.FC<EscenaProps>> = {
@@ -20,4 +21,5 @@ export const ESCENAS: Record<string, React.FC<EscenaProps>> = {
   mar: Mar,
   reloj: Reloj,
   gente: Gente,
+  ...HISTORIAS,
 };

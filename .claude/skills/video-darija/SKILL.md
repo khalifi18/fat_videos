@@ -16,12 +16,14 @@ palabras: "falta configurar la voz; pídele a tu hermano que revise la clave de 
 | Formato | Cuándo | Cabecera del guion |
 |---|---|---|
 | **hikma** | un refrán o una frase sabia | `# formato: hikma` · `# pov: POV: …` · `# color: ciruela` · `# elemento: luna` |
-| **historia** | un relato con giro (madre, raíces, paciencia…) | `# formato: historia` · `# mundo: arbol` (3D) — líneas con `[plano]` |
+| **historia** | historias reales (personajes, hechos: Fatima al-Fihri…) | `# formato: historia` — líneas con `[escena]`; escenas 2D a medida en `motor/src/historias/<slug>.tsx` (ver `fatima-fihri.tsx`) |
 | **leccion** | consejos de vida | `# formato: leccion` — líneas con `[búsqueda en inglés]` (un clip de Mixkit por frase) |
 
 - Colores hikma: noche, terracota, verde, arena, azul, rosa, ciruela. Elementos: luna, estrella, te, vela, hoja, corazon, llave, arco, pajaro.
-- Mundo 3D `arbol`, planos: general, suelo, raices, tronco, copa, pueblo, amanecer. La cámara viaja al plano de cada línea.
-  Varía de plano en cada frase (nunca dos iguales seguidos) para que no aburra.
+- Historia: verifica los hechos en la web; dibuja con las piezas de `motor/src/dibujos/base.tsx`; la cámara nunca quieta
+  (mapas vistos desde arriba para viajes, zooms, paneos). Última línea = CTA: que propongan la próxima historia.
+- Trato: historia en plural (نتوما); hikma y lección en femenino (نتي) cuando encaje.
+- Voz: tono de cuentacuentos, pausado; al principio del guion puedes poner `[storytelling]` en la primera línea.
 - Si dudas, pregúntale a Fatima qué formato quiere.
 
 ## 2 · Guion → `videos/<slug>/guion.txt`

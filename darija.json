@@ -1,12 +1,12 @@
 {
-  "_nota": "Configuración de los vídeos en darija. La clave de ElevenLabs va en .env (ELEVENLABS_API_KEY=...), nunca aquí. eleven_v4 interpreta etiquetas de emoción en el guion ([softly], [sighs]…) y no admite 'style'.",
+  "_nota": "Voz: natural y pausada, tono de cuentacuentos. La clave de ElevenLabs va en la variable de entorno ELEVENLABS_API_KEY, nunca aquí.",
   "firma": "Fatima Andalussi",
   "cierre": "Envíaselo a alguien que lo necesite",
   "voz": {
     "voice_id": "ugVysa6SU3kBjf7zmeSV",
     "model_id": "eleven_v4",
-    "stability": 0.55,
+    "stability": 0.5,
     "similarity_boost": 0.8,
-    "speed": 1.0
+    "speed": 0.92
   }
 }
