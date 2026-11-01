@@ -8,3 +8,4 @@ videos/*/audio.mp3
 catalogo.jpg
 .entorno
 motor/package-lock.json
+.remotion/
