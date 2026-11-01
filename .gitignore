@@ -1,0 +1,8 @@
+node_modules/
+motor/public/
+motor/.catalogo/
+videos/*/out/
+videos/*/clips/
+videos/*/audio.mp3
+.env
+catalogo.jpg
