@@ -1,77 +1,128 @@
 // Escenas a medida: «Fatima al-Fihri y la Qarawiyyin»
 import React from 'react';
-import {P, W, sans} from '../tema';
+import {P, W, sans, serif} from '../tema';
+import {LAT, LUGARES, RUTA, SIERRAS, TIERRA} from './mapa-norte-africa';
 import {Cielo, EscenaProps, Estrellas, Halo, Lienzo, Polvo, Silueta, Zellige, ease, easeIO, mix, p, rnd} from '../dibujos/base';
 import type {FocoEscena} from '../dibujos/camara2d';
 import {Luna} from '../dibujos/escenas1';
 
-/** Ruta Kairouan → Fez sobre el mapa (vista desde arriba). Kairouan al este (derecha), Fez al oeste. */
-const RUTA = {a: {x: 900, y: 860}, c1: {x: 720, y: 700}, c2: {x: 420, y: 1040}, b: {x: 190, y: 900}};
+/** Posición de la caravana en la ruta real (t de 0 a 1) */
 const enRuta = (t: number) => {
-  const {a, c1, c2, b} = RUTA;
-  const u = 1 - t;
-  return {
-    x: u * u * u * a.x + 3 * u * u * t * c1.x + 3 * u * t * t * c2.x + t * t * t * b.x,
-    y: u * u * u * a.y + 3 * u * u * t * c1.y + 3 * u * t * t * c2.y + t * t * t * b.y,
-  };
+  const u = Math.max(0, Math.min(1, t)) * (RUTA.length - 1);
+  const i = Math.min(RUTA.length - 2, Math.floor(u));
+  const r = u - i;
+  return {x: RUTA[i][0] + (RUTA[i + 1][0] - RUTA[i][0]) * r, y: RUTA[i][1] + (RUTA[i + 1][1] - RUTA[i][1]) * r};
 };
 const viaje = (f: number, d: number) => easeIO(p(f, 8, d * 0.8));
+const linea = (pts: number[][]) => pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x},${y}`).join(' ');
 
+/** Mapa del norte de África con la costa real, cordilleras y la ruta Kairouan → Fez (vista desde arriba) */
 const Caravana: React.FC<EscenaProps> = ({f, d}) => {
   const t = viaje(f, d);
   const pos = enRuta(t);
-  const pos2 = enRuta(Math.min(1, t + 0.01));
+  const pos2 = enRuta(t + 0.01);
   const ang = (Math.atan2(pos2.y - pos.y, pos2.x - pos.x) * 180) / Math.PI;
-  const {a, c1, c2, b} = RUTA;
+  const hecho = RUTA.slice(0, Math.max(1, Math.floor(t * (RUTA.length - 1))) + 1);
   const llega = ease(p(f, d * 0.85, 14));
+  const L = LUGARES;
+  const etiqueta = {fontFamily: sans, fontWeight: 700} as const;
   return (
     <Lienzo>
-      {/* tierra */}
-      <rect width={W} height={1920} fill="#e8d3a9" />
-      {Array.from({length: 40}).map((_, i) => (
-        <circle key={i} cx={rnd(i) * W} cy={600 + rnd(i + 9) * 1000} r={30 + rnd(i + 4) * 80} fill="#dcc193" opacity={0.5} />
+      <defs>
+        <linearGradient id="mp-mar" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#123a56" />
+          <stop offset="45%" stopColor="#1f5574" />
+          <stop offset="100%" stopColor="#174663" />
+        </linearGradient>
+        <linearGradient id="mp-tierra" gradientUnits="userSpaceOnUse" x1="0" y1={LAT.l38} x2="0" y2={LAT.l26}>
+          <stop offset="0%" stopColor="#7d8a52" />
+          <stop offset="28%" stopColor="#8f9258" />
+          <stop offset="48%" stopColor="#b8a067" />
+          <stop offset="70%" stopColor="#d9b97f" />
+          <stop offset="100%" stopColor="#e6c890" />
+        </linearGradient>
+        <filter id="mp-relieve" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="4" seed="7" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.25  0 0 0 0 0.12  0 0 0 0.9 -0.25" />
+        </filter>
+        <clipPath id="mp-clip">
+          <path d={TIERRA} />
+        </clipPath>
+      </defs>
+      {/* mar */}
+      <rect width={W} height={1920} fill="url(#mp-mar)" />
+      {Array.from({length: 14}).map((_, i) => (
+        <path
+          key={i}
+          d={`M${rnd(i) * W + Math.sin(f * 0.04 + i) * 12},${120 + rnd(i + 2) * 560} q18,-9 36,0 q18,9 36,0`}
+          stroke="#5f93b0"
+          strokeWidth={3}
+          fill="none"
+          opacity={0.35}
+        />
       ))}
-      {/* mar Mediterráneo arriba, con olas */}
-      <path d="M0,0 L1080,0 L1080,620 C980,660 900,600 820,640 C700,700 600,600 470,640 C350,680 260,610 150,650 C90,670 40,640 0,660 Z" fill="#5d8fa8" />
-      {[0, 1, 2, 3, 4].map((i) => (
-        <path key={i} d={`M${100 + i * 190 + Math.sin(f * 0.05 + i) * 10},${420 + (i % 2) * 70} q20,-12 40,0 q20,12 40,0`} stroke="#9cc3d4" strokeWidth={5} fill="none" />
-      ))}
-      <text x={540} y={575} fill="#e8f2f6" fontFamily={sans} fontWeight={700} fontSize={32} textAnchor="middle" opacity={0.85} letterSpacing={6}>
-        MAR MEDITERRÁNEO
-      </text>
-      {/* montañas del Atlas */}
-      {Array.from({length: 9}).map((_, i) => {
-        const x = 230 + i * 70, y = 1000 + Math.sin(i) * 30;
-        return <path key={i} d={`M${x - 40},${y} L${x},${y - 60} L${x + 40},${y} Z`} fill="#b8936a" stroke="#9a7650" strokeWidth={3} />;
-      })}
-      {/* ruta: punteada completa y dibujada hasta la caravana */}
-      <path d={`M${a.x},${a.y} C${c1.x},${c1.y} ${c2.x},${c2.y} ${b.x},${b.y}`} stroke="#8a6a48" strokeWidth={6} strokeDasharray="4 18" strokeLinecap="round" fill="none" opacity={0.6} />
-      <path d={`M${a.x},${a.y} C${c1.x},${c1.y} ${c2.x},${c2.y} ${b.x},${b.y}`} stroke={P.terracota} strokeWidth={10} strokeLinecap="round" fill="none" pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - t} />
-      {/* ciudades */}
-      {[
-        {...a, n: 'Kairouan', anc: 'end', dy: 80},
-        {...b, n: 'Fez', anc: 'middle', dy: -40},
-      ].map((c, i) => (
-        <g key={i}>
-          <circle cx={c.x} cy={c.y} r={i === 1 ? 20 + 14 * llega : 20} fill={i === 1 ? P.oro : '#6a4a3a'} stroke="#fff6e6" strokeWidth={6} />
-          <text x={c.anc === 'end' ? c.x + 40 : c.x} y={c.y + c.dy} fill="#3a2418" fontFamily={sans} fontWeight={800} fontSize={44} textAnchor={c.anc}>
-            {c.n}
-          </text>
-        </g>
-      ))}
-      {/* la caravana vista desde arriba: tres camellos en fila */}
-      <g transform={`translate(${pos.x} ${pos.y}) rotate(${ang})`}>
-        <Halo x={0} y={0} r={90} color={P.oroClaro} o={0.7} />
-        {[0, 1, 2].map((i) => (
-          <g key={i} transform={`translate(${-i * 46} ${Math.sin(f * 0.4 + i) * 3})`}>
-            <ellipse cx={0} cy={0} rx={22} ry={12} fill="#7a4a2a" />
-            <ellipse cx={-8} cy={0} rx={8} ry={8} fill="#5a341c" />
-            <circle cx={20} cy={0} r={7} fill="#7a4a2a" />
-            {i === 0 && <rect x={-6} y={-9} width={14} height={18} rx={4} fill={P.terracota} />}
+      {/* aguas poco profundas junto a la costa */}
+      <path d={TIERRA} fill="none" stroke="#4f97b4" strokeWidth={34} strokeLinejoin="round" opacity={0.35} filter="url(#difusoS)" />
+      <path d={TIERRA} fill="none" stroke="#7fbfd2" strokeWidth={10} strokeLinejoin="round" opacity={0.45} />
+      {/* tierra con relieve */}
+      <path d={TIERRA} fill="url(#mp-tierra)" />
+      <g clipPath="url(#mp-clip)">
+        <rect width={W} height={1920} filter="url(#mp-relieve)" opacity={0.55} />
+        {/* cordilleras: sombra ancha + cresta */}
+        {Object.values(SIERRAS).map((s, i) => (
+          <g key={i}>
+            <path d={linea(s)} stroke="#4e3a22" strokeWidth={46} strokeLinecap="round" strokeLinejoin="round" fill="none" opacity={0.28} filter="url(#difusoS)" />
+            <path d={linea(s)} stroke="#6b5434" strokeWidth={14} strokeLinecap="round" strokeLinejoin="round" fill="none" opacity={0.55} filter="url(#difusoS)" />
+            <path d={linea(s)} stroke="#efe2c4" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" fill="none" opacity={0.5} transform="translate(-3 -4)" />
           </g>
         ))}
       </g>
-      <Polvo f={f} color={P.arena} o={0.5} />
+      <path d={TIERRA} fill="none" stroke="#efe3c6" strokeWidth={2.5} strokeLinejoin="round" opacity={0.8} />
+      {/* nombres */}
+      <text x={L.mediterraneo[0]} y={L.mediterraneo[1]} fill="#bcd8e6" fontFamily={serif} fontStyle="italic" fontSize={44} textAnchor="middle" letterSpacing={3}>
+        Mar Mediterráneo
+      </text>
+      <text x={L.andalus[0]} y={L.andalus[1]} fill="#3a2a1a" {...etiqueta} fontSize={26} textAnchor="middle" opacity={0.7} letterSpacing={2}>
+        AL-ÁNDALUS
+      </text>
+      <text x={L.sahara[0]} y={L.sahara[1]} fill="#7a5a34" {...etiqueta} fontSize={58} textAnchor="middle" opacity={0.55} letterSpacing={22}>
+        SAHARA
+      </text>
+      {/* ruta: entera punteada, y recorrida en terracota */}
+      <path d={linea(RUTA)} stroke="#4a3220" strokeWidth={5} strokeDasharray="2 14" strokeLinecap="round" fill="none" opacity={0.7} />
+      <path d={linea([...hecho, [pos.x, pos.y]])} stroke="#2a1608" strokeWidth={14} strokeLinecap="round" strokeLinejoin="round" fill="none" opacity={0.35} />
+      <path d={linea([...hecho, [pos.x, pos.y]])} stroke={P.terracota} strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      {/* ciudades del camino */}
+      {[L.constantina, L.tremecen].map(([x, y], i) => (
+        <circle key={i} cx={x} cy={y} r={7} fill="#3a2418" stroke="#f6ecd6" strokeWidth={3} opacity={0.85} />
+      ))}
+      {[
+        {c: L.kairouan, n: 'Kairouan', dx: 0, dy: 62, r: 16, col: '#5a3a28'},
+        {c: L.fez, n: 'Fez', dx: 0, dy: -36, r: 16 + 12 * llega, col: P.oro},
+      ].map(({c, n, dx, dy, r, col}, i) => (
+        <g key={i}>
+          <circle cx={c[0]} cy={c[1]} r={r + 8} fill="#000" opacity={0.25} />
+          <circle cx={c[0]} cy={c[1]} r={r} fill={col} stroke="#fff6e6" strokeWidth={5} />
+          <text x={c[0] + dx} y={c[1] + dy} fill="#fff6e6" stroke="#2a1608" strokeWidth={8} paintOrder="stroke" {...etiqueta} fontWeight={800} fontSize={42} textAnchor={i === 0 ? 'end' : 'middle'}>
+            {n}
+          </text>
+        </g>
+      ))}
+      {/* la caravana vista desde arriba: tres camellos en fila con su sombra */}
+      <g transform={`translate(${pos.x} ${pos.y}) rotate(${ang}) scale(0.8)`}>
+        <Halo x={0} y={0} r={80} color={P.oroClaro} o={0.55} />
+        {[0, 1, 2].map((i) => (
+          <g key={i} transform={`translate(${-i * 44} ${Math.sin(f * 0.4 + i) * 2.5})`}>
+            <ellipse cx={4} cy={6} rx={24} ry={11} fill="#000" opacity={0.25} />
+            <ellipse cx={0} cy={0} rx={22} ry={11} fill="#8a5a34" />
+            <ellipse cx={-6} cy={0} rx={8} ry={7} fill="#6a4020" />
+            <path d="M18,0 L28,-2 L28,2 Z" fill="#8a5a34" />
+            <circle cx={29} cy={0} r={6} fill="#8a5a34" />
+            {i === 0 && <rect x={-7} y={-8} width={14} height={16} rx={4} fill={P.terracota} />}
+          </g>
+        ))}
+      </g>
+      <Polvo f={f} color={P.arena} o={0.35} />
     </Lienzo>
   );
 };
