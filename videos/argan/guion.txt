@@ -1,0 +1,12 @@
+# tema: أركان، الذهب ديال المغرب  ·  serie: cosas de casa que no te contaron
+# formato: historia
+# fuentes: Argania spinosa, casi endémico del suroeste de Marruecos (Sus; pequeñas poblaciones en Argelia); Arganeraie = Reserva de la Biosfera UNESCO 1998; «Argan, prácticas y saberes» Patrimonio Inmaterial UNESCO 2014 (ich.unesco.org/en/RL/00955), transmitido por las mujeres; Día Internacional del Argán 10 de mayo (ONU, res. 75/262, 2021). Sin cifras de kg/litro (no verificadas).
+# escenas: arbol, mapa, maaz, mra, rha, unesco, oro, cta (un solo mundo: el Sus con arganes, una cooperativa)
+[arbol] كاين واحد الشجرة… تقريبا ما كايناش غير فالمغرب. | Hay un árbol… que *casi solo existe en Marruecos*.
+[mapa] كتعيش فسوس، بين أكادير والصويرة. | Vive en el Sus, entre *Agadir y Esauira*.
+[maaz] حتى المعز كيطلعو فوقها باش ياكلو منها! | ¡Hasta las cabras *se suben a ella* para comer!
+[mra] ومن الحبة ديالها، العيالات الأمازيغيات كيخرجو زيت… باليد، بحال جداتهم. | De su fruto, las mujeres amazigh sacan un aceite… *a mano, como sus abuelas*.
+[rha] كيهرسو الحبة، كيطحنوها فالرحى، وكيعجنوها بالما حتى يخرج الزيت. | Parten el fruto, lo muelen en el molino de piedra y lo amasan con agua *hasta que sale el aceite*.
+[unesco] فألفين وربعطاش، اليونسكو دخلات هاد الصنعة للتراث ديال العالم. | En 2014, la UNESCO declaró este saber *patrimonio de la humanidad*.
+[oro] واليوم، زيت أركان كيتباع فأوروبا بحال الذهب. | Y hoy el aceite de argán se vende en Europa *como si fuera oro*.
+[cta] وعندكم فالدار، فاش كتستعملوه؟ فالماكلة ولا فالشعر؟ كتبو ليا فالكومونتير! | En vuestra casa, ¿para qué lo usáis: en la comida o en el pelo? *¡Escribídmelo en los comentarios!*
