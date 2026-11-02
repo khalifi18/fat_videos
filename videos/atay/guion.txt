@@ -1,0 +1,12 @@
+# tema: أتاي ماشي مغربي؟  ·  serie: cosas de casa que no te contaron
+# formato: historia
+# fuentes: el té (verde, de China) llega como regalo de embajadores europeos al sultán Mulay Ismail (1672–1727) junto con azúcar; en el s. XIX los comerciantes británicos lo difunden por Esauira y Tánger y llega a todas las casas (Wikipedia «Maghrebi mint tea»; Foodistory; G. Cornwell, «Sweetening the Pot»). La historia de la guerra de Crimea está discutida: no se usa.
+# escenas: atay, china, sultan, palacio, puertos, nana, dar, cta (un solo mundo: mapa China → Marruecos y una casa marroquí)
+[atay] واش كنتو عارفين بلي أتاي ديالنا… ماشي مغربي؟ | ¿Sabíais que nuestro atay… *no es marroquí*?
+[china] أتاي جا من الشينوا. | El té viene *de China*.
+[sultan] هادي كثر من تلتمية عام، جابوه الأوروبيين هدية للسلطان مولاي إسماعيل، هو والسكر. | Hace más de 300 años, los europeos se lo regalaron al sultán *Mulay Ismail*, junto con el azúcar.
+[palacio] فالأول، كان غير عند السلطان والناس اللي عندهم الفلوس. | Al principio solo lo tenían el sultán y *los ricos*.
+[puertos] من بعد، جابوه التجار للصويرة ولطنجة، ودخل لكل دار. | Luego los comerciantes lo trajeron a Esauira y Tánger, y *entró en todas las casas*.
+[nana] ولكن هوما جابو غير الورقة… النعناع، البراد، وكب أتاي من الفوق، هادشي ديالنا حنا. | Pero ellos solo trajeron las hojas… la hierbabuena, la tetera y servirlo desde lo alto: *eso es nuestro*.
+[dar] واليوم، اللي دخل لدار مغربية، لازم يشرب أتاي. | Hoy, quien entra en una casa marroquí *tiene que tomar té*.
+[cta] وعندكم فالدار، شكون اللي كيدير أحسن أتاي؟ كتبو ليا فالكومونتير! | En vuestra casa, ¿quién hace el mejor atay? *¡Escribídmelo en los comentarios!*
