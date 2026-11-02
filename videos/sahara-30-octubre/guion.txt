@@ -3,19 +3,19 @@
 # fuentes: The Arab Weekly, Yabiladi, WSRW (veto ruso al proyecto de EE.UU., sin prórroga); Akhbarona (comunicado del Gabinete Real); MINURSO creada en 1991
 # mapa: Natural Earth 50m (solo costa, sin fronteras); ciudades: Laâyoune, Smara (fundada 1898), Boujdour, Dakhla
 # escenas (motor/src/historias/noticiero-sahara.tsx): fecha, consejo, proyectos, anos, comunicado, rey, autonomia, giro, agenda, mapa, ciudades, despues, matiz, patria, frase, pregunta
-[fecha] نهار الجمعة، تلاتين أكتوبر… كان نهار تاريخي. | El viernes 30 de octubre… fue *un día histórico*.
-[consejo] مجلس الأمن مَاقْدَرْشْ يمدد مهمة المينورسو. | El Consejo de Seguridad *no logró prorrogar* la misión de la MINURSO.
-[proyectos] لا المشروع الأمريكي داز، ولا المشروع الروسي. | Ni el proyecto de EE. UU. ni el ruso *salió adelante*.
-[anos] المينورسو كانت فالصحرا من تَقْرِيبًا خمسة وتلاتين عام. | La MINURSO estaba en el Sáhara desde hacía *casi 35 años*.
-[comunicado] الديوان الملكي قَالْ: هادي خطوة كبيرة نحو الطي النهائي د الملف فالأمم المتحدة. | El Gabinete Real dijo: es *un gran paso* hacia cerrar el expediente en la ONU.
-[rey] تَحْتْ قِيَادَةْ الملك محمد السادس، الوحدة الترابية هي الأولوية فالسياسة الخارجية. | Bajo la dirección del Rey Mohammed VI, la unidad territorial es *la prioridad* de la política exterior.
-[autonomia] بدبلوماسية نشيطة، وتحالفات دولية، ودفاع على مبادرة الحكم الذاتي تحت السيادة المغربية. | Con diplomacia activa, alianzas internacionales y defensa del *plan de autonomía* bajo soberanía marroquí.
-[giro] بعد سنين د تدبير النزاع، المغرب دابا كَيْقَلَّبْ على الحل النهائي. | Tras años gestionando el conflicto, Marruecos busca ahora *la solución final*.
-[agenda] وكيطلب تتسحب القضية من جدول أعمال مجلس الأمن. | Y pide *retirar el asunto* de la agenda del Consejo de Seguridad.
-[mapa] هادي هي الأقاليم الجنوبية: العيون، السمارة، بوجدور والداخلة. | Estas son *las provincias del sur*: Laâyoune, Smara, Boujdour y Dakhla.
-[ciudades] وفهاد المدن، دار المغرب استثمارات ومشاريع تنموية. | Y en estas ciudades Marruecos *hizo inversiones* y proyectos de desarrollo.
-[despues] واش هادشي معناه الملف سالا؟ لا… ماشي تلقائيا. | ¿Significa que el expediente se cerró? No… *no automáticamente*.
-[matiz] هادا ماشي حكم نهائي د الأمم المتحدة… ولكن مرحلة جديدة كتخصها دبلوماسية قوية وحل سلمي. | *No es un fallo definitivo* de la ONU… pero es una nueva etapa que exige *diplomacia fuerte* y solución pacífica.
-[patria] الصحرا عند المغاربة ماشي غير ملف سياسي… هي هوية، وتاريخ، ووحدة. | Para los marroquíes el Sáhara no es solo un asunto político: es *identidad, historia y unidad*.
-[frase] التاريخ ما كيصنعوهش الشعارات بوحدها… كيصنعوه القرارات، والخدمة، والصبر، والاستراتيجية. | La historia no la hacen solo los eslóganes… la hacen *las decisiones, el trabajo, la paciencia y la estrategia*.
-[pregunta] وأنتوما، شنو كتشوفو؟ كتبوها فالكومونتير! | ¿Y vosotros, qué pensáis? *¡Escribidlo en los comentarios!*
+[fecha | city night] نهار الجمعة، تلاتين أكتوبر… كان نهار تاريخي. | El viernes 30 de octubre… fue *un día histórico*.
+[consejo | skyscrapers] مجلس الأمن مَاقْدَرْشْ يمدد مهمة المينورسو. | El Consejo de Seguridad *no logró prorrogar* la misión de la MINURSO.
+[proyectos | paper] لا المشروع الأمريكي داز، ولا المشروع الروسي. | Ni el proyecto de EE. UU. ni el ruso *salió adelante*.
+[anos | clock] المينورسو كانت فالصحرا من تَقْرِيبًا خمسة وتلاتين عام. | La MINURSO estaba en el Sáhara desde hacía *casi 35 años*.
+[comunicado | newspaper] الديوان الملكي قَالْ: هادي خطوة كبيرة نحو الطي النهائي د الملف فالأمم المتحدة. | El Gabinete Real dijo: es *un gran paso* hacia cerrar el expediente en la ONU.
+[rey | ancient architecture] تَحْتْ قِيَادَةْ الملك محمد السادس، الوحدة الترابية هي الأولوية فالسياسة الخارجية. | Bajo la dirección del Rey Mohammed VI, la unidad territorial es *la prioridad* de la política exterior.
+[autonomia | red silk] بدبلوماسية نشيطة، وتحالفات دولية، ودفاع على مبادرة الحكم الذاتي تحت السيادة المغربية. | Con diplomacia activa, alianzas internacionales y defensa del *plan de autonomía* bajo soberanía marroquí.
+[giro | road] بعد سنين د تدبير النزاع، المغرب دابا كَيْقَلَّبْ على الحل النهائي. | Tras años gestionando el conflicto, Marruecos busca ahora *la solución final*.
+[agenda | office] وكيطلب تتسحب القضية من جدول أعمال مجلس الأمن. | Y pide *retirar el asunto* de la agenda del Consejo de Seguridad.
+[mapa | ocean aerial] هادي هي الأقاليم الجنوبية: العيون، السمارة، بوجدور والداخلة. | Estas son *las provincias del sur*: Laâyoune, Smara, Boujdour y Dakhla.
+[ciudades | palm trees] وفهاد المدن، دار المغرب استثمارات ومشاريع تنموية. | Y en estas ciudades Marruecos *hizo inversiones* y proyectos de desarrollo.
+[despues | sunrise] واش هادشي معناه الملف سالا؟ لا… ماشي تلقائيا. | ¿Significa que el expediente se cerró? No… *no automáticamente*.
+[matiz | clouds] هادا ماشي حكم نهائي د الأمم المتحدة… ولكن مرحلة جديدة كتخصها دبلوماسية قوية وحل سلمي. | *No es un fallo definitivo* de la ONU… pero es una nueva etapa que exige *diplomacia fuerte* y solución pacífica.
+[patria | desert dunes] الصحرا عند المغاربة ماشي غير ملف سياسي… هي هوية، وتاريخ، ووحدة. | Para los marroquíes el Sáhara no es solo un asunto político: es *identidad, historia y unidad*.
+[frase | sunset] التاريخ ما كيصنعوهش الشعارات بوحدها… كيصنعوه القرارات، والخدمة، والصبر، والاستراتيجية. | La historia no la hacen solo los eslóganes… la hacen *las decisiones, el trabajo, la paciencia y la estrategia*.
+[pregunta | sea] وأنتوما، شنو كتشوفو؟ كتبوها فالكومونتير! | ¿Y vosotros, qué pensáis? *¡Escribidlo en los comentarios!*

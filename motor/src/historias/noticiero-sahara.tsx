@@ -2,7 +2,7 @@
 import React from 'react';
 import {amiri, sans, serif} from '../tema';
 import {ALTO_MAPA, CIUDADES, TIERRA_NO} from './mapa-noroeste';
-import {EscenaProps, Lienzo, ease, easeIO, mix, p} from '../dibujos/base';
+import {EscenaProps, FondoVideoCtx, Lienzo, ease, easeIO, mix, p} from '../dibujos/base';
 import type {FocoEscena} from '../dibujos/camara2d';
 
 const AZUL = ['#0a1930', '#143055'];
@@ -11,7 +11,9 @@ const VERDE = '#1f8a56';
 const ORO = '#f2c165';
 const CREMA = '#fbf3e6';
 
-const Fondo: React.FC<{f: number}> = ({f}) => (
+const Fondo: React.FC<{f: number}> = ({f}) => {
+  const conVideo = React.useContext(FondoVideoCtx);
+  return (
   <g>
     <defs>
       <linearGradient id="ns-fondo" x1="0" y1="0" x2="0" y2="1">
@@ -19,7 +21,7 @@ const Fondo: React.FC<{f: number}> = ({f}) => (
         <stop offset="1" stopColor={AZUL[1]} />
       </linearGradient>
     </defs>
-    <rect width={1080} height={1920} fill="url(#ns-fondo)" />
+    <rect width={1080} height={1920} fill="url(#ns-fondo)" opacity={conVideo ? 0.58 : 1} />
     {Array.from({length: 20}).map((_, i) => (
       <line key={`h${i}`} x1={0} x2={1080} y1={i * 100} y2={i * 100} stroke="#8fb4e8" strokeWidth={1.5} opacity={0.08} />
     ))}
@@ -33,7 +35,8 @@ const Fondo: React.FC<{f: number}> = ({f}) => (
       MINURSO · CONSEJO DE SEGURIDAD · 30 OCTUBRE 2026 · MINURSO · CONSEJO DE SEGURIDAD · 30 OCTUBRE 2026 ·
     </text>
   </g>
-);
+  );
+};
 
 const UltimaHora: React.FC<{f: number}> = ({f}) => (
   <g transform="translate(130 290)">

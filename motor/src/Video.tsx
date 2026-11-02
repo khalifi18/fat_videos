@@ -5,6 +5,7 @@ import {easeOut, lerp, prog} from './util';
 import {Subtitulo, trozosEs} from './Subtitulos';
 import {ESCENAS, FOCOS} from './dibujos';
 import {Camara2D} from './dibujos/camara2d';
+import {FondoVideoCtx} from './dibujos/base';
 import {COLORES, ELEMENTOS} from './dibujos/elementos';
 import {Estrella8Fondo} from './dibujos/fondo';
 import {ThreeCanvas} from '@remotion/three';
@@ -202,11 +203,19 @@ const Plano: React.FC<{pl: Plano; d: number; opacidad: number}> = ({pl, d, opaci
   const f = useCurrentFrame();
   if (pl.escena && ESCENAS[pl.escena]) {
     const E = ESCENAS[pl.escena];
+    const zoomFondo = 1.04 + 0.1 * (f / Math.max(1, d));
     return (
       <AbsoluteFill style={{opacity: opacidad}}>
-        <Camara2D f={f} d={d} semilla={[...pl.escena].reduce((a, c) => a + c.charCodeAt(0), 0)} foco={FOCOS[pl.escena]}>
-          <E f={f} d={d} k={pl.k ?? Math.round(d * 0.4)} opts={pl.opts ?? []} />
-        </Camara2D>
+        {pl.clip && (
+          <AbsoluteFill style={{transform: `scale(${zoomFondo})`}}>
+            <OffthreadVideo src={staticFile(pl.clip)} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+          </AbsoluteFill>
+        )}
+        <FondoVideoCtx.Provider value={!!pl.clip}>
+          <Camara2D f={f} d={d} semilla={[...pl.escena].reduce((a, c) => a + c.charCodeAt(0), 0)} foco={FOCOS[pl.escena]}>
+            <E f={f} d={d} k={pl.k ?? Math.round(d * 0.4)} opts={pl.opts ?? []} />
+          </Camara2D>
+        </FondoVideoCtx.Provider>
       </AbsoluteFill>
     );
   }

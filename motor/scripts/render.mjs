@@ -79,7 +79,13 @@ if (modo === 'hikma') {
     if (l.busqueda === 'texto') return {texto: l.texto, a, b};
     const [escena, ...opts] = (l.busqueda || 'luna').split(/\s+/);
     const k = Math.round((tiempos[i].ini + 0.4 * (tiempos[i].fin - tiempos[i].ini)) * FPS) - a;
-    return {texto: '', escena, opts, k, a, b};
+    const pl = {texto: '', escena, opts, k, a, b};
+    if (l.fondo) {
+      const c = (cjson.lineas || [])[i];
+      if (!c?.clip || c.busqueda !== l.fondo) fallo(`línea ${i + 1} sin clip de fondo: ejecuta stock.mjs`);
+      pl.clip = preparar(c.clip.archivo, ((b - a) / FPS + 0.4).toFixed(2), `l${i}`);
+    }
+    return pl;
   });
 } else if (pov) {
   // Formato POV: 1–2 clips de fondo que cubren todo el vídeo

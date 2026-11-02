@@ -36,12 +36,15 @@ export function leerGuion(dir) {
   for (let l of filas) {
     if (!l || l.startsWith('#')) continue;
     let busqueda = '';
+    let fondoClip = '';
     const m = l.match(/^\[([^\]]+)\]\s*(.*)$/);
     if (m) {
       const b = m[1].trim().toLowerCase();
       // en hikma/pov solo [texto] es especial; cualquier otra [..] inicial es una etiqueta de voz
       if (!centrado || b === 'texto') {
         busqueda = b;
+        // historia: «[escena | búsqueda en inglés]» pone un clip de vídeo de fondo detrás de la escena
+        if (formato === 'historia' && b.includes('|')) [busqueda, fondoClip] = b.split('|').map((x) => x.trim());
         l = m[2];
       }
     }
@@ -57,7 +60,7 @@ export function leerGuion(dir) {
       .split(/\s+/)
       .filter(Boolean)
       .map((w) => ({w, key: false}));
-    lineas.push({busqueda, texto: words.map((w) => w.w).join(' '), tts, words, es});
+    lineas.push({busqueda, fondo: fondoClip, texto: words.map((w) => w.w).join(' '), tts, words, es});
   }
   if (!lineas.length) throw new Error('guion.txt está vacío');
   lineas.formato = formato;
