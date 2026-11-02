@@ -71,3 +71,8 @@ Repetición ("ما كاين حتى واحد…", "ماشي كلشي…") + conse
 - ¿Las palabras con ق llevan tashkil?
 - ¿El gancho se entiende en 2 segundos? ¿Hay giro? ¿La última frase va para una story?
 - ¿40–55 palabras?
+
+## Palabras que Fatima ha rechazado (no usar)
+- «نورمال عليك», «الشومبرا»: no se dicen así.
+- Darija del norte escrita a mano (تـ en vez de كـ, نتاع, الكوارطو…): sonaba falsa. Usar darija general.
+- Préstamos que sí valen: ديجا (déjà), الفاميلا. Ante la duda, preguntarle a ella en vez de inventar.
