@@ -1,12 +1,15 @@
 # tema: MINURSO no prorrogada · 30 octubre 2026 · estilo noticiero
 # formato: historia
 # fuentes: The Arab Weekly, Yabiladi, WSRW (veto ruso al proyecto de EE.UU., sin prórroga); Akhbarona (comunicado del Gabinete Real); MINURSO creada en 1991
-# escenas (motor/src/historias/noticiero-sahara.tsx): fecha, consejo, proyectos, anos, comunicado, autonomia, matiz, pregunta
+# mapa: Natural Earth 50m (solo costa, sin fronteras); ciudades: Laâyoune, Smara (fundada 1898), Boujdour, Dakhla
+# escenas (motor/src/historias/noticiero-sahara.tsx): fecha, consejo, proyectos, anos, comunicado, autonomia, mapa, ciudades, matiz, pregunta
 [fecha] نهار الجمعة، تلاتين أكتوبر… كان نهار تاريخي. | El viernes 30 de octubre… fue *un día histórico*.
 [consejo] مجلس الأمن مَاقْدَرْشْ يمدد مهمة المينورسو. | El Consejo de Seguridad *no logró prorrogar* la misión de la MINURSO.
 [proyectos] لا المشروع الأمريكي داز، ولا المشروع الروسي. | Ni el proyecto de EE. UU. ni el ruso *salió adelante*.
 [anos] المينورسو كانت فالصحرا من تَقْرِيبًا خمسة وتلاتين عام. | La MINURSO estaba en el Sáhara desde hacía *casi 35 años*.
 [comunicado] الديوان الملكي قَالْ: هادي خطوة كبيرة نحو الطي النهائي د الملف فالأمم المتحدة. | El Gabinete Real dijo: es *un gran paso* hacia cerrar el expediente en la ONU.
 [autonomia] والمغرب كيتمسك بمبادرة الحكم الذاتي تحت السيادة المغربية. | Y Marruecos defiende *su plan de autonomía* bajo soberanía marroquí.
+[mapa] هادي هي الأقاليم الجنوبية: العيون، السمارة، بوجدور والداخلة. | Estas son *las provincias del sur*: Laâyoune, Smara, Boujdour y Dakhla.
+[ciudades] مدن فيها الناس، والحياة، والمشاريع التنموية. | Ciudades con *gente, vida y proyectos de desarrollo*.
 [matiz] ولكن هادا ماشي حكم نهائي د الأمم المتحدة… هادي مرحلة جديدة. | Pero *no es un fallo definitivo* de la ONU… es *una nueva etapa*.
 [pregunta] وأنتوما، شنو كتشوفو؟ كتبوها فالكومونتير! | ¿Y vosotros, qué pensáis? *¡Escribidlo en los comentarios!*

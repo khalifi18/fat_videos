@@ -1,6 +1,7 @@
 // Escenas a medida: «MINURSO, 30 de octubre de 2026» — estilo noticiero (sin personas ni imágenes falsas)
 import React from 'react';
-import {sans, serif} from '../tema';
+import {amiri, sans, serif} from '../tema';
+import {ALTO_MAPA, CIUDADES, TIERRA_NO} from './mapa-noroeste';
 import {EscenaProps, Lienzo, ease, easeIO, mix, p} from '../dibujos/base';
 import type {FocoEscena} from '../dibujos/camara2d';
 
@@ -231,6 +232,136 @@ const Autonomia: React.FC<EscenaProps> = ({f}) => {
   );
 };
 
+
+const NOMBRES: Record<string, string> = {Laayoune: 'العيون', Smara: 'السمارة', Boujdour: 'بوجدور', Dakhla: 'الداخلة'};
+const SUR = ['Laayoune', 'Smara', 'Boujdour', 'Dakhla'] as const;
+const ES: Record<string, string> = {Laayoune: 'Laâyoune', Smara: 'Smara', Boujdour: 'Boujdour', Dakhla: 'Dakhla'};
+
+/** Mapa de la costa atlántica del noroeste de África con las ciudades del sur (solo costa y ciudades, sin fronteras) */
+const Mapa: React.FC<EscenaProps> = ({f}) => {
+  const E = 0.74; // escala del mapa en el lienzo
+  const ox = 140, oy = 395;
+  const e = ease(p(f, 0, 14));
+  return (
+    <Lienzo>
+      <Fondo f={f} />
+      <UltimaHora f={f} />
+      <defs>
+        <linearGradient id="ns-mar" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#1c4f7c" />
+          <stop offset="1" stopColor="#123a5e" />
+        </linearGradient>
+        <linearGradient id="ns-tierra" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#9aa56a" />
+          <stop offset="0.45" stopColor="#d9b97f" />
+          <stop offset="1" stopColor="#e6c890" />
+        </linearGradient>
+        <clipPath id="ns-recorte">
+          <rect x={ox} y={oy} width={1080 * E} height={ALTO_MAPA * E} rx={22} />
+        </clipPath>
+      </defs>
+      <g opacity={e}>
+        <rect x={ox} y={oy} width={1080 * E} height={ALTO_MAPA * E} rx={22} fill="url(#ns-mar)" />
+        <g clipPath="url(#ns-recorte)">
+          <g transform={`translate(${ox} ${oy}) scale(${E})`}>
+            <path d={TIERRA_NO} fill="url(#ns-tierra)" stroke="#efe3c6" strokeWidth={3} />
+            {/* ciudades de contexto */}
+            {['Agadir', 'Casablanca', 'Rabat'].map((c) => (
+              <g key={c} transform={`translate(${CIUDADES[c][0]} ${CIUDADES[c][1]})`}>
+                <circle r={9} fill="#3b2a18" />
+                <text x={16} y={8} fontFamily={sans} fontWeight={800} fontSize={30} fill="#3b2a18" opacity={0.8}>
+                  {c}
+                </text>
+              </g>
+            ))}
+            {/* ciudades del sur: aparecen una a una */}
+            {SUR.map((c, i) => {
+              const t = ease(p(f, 14 + i * 12, 10));
+              const [x, y] = CIUDADES[c];
+              const lado = c === 'Dakhla' || c === 'Smara' ? 1 : -1;
+              return (
+                <g key={c} transform={`translate(${x} ${y})`} opacity={t}>
+                  <circle r={26 + 18 * Math.sin(f * 0.15 + i)} fill={ROJO} opacity={0.25} />
+                  <circle r={14 * t + 2} fill={ROJO} stroke="#fff" strokeWidth={4} />
+                  <g transform={`translate(${lado > 0 ? 28 : -28} -24)`}>
+                    <text textAnchor={lado > 0 ? 'start' : 'end'} fontFamily={amiri} fontWeight={700} fontSize={50} fill="#3b0f0a">
+                      {NOMBRES[c]}
+                    </text>
+                    <text y={40} textAnchor={lado > 0 ? 'start' : 'end'} fontFamily={sans} fontWeight={800} fontSize={34} fill="#3b0f0a">
+                      {ES[c]}
+                    </text>
+                  </g>
+                </g>
+              );
+            })}
+          </g>
+        </g>
+        <text x={540} y={oy + ALTO_MAPA * E + 46} textAnchor="middle" fontFamily={sans} fontWeight={800} fontSize={28} fill="#bcd0ee" opacity={0.85}>
+          Mapa orientativo: costa y ciudades
+        </text>
+      </g>
+    </Lienzo>
+  );
+};
+
+/** Tres tarjetas de ciudad: Laâyoune, Smara, Dakhla */
+const Ciudades: React.FC<EscenaProps> = ({f}) => {
+  const datos = [
+    {c: 'Laayoune', ar: 'العيون', es: 'Laâyoune', dato: 'La mayor ciudad del sur'},
+    {c: 'Smara', ar: 'السمارة', es: 'Smara', dato: 'Ciudad histórica, fundada en 1898'},
+    {c: 'Dakhla', ar: 'الداخلة', es: 'Dakhla', dato: 'Bahía del Atlántico'},
+  ];
+  return (
+    <Lienzo>
+      <Fondo f={f} />
+      <UltimaHora f={f} />
+      {datos.map((d, i) => {
+        const e = ease(p(f, i * 14, 14));
+        const y = 450 + i * 235;
+        return (
+          <g key={d.c} transform={`translate(${(1 - e) * (i % 2 ? 500 : -500)} 0)`} opacity={e}>
+            <rect x={110} y={y - 100} width={860} height={205} rx={22} fill="#0f2547" stroke="#3e5f93" strokeWidth={4} />
+            <rect x={110} y={y - 100} width={16} height={205} rx={8} fill={i === 1 ? ORO : i === 2 ? VERDE : ROJO} />
+            {/* icono de papel: edificios / minarete / ola */}
+            <g transform={`translate(215 ${y + 5})`}>
+              <circle r={70} fill="#16345f" />
+              {i === 0 && (
+                <g fill={CREMA}>
+                  <rect x={-44} y={-10} width={26} height={50} />
+                  <rect x={-12} y={-40} width={26} height={80} />
+                  <rect x={20} y={-22} width={26} height={62} />
+                </g>
+              )}
+              {i === 1 && (
+                <g fill={CREMA}>
+                  <rect x={-14} y={-46} width={28} height={92} />
+                  <path d="M-22,-46 h44 l-22,-26 z" fill={ORO} />
+                  <rect x={-44} y={30} width={88} height={16} />
+                </g>
+              )}
+              {i === 2 && (
+                <g fill="none" stroke={CREMA} strokeWidth={9} strokeLinecap="round">
+                  <path d={`M-48,-6 q16,-24 32,0 t32,0 t32,0`} />
+                  <path d={`M-48,22 q16,-24 32,0 t32,0 t32,0`} />
+                </g>
+              )}
+            </g>
+            <text x={320} y={y - 10} fontFamily={amiri} fontWeight={700} fontSize={70} fill={ORO}>
+              {d.ar}
+            </text>
+            <text x={320} y={y + 38} fontFamily={sans} fontWeight={800} fontSize={44} fill={CREMA}>
+              {d.es}
+            </text>
+            <text x={320} y={y + 82} fontFamily={sans} fontWeight={800} fontSize={30} fill="#bcd0ee">
+              {d.dato}
+            </text>
+          </g>
+        );
+      })}
+    </Lienzo>
+  );
+};
+
 const Matiz: React.FC<EscenaProps> = ({f, k}) => {
   const a = ease(p(f, 0, 12));
   const b = ease(p(f, k, 12));
@@ -288,6 +419,8 @@ export const NOTICIERO_SAHARA: Record<string, React.FC<EscenaProps>> = {
   anos: Anos,
   comunicado: Comunicado,
   autonomia: Autonomia,
+  mapa: Mapa,
+  ciudades: Ciudades,
   matiz: Matiz,
   pregunta: Pregunta,
 };
@@ -299,6 +432,8 @@ export const FOCOS_NOTICIERO_SAHARA: Record<string, FocoEscena> = {
   anos: {x: 540, y: 880},
   comunicado: {x: 540, y: 820},
   autonomia: {x: 540, y: 780},
+  mapa: {x: 440, y: 800},
+  ciudades: {x: 540, y: 800},
   matiz: {x: 540, y: 800},
   pregunta: {x: 540, y: 760},
 };
