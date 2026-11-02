@@ -157,7 +157,17 @@ const still = async (frame, output, extra = {}, scale = 1) =>
   });
 const portada = () => still(Math.min(desde(1) - 2, FPS * 1.2), path.join(out, 'portada.jpg'), {portada: true});
 
-if (args.includes('--hoja')) {
+if (args.includes('--fotos')) {
+  // --fotos 6.2,9,13.5 → out/fotos.jpg (fotogramas sueltos en esos segundos, para revisar transiciones)
+  const hd = path.join(out, 'fotos');
+  fs.mkdirSync(hd, {recursive: true});
+  for (const f of fs.readdirSync(hd)) fs.unlinkSync(path.join(hd, f));
+  const ts = args[args.indexOf('--fotos') + 1].split(',').map(Number);
+  for (let i = 0; i < ts.length; i++) await still(ts[i] * FPS, path.join(hd, `f_${String(i).padStart(2, '0')}.jpg`), {}, 0.3);
+  const cols = 4, rows = Math.ceil(ts.length / cols);
+  execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', path.join(hd, 'f_%02d.jpg'), '-vf', `tile=${cols}x${rows}:padding=6:color=white`, '-frames:v', '1', path.join(out, 'fotos.jpg')]);
+  console.log(`OK · ${ts.length} fotos → ${path.join(out, 'fotos.jpg')}`);
+} else if (args.includes('--hoja')) {
   const hd = path.join(out, 'hoja');
   fs.mkdirSync(hd, {recursive: true});
   for (const f of fs.readdirSync(hd)) fs.unlinkSync(path.join(hd, f));
