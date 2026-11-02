@@ -362,6 +362,177 @@ const Ciudades: React.FC<EscenaProps> = ({f}) => {
   );
 };
 
+/** Tarjeta grande con título y líneas, reutilizable */
+const Tarjeta: React.FC<{y: number; w?: number; h: number; titulo: string; c?: string; e: number; children?: React.ReactNode}> = ({y, w = 860, h, titulo, c = ROJO, e, children}) => (
+  <g transform={`translate(540 ${y + (1 - e) * 120})`} opacity={e}>
+    <rect x={-w / 2 + 10} y={12} width={w} height={h} rx={20} fill="#000" opacity={0.3} />
+    <rect x={-w / 2} y={0} width={w} height={h} rx={20} fill="#0f2547" stroke="#3e5f93" strokeWidth={4} />
+    <rect x={-w / 2} y={0} width={w} height={90} rx={20} fill={c} />
+    <text y={62} textAnchor="middle" fontFamily={sans} fontWeight={800} fontSize={40} fill="#fff">
+      {titulo}
+    </text>
+    {children}
+  </g>
+);
+
+const Rey: React.FC<EscenaProps> = ({f}) => {
+  const e = ease(p(f, 0, 14));
+  const pilares = ['Diplomacia activa', 'Alianzas internacionales', 'Plan de autonomía'];
+  return (
+    <Lienzo>
+      <Fondo f={f} />
+      <UltimaHora f={f} />
+      {/* corona dibujada (adorno, sin retrato) */}
+      <g transform={`translate(540 ${480 + (1 - e) * -200}) scale(${e})`}>
+        <path d="M-120,60 L-150,-40 L-70,10 L0,-70 L70,10 L150,-40 L120,60 Z" fill={ORO} stroke="#b98420" strokeWidth={8} strokeLinejoin="round" />
+        <rect x={-120} y={64} width={240} height={28} rx={8} fill="#d89c2f" stroke="#b98420" strokeWidth={6} />
+        {[-150, 0, 150].map((x) => (
+          <circle key={x} cx={x} cy={x === 0 ? -76 : -46} r={14} fill={ROJO} stroke="#fff" strokeWidth={4} />
+        ))}
+      </g>
+      <Texto x={540} y={650} t="Rey Mohammed VI" s={60} c={ORO} />
+      <Texto x={540} y={715} t="Unidad territorial = prioridad exterior" s={36} c="#bcd0ee" />
+      {pilares.map((t, i) => {
+        const a = ease(p(f, 14 + i * 10, 10));
+        return (
+          <g key={t} transform={`translate(${(1 - a) * 400} ${800 + i * 110})`} opacity={a}>
+            <rect x={130} y={0} width={820} height={90} rx={16} fill="#0f2547" stroke="#3e5f93" strokeWidth={4} />
+            <circle cx={190} cy={45} r={22} fill={[ROJO, VERDE, ORO][i]} />
+            <text x={240} y={58} fontFamily={sans} fontWeight={800} fontSize={42} fill={CREMA}>
+              {t}
+            </text>
+          </g>
+        );
+      })}
+    </Lienzo>
+  );
+};
+
+const Giro: React.FC<EscenaProps> = ({f, k}) => {
+  const a = ease(p(f, 0, 12));
+  const b = ease(p(f, k, 14));
+  return (
+    <Lienzo>
+      <Fondo f={f} />
+      <UltimaHora f={f} />
+      <Tarjeta y={430} h={230} titulo="ANTES" c="#4a5f82" e={a}>
+        <text y={170} textAnchor="middle" fontFamily={sans} fontWeight={800} fontSize={56} fill={CREMA}>
+          Gestionar el conflicto
+        </text>
+      </Tarjeta>
+      <g opacity={b} transform={`translate(540 ${760 + Math.sin(f * 0.2) * 8})`}>
+        <path d="M-60,-40 v50 h-40 l100,80 l100,-80 h-40 v-50 z" fill={ORO} />
+      </g>
+      <Tarjeta y={900} h={230} titulo="AHORA" c={VERDE} e={b}>
+        <text y={170} textAnchor="middle" fontFamily={sans} fontWeight={800} fontSize={56} fill={CREMA}>
+          Buscar la solución final
+        </text>
+      </Tarjeta>
+    </Lienzo>
+  );
+};
+
+const Agenda: React.FC<EscenaProps> = ({f, k}) => {
+  const e = ease(p(f, 0, 12));
+  const sale = easeIO(p(f, k, 18));
+  return (
+    <Lienzo>
+      <Fondo f={f} />
+      <UltimaHora f={f} />
+      <Texto x={540} y={440} t="AGENDA DEL CONSEJO" s={50} c={ORO} />
+      <g opacity={e}>
+        <rect x={140} y={500} width={800} height={560} rx={18} fill="#f7f3ea" />
+        {[0, 1, 2, 3].map((i) => (
+          <g key={i} transform={`translate(0 ${560 + i * 115})`}>
+            <circle cx={210} cy={30} r={16} fill="#1c3b6b" />
+            <rect x={250} y={18} width={560 - (i % 2) * 90} height={24} rx={12} fill="#c9c2b2" />
+          </g>
+        ))}
+        {/* el punto «Sáhara» sale de la lista */}
+        <g transform={`translate(${sale * 900} ${0})`} opacity={1 - sale * 0.4}>
+          <rect x={170} y={905} width={700} height={104} rx={14} fill={ROJO} />
+          <text x={520} y={972} textAnchor="middle" fontFamily={sans} fontWeight={800} fontSize={48} fill="#fff">
+            Sáhara marroquí
+          </text>
+        </g>
+      </g>
+    </Lienzo>
+  );
+};
+
+const Despues: React.FC<EscenaProps> = ({f}) => {
+  const e = ease(p(f, 0, 12));
+  return (
+    <Lienzo>
+      <Fondo f={f} />
+      <UltimaHora f={f} />
+      <text x={540} y={760} textAnchor="middle" fontFamily={serif} fontWeight={700} fontSize={460} fill={ORO} opacity={e} transform={`rotate(${Math.sin(f * 0.1) * 3} 540 640)`}>
+        ?
+      </text>
+      <Texto x={540} y={900} t="¿Y ahora, qué?" s={72} />
+      <g opacity={ease(p(f, 20, 12))}>
+        <Texto x={540} y={990} t="Después del 30 de octubre" s={44} c="#bcd0ee" />
+      </g>
+    </Lienzo>
+  );
+};
+
+const Patria: React.FC<EscenaProps> = ({f}) => {
+  const items = [
+    {t: 'IDENTIDAD', c: ROJO},
+    {t: 'HISTORIA', c: ORO},
+    {t: 'UNIDAD TERRITORIAL', c: VERDE},
+  ];
+  return (
+    <Lienzo>
+      <Fondo f={f} />
+      <UltimaHora f={f} />
+      <Texto x={540} y={450} t="Para los marroquíes" s={56} c={ORO} />
+      <Texto x={540} y={510} t="no es solo un expediente diplomático" s={34} c="#bcd0ee" />
+      {items.map((it, i) => {
+        const a = ease(p(f, 10 + i * 12, 12));
+        return (
+          <g key={it.t} transform={`translate(${(i % 2 ? 1 : -1) * (1 - a) * 500} ${620 + i * 170})`} opacity={a}>
+            <rect x={110} y={0} width={860} height={130} rx={20} fill="#0f2547" stroke={it.c} strokeWidth={6} />
+            <rect x={110} y={0} width={24} height={130} rx={12} fill={it.c} />
+            <text x={540} y={86} textAnchor="middle" fontFamily={sans} fontWeight={800} fontSize={58} fill={CREMA}>
+              {it.t}
+            </text>
+          </g>
+        );
+      })}
+    </Lienzo>
+  );
+};
+
+const Frase: React.FC<EscenaProps> = ({f}) => {
+  const e = ease(p(f, 0, 16));
+  const palabras = ['decisiones', 'trabajo', 'paciencia', 'estrategia'];
+  return (
+    <Lienzo>
+      <Fondo f={f} />
+      <text x={150} y={560} fontFamily={serif} fontWeight={700} fontSize={300} fill={ORO} opacity={0.5 * e}>
+        “
+      </text>
+      <g opacity={e}>
+        <Texto x={540} y={640} t="La historia no la hacen" s={54} />
+        <Texto x={540} y={710} t="solo los eslóganes…" s={54} />
+      </g>
+      {palabras.map((w, i) => {
+        const a = ease(p(f, 22 + i * 10, 10));
+        return (
+          <g key={w} opacity={a} transform={`translate(0 ${(1 - a) * 40})`}>
+            <rect x={200} y={800 + i * 100} width={680} height={78} rx={39} fill={[ROJO, VERDE, ORO, '#4a7fc9'][i]} />
+            <text x={540} y={856 + i * 100} textAnchor="middle" fontFamily={sans} fontWeight={800} fontSize={46} fill={i === 2 ? AZUL[0] : '#fff'}>
+              {w.toUpperCase()}
+            </text>
+          </g>
+        );
+      })}
+    </Lienzo>
+  );
+};
+
 const Matiz: React.FC<EscenaProps> = ({f, k}) => {
   const a = ease(p(f, 0, 12));
   const b = ease(p(f, k, 12));
@@ -421,6 +592,12 @@ export const NOTICIERO_SAHARA: Record<string, React.FC<EscenaProps>> = {
   autonomia: Autonomia,
   mapa: Mapa,
   ciudades: Ciudades,
+  rey: Rey,
+  giro: Giro,
+  agenda: Agenda,
+  despues: Despues,
+  patria: Patria,
+  frase: Frase,
   matiz: Matiz,
   pregunta: Pregunta,
 };
@@ -434,6 +611,12 @@ export const FOCOS_NOTICIERO_SAHARA: Record<string, FocoEscena> = {
   autonomia: {x: 540, y: 780},
   mapa: {x: 440, y: 800},
   ciudades: {x: 540, y: 800},
+  rey: {x: 540, y: 760},
+  giro: {x: 540, y: 780},
+  agenda: {x: 540, y: 780},
+  despues: {x: 540, y: 760},
+  patria: {x: 540, y: 800},
+  frase: {x: 540, y: 780},
   matiz: {x: 540, y: 800},
   pregunta: {x: 540, y: 760},
 };
