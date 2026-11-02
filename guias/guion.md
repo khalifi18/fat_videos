@@ -73,6 +73,6 @@ Repetición ("ما كاين حتى واحد…", "ماشي كلشي…") + conse
 - ¿40–55 palabras?
 
 ## Palabras que Fatima ha rechazado (no usar)
-- «نورمال عليك», «الشومبرا»: no se dicen así.
+- «نورمال عليك», «الشومبرا», «ما فيك والو»: no se dicen así.
 - Darija del norte escrita a mano (تـ en vez de كـ, نتاع, الكوارطو…): sonaba falsa. Usar darija general.
 - Préstamos que sí valen: ديجا (déjà), الفاميلا. Ante la duda, preguntarle a ella en vez de inventar.
