@@ -15,7 +15,23 @@ const out = path.join(dir, 'out');
 fs.mkdirSync(out, {recursive: true});
 const cfg = config();
 const carta = JSON.parse(fs.readFileSync(path.join(dir, 'carta.json'), 'utf8'));
-const props = {firma: cfg.firma, cierre: cfg.cierre, lineas: carta.lineas};
+const props = {firma: cfg.firma, cierre: cfg.cierre, lineas: carta.lineas, fondo: carta.fondo || 'mesa'};
+// Con voz (voz.mjs → audio.mp3 + words.json): cada palabra aparece cuando se dice.
+const RETRASO = 0.5; // la voz empieza medio segundo después
+const vozF = path.join(dir, 'audio.mp3');
+const conVoz = fs.existsSync(vozF) && fs.existsSync(path.join(dir, 'words.json'));
+if (conVoz) {
+  const w = JSON.parse(fs.readFileSync(path.join(dir, 'words.json'), 'utf8'));
+  props.tiempos = carta.lineas.map((_, i) => w.filter((x) => x.l === i).map((x) => x.s + RETRASO));
+  props.tiempos.forEach((t, i) => {
+    const n = carta.lineas[i].ar.split(/\s+/).length;
+    if (t.length !== n) throw new Error(`línea ${i + 1}: ${n} palabras en carta.json y ${t.length} en la voz`);
+  });
+  props.finVoz = w[w.length - 1].e + RETRASO;
+}
+// Música de fondo opcional: la primera .mp3 de videos/<slug>/musica/
+const mdir = path.join(dir, 'musica');
+const musica = fs.existsSync(mdir) ? fs.readdirSync(mdir).filter((x) => x.endsWith('.mp3')).map((x) => path.join(mdir, x))[0] : null;
 const motor = path.join(raiz, 'motor');
 const chromiumOptions = {gl: process.env.REMOTION_GL || 'angle'};
 const browserExecutable = process.env.REMOTION_BROWSER || null;
@@ -36,8 +52,20 @@ if (args.includes('--fotos')) {
   if (!args.includes('--portada')) {
     const mudo = path.join(out, 'mudo.mp4');
     await renderMedia({chromiumOptions, browserExecutable, composition, serveUrl, codec: 'h264', crf: 18, outputLocation: mudo, inputProps: props, muted: true});
-    // pista de audio silenciosa: algunas apps rechazan vídeos sin audio
-    execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', mudo, '-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=stereo', '-shortest', '-c:v', 'copy', '-c:a', 'aac', path.join(out, 'video.mp4')]);
+    const dur = composition.durationInFrames / 30;
+    const ent = ['-i', mudo];
+    const pistas = [];
+    if (conVoz) {
+      ent.push('-i', vozF);
+      pistas.push(`[${pistas.length + 1}:a]adelay=${RETRASO * 1000}:all=1,volume=1.0[v]`);
+    }
+    if (musica) {
+      ent.push('-i', musica);
+      pistas.push(`[${pistas.length + 1}:a]volume=${conVoz ? 0.16 : 0.6},afade=t=in:d=0.8,afade=t=out:st=${dur - 2}:d=2[m]`);
+    }
+    if (!pistas.length) ent.push('-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=stereo'); // pista muda: algunas apps rechazan vídeos sin audio
+    const filtro = pistas.length ? [...pistas, `${pistas.map((p) => p.slice(p.lastIndexOf('['))).join('')}amix=inputs=${pistas.length}:normalize=0:duration=longest,apad[a]`].join(';') : null;
+    execFileSync('ffmpeg', ['-v', 'error', '-y', ...ent, ...(filtro ? ['-filter_complex', filtro, '-map', '0:v', '-map', '[a]'] : ['-map', '0:v', '-map', '1:a']), '-t', String(dur), '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', path.join(out, 'video.mp4')]);
     fs.unlinkSync(mudo);
   }
   await still(0, path.join(out, 'portada.jpg'), {portada: true});

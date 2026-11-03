@@ -4,7 +4,8 @@ import {loadFont as loadRuqaa} from '@remotion/google-fonts/ArefRuqaa';
 import {FPS, serif, sans} from './tema';
 
 // Formato «carta»: una frase escrita a mano en una hoja sobre una mesa marroquí (vista desde arriba),
-// con un vaso de atay y hierbabuena. Sin voz: Fatima le pone un sonido de moda en TikTok.
+// con un vaso de atay y hierbabuena (fondo «mesa»), o en la página de un cuaderno con bolígrafo (fondo «cuaderno»).
+// Con voz (tiempos de words.json: cada palabra aparece cuando se dice) o sin voz (ritmo fijo).
 const ruqaa = loadRuqaa('normal', {weights: ['400', '700'], subsets: ['arabic']}).fontFamily;
 
 export type CartaProps = {
@@ -12,13 +13,21 @@ export type CartaProps = {
   cierre: string;
   lineas: {ar: string; es: string}[];
   portada?: boolean;
+  fondo?: 'mesa' | 'cuaderno';
+  tiempos?: number[][]; // segundo en que se dice cada palabra, por línea
+  finVoz?: number;
+  audio?: string | null;
 };
 
 const PALABRA = 0.16 * FPS; // separación entre palabras al escribir
 const PAUSA = 0.55 * FPS; // respiro entre frases
 const INICIO = 0.6 * FPS;
 
-export const tiemposCarta = (lineas: CartaProps['lineas']) => {
+export const tiemposCarta = (lineas: CartaProps['lineas'], tiempos?: number[][], finVoz?: number) => {
+  if (tiempos && finVoz) {
+    const pal = tiempos.map((ws) => ws.map((x) => x * FPS));
+    return {ini: pal.map((ws) => ws[0]), pal, escrito: finVoz * FPS, total: (finVoz + 3.4) * FPS};
+  }
   let t = INICIO;
   const ini = lineas.map((l) => {
     const a = t;
@@ -26,7 +35,8 @@ export const tiemposCarta = (lineas: CartaProps['lineas']) => {
     return a;
   });
   const escrito = t;
-  return {ini, escrito, total: escrito + 6.5 * FPS};
+  const pal = lineas.map((l, i) => l.ar.split(/\s+/).map((_, j) => ini[i] + j * PALABRA));
+  return {ini, pal, escrito, total: escrito + 6.5 * FPS};
 };
 
 const Hoja: React.FC<{children: React.ReactNode}> = ({children}) => (
@@ -55,6 +65,60 @@ const Hoja: React.FC<{children: React.ReactNode}> = ({children}) => (
       {children}
     </div>
   </div>
+);
+
+const Cuaderno: React.FC<{children: React.ReactNode}> = ({children}) => (
+  <AbsoluteFill>
+    <AbsoluteFill style={{background: 'linear-gradient(180deg, #4d5562 0%, #6f7784 35%, #8a909a 100%)'}} />
+    <AbsoluteFill style={{background: 'radial-gradient(ellipse at 60% 40%, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0) 60%)'}} />
+    {/* bloque de páginas */}
+    <div style={{position: 'absolute', left: 30, top: 190, width: 1080, height: 1780, borderTopLeftRadius: 120, background: '#d9cfbc', transform: 'translate(-14px, 16px)', boxShadow: '0 30px 60px rgba(0,0,0,0.45)'}} />
+    <div style={{position: 'absolute', left: 30, top: 190, width: 1080, height: 1780, borderTopLeftRadius: 120, background: '#e3d9c6', transform: 'translate(-7px, 8px)'}} />
+    {/* página */}
+    <div style={{position: 'absolute', left: 30, top: 190, width: 1080, height: 1780, borderTopLeftRadius: 120, overflow: 'hidden', background: 'radial-gradient(ellipse at 45% 30%, #f1ebdf 0%, #e7decd 55%, #d6cab3 100%)'}}>
+      <svg width="1080" height="1780" style={{position: 'absolute', inset: 0, opacity: 0.3}}>
+        <filter id="papelC">
+          <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="9" />
+          <feColorMatrix values="0 0 0 0 0.4  0 0 0 0 0.35  0 0 0 0 0.28  0 0 0 0.22 0" />
+        </filter>
+        <rect width="1080" height="1780" filter="url(#papelC)" />
+      </svg>
+      {/* curva del lomo arriba y sombra del borde */}
+      <div style={{position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(90,70,40,0.18) 0%, rgba(0,0,0,0) 7%), linear-gradient(90deg, rgba(90,70,40,0.16) 0%, rgba(0,0,0,0) 6%)'}} />
+      <div style={{position: 'absolute', left: 0, top: 0, width: 1050, height: 1420}}>{children}</div>
+    </div>
+    <Boli />
+  </AbsoluteFill>
+);
+
+// bolígrafo negro con anillos dorados, en diagonal abajo a la izquierda
+const Boli: React.FC = () => (
+  <svg width="1080" height="1920" style={{position: 'absolute', inset: 0}}>
+    <defs>
+      <linearGradient id="negro" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#3a3d44" />
+        <stop offset="0.35" stopColor="#0d0e11" />
+        <stop offset="1" stopColor="#000" />
+      </linearGradient>
+      <linearGradient id="dorado" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#fff0b8" />
+        <stop offset="0.5" stopColor="#c9a14a" />
+        <stop offset="1" stopColor="#7a5a1c" />
+      </linearGradient>
+    </defs>
+    <g transform="translate(330 1770) rotate(32)">
+      <rect x="-520" y="-14" width="560" height="70" rx="34" fill="rgba(0,0,0,0.35)" filter="blur(12px)" transform="translate(10 40)" />
+      <rect x="-560" y="-32" width="470" height="64" rx="30" fill="url(#negro)" />
+      <rect x="-120" y="-32" width="26" height="64" fill="url(#dorado)" />
+      <rect x="-94" y="-28" width="90" height="56" rx="6" fill="url(#negro)" />
+      <rect x="-30" y="-28" width="14" height="56" fill="url(#dorado)" />
+      <path d="M-4,-24 L60,-12 L60,12 L-4,24 Z" fill="url(#negro)" />
+      <path d="M58,-12 L130,0 L58,12 Z" fill="url(#dorado)" />
+      <path d="M62,0 L126,0" stroke="#5a4210" strokeWidth="2" />
+      <rect x="-470" y="-34" width="200" height="12" rx="6" fill="url(#dorado)" transform="translate(0 -6)" />
+      <rect x="-560" y="-26" width="470" height="8" rx="4" fill="rgba(255,255,255,0.18)" />
+    </g>
+  </svg>
 );
 
 const Atay: React.FC<{f: number}> = ({f}) => {
@@ -111,14 +175,75 @@ const Hierbabuena: React.FC = () => (
   </svg>
 );
 
-export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada}) => {
+export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fondo = 'mesa', tiempos, finVoz}) => {
   const fr = useCurrentFrame();
-  const {ini, escrito, total} = tiemposCarta(lineas);
+  const {pal: tPal, escrito, total} = tiemposCarta(lineas, tiempos, finVoz);
   const f = portada ? escrito + FPS : fr;
   const zoom = interpolate(f, [0, total], [1.0, 1.07], {easing: Easing.inOut(Easing.sin)});
   const fin = portada ? 0 : interpolate(f, [total - 2.2 * FPS, total - 1.4 * FPS], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const k = fondo === 'cuaderno' ? 1.16 : 1; // en el cuaderno la hoja es más grande
   const llama = 0.85 + 0.15 * Math.sin(f / 7) * Math.sin(f / 11);
 
+  const texto = (
+    <>
+          <div style={{position: 'absolute', top: 70, left: 0, right: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 22 * k}}>
+            <div style={{width: 150, height: 2, background: '#8a6a45'}} />
+            <div style={{fontFamily: serif, fontSize: 34, color: '#6b4a2c'}}>{firma}</div>
+            <div style={{width: 150, height: 2, background: '#8a6a45'}} />
+          </div>
+          <div style={{position: 'absolute', top: 140, bottom: 70, left: 55, right: 55, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 22 * k}}>
+            {lineas.map((l, i) => {
+              const pal = l.ar.split(/\s+/);
+              const tEs = tPal[i][pal.length - 1] + 0.3 * FPS;
+              return (
+                <div key={i}>
+                  <div dir="rtl" style={{fontFamily: ruqaa, fontWeight: i === 0 ? 400 : 700, fontSize: (i === 0 ? 46 : 60) * k, lineHeight: 1.35, color: i === 0 ? '#7a5634' : '#2b1a10', textAlign: 'center'}}>
+                    {pal.map((w, j) => {
+                      const a = tPal[i][j] ?? tPal[i][tPal[i].length - 1];
+                      const o = interpolate(f, [a, a + 0.35 * FPS], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+                      return (
+                        <span key={j} style={{opacity: o, filter: `blur(${(1 - o) * 6}px)`, display: 'inline-block', transform: `translateY(${(1 - o) * 8}px)`}}>
+                          {w}
+                          {j < pal.length - 1 ? ' ' : ''}
+                        </span>
+                      );
+                    })}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: serif,
+                      fontSize: 28 * k,
+                      lineHeight: 1.3,
+                      color: '#8a6a4a',
+                      textAlign: 'center',
+                      marginTop: 4,
+                      opacity: interpolate(f, [tEs, tEs + 0.5 * FPS], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}),
+                    }}
+                  >
+                    {l.es}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+    </>
+  );
+  const cierreEl = (
+    <AbsoluteFill style={{background: `rgba(15,8,5,${0.9 * fin})`, alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 24}}>
+      <div style={{opacity: fin, fontFamily: serif, fontSize: 64, color: '#fbf3e6'}}>{firma}</div>
+      <div style={{opacity: fin, fontFamily: sans, fontWeight: 700, fontSize: 34, color: '#f2c165'}}>{cierre}</div>
+    </AbsoluteFill>
+  );
+  if (fondo === 'cuaderno')
+    return (
+      <AbsoluteFill style={{background: '#4d5562'}}>
+        <AbsoluteFill style={{transform: `scale(${zoom})`, transformOrigin: '50% 40%'}}>
+          <Cuaderno>{texto}</Cuaderno>
+          <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.35) 100%)'}} />
+        </AbsoluteFill>
+        {cierreEl}
+      </AbsoluteFill>
+    );
   return (
     <AbsoluteFill style={{background: '#2a1810'}}>
       <AbsoluteFill style={{transform: `scale(${zoom})`, transformOrigin: '50% 45%'}}>
@@ -135,58 +260,13 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada}) =>
           ))}
         </svg>
         <Hierbabuena />
-        <Hoja>
-          <div style={{position: 'absolute', top: 70, left: 0, right: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 22}}>
-            <div style={{width: 150, height: 2, background: '#8a6a45'}} />
-            <div style={{fontFamily: serif, fontSize: 34, color: '#6b4a2c'}}>{firma}</div>
-            <div style={{width: 150, height: 2, background: '#8a6a45'}} />
-          </div>
-          <div style={{position: 'absolute', top: 140, bottom: 70, left: 55, right: 55, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 22}}>
-            {lineas.map((l, i) => {
-              const pal = l.ar.split(/\s+/);
-              const tEs = ini[i] + pal.length * PALABRA;
-              return (
-                <div key={i}>
-                  <div dir="rtl" style={{fontFamily: ruqaa, fontWeight: i === 0 ? 400 : 700, fontSize: i === 0 ? 46 : 60, lineHeight: 1.35, color: i === 0 ? '#7a5634' : '#2b1a10', textAlign: 'center'}}>
-                    {pal.map((w, j) => {
-                      const a = ini[i] + j * PALABRA;
-                      const o = interpolate(f, [a, a + 0.35 * FPS], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-                      return (
-                        <span key={j} style={{opacity: o, filter: `blur(${(1 - o) * 6}px)`, display: 'inline-block', transform: `translateY(${(1 - o) * 8}px)`}}>
-                          {w}
-                          {j < pal.length - 1 ? ' ' : ''}
-                        </span>
-                      );
-                    })}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: serif,
-                      fontSize: 28,
-                      lineHeight: 1.3,
-                      color: '#8a6a4a',
-                      textAlign: 'center',
-                      marginTop: 4,
-                      opacity: interpolate(f, [tEs, tEs + 0.5 * FPS], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}),
-                    }}
-                  >
-                    {l.es}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </Hoja>
+        <Hoja>{texto}</Hoja>
         <Atay f={f} />
         {/* luz cálida de vela desde arriba a la izquierda */}
         <AbsoluteFill style={{background: `radial-gradient(ellipse at 25% 20%, rgba(255,200,120,${0.22 * llama}) 0%, rgba(0,0,0,0) 55%)`, mixBlendMode: 'screen'}} />
         <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55) 100%)'}} />
       </AbsoluteFill>
-      {/* cierre */}
-      <AbsoluteFill style={{background: `rgba(15,8,5,${0.9 * fin})`, alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 24}}>
-        <div style={{opacity: fin, fontFamily: serif, fontSize: 64, color: '#fbf3e6'}}>{firma}</div>
-        <div style={{opacity: fin, fontFamily: sans, fontWeight: 700, fontSize: 34, color: '#f2c165'}}>{cierre}</div>
-      </AbsoluteFill>
+      {cierreEl}
     </AbsoluteFill>
   );
 };

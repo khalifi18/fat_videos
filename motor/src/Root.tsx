@@ -44,7 +44,7 @@ export const Root: React.FC = () => (
       fps={FPS}
       durationInFrames={FPS * 12}
       defaultProps={{firma: 'Fatima Andalussi', cierre: '', lineas: [{ar: 'كلمة', es: 'palabra'}]} as CartaProps}
-      calculateMetadata={({props}) => ({durationInFrames: Math.ceil(tiemposCarta(props.lineas).total)})}
+      calculateMetadata={({props}) => ({durationInFrames: Math.ceil(tiemposCarta(props.lineas, props.tiempos, props.finVoz).total)})}
     />
     <Composition id="Escena" component={VistaEscena} width={W} height={H} fps={FPS} durationInFrames={150} defaultProps={{escena: 'puerta', opts: [] as string[], k: 30, d: 150}} />
   </>

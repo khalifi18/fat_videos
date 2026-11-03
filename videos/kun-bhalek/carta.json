@@ -1,9 +1,25 @@
 {
-  "lineas": [
-    {"ar": "عجباتني واحد الكلمة كتقول:", "es": "Me gustó una frase que dice:"},
-    {"ar": "كون بحالك… وما تكونش بحال الناس.", "es": "Sé como eres… y no como la gente."},
-    {"ar": "ما تعاودش كلشي اللي سمعتي، وما تتيقش كلشي اللي كيقولو.", "es": "No repitas todo lo que oyes, ni te creas todo lo que dicen."},
-    {"ar": "بحال ما تزاديتي كتبكي والناس دايرين بيك كيضحكو…", "es": "Igual que naciste llorando mientras a tu alrededor reían…"},
-    {"ar": "عيش حتى تمشي وانت كتضحك، والناس دايرين بيك كيبكيو عليك.", "es": "vive para irte riendo, mientras a tu alrededor lloran por ti."}
-  ]
+ "lineas": [
+  {
+   "ar": "عجباتني واحد الكلمة كتقول:",
+   "es": "Me gustó una frase que dice:"
+  },
+  {
+   "ar": "كون بحالك… وما تكونش بحال الناس.",
+   "es": "Sé como eres… y no como la gente."
+  },
+  {
+   "ar": "ما تعاودش كلشي اللي سمعتي، وما تتيقش كلشي اللي كيقولو.",
+   "es": "No repitas todo lo que oyes, ni te creas todo lo que dicen."
+  },
+  {
+   "ar": "بحال ما تزاديتي كتبكي والناس دايرين بيك كيضحكو…",
+   "es": "Igual que naciste llorando mientras a tu alrededor reían…"
+  },
+  {
+   "ar": "عيش حتى تمشي وانت كتضحك، والناس دايرين بيك كيبكيو عليك.",
+   "es": "vive para irte riendo, mientras a tu alrededor lloran por ti."
+  }
+ ],
+ "fondo": "cuaderno"
 }

@@ -1,0 +1,7 @@
+# formato: hikma
+# Formato carta: el texto va escrito en la hoja (ver carta.json); este guion es solo para la voz.
+عجباتني واحد الكلمة كتقول: | Me gustó una frase que dice:
+كون بحالك… وما تكونش بحال الناس. | Sé como eres… y no como la gente.
+ما تعاودش كلشي اللي سمعتي، وما تتيقش كلشي اللي كيقولو. | No repitas todo lo que oyes, ni te creas todo lo que dicen.
+بحال ما تزاديتي كتبكي والناس دايرين بيك كيضحكو… | Igual que naciste llorando mientras a tu alrededor reían…
+عيش حتى تمشي وانت كتضحك، والناس دايرين بيك كيبكيو عليك. | vive para irte riendo, mientras a tu alrededor lloran por ti.
