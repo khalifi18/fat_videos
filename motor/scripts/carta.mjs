@@ -38,7 +38,7 @@ const browserExecutable = process.env.REMOTION_BROWSER || null;
 const serveUrl = await bundle({entryPoint: path.join(motor, 'src', 'index.ts'), publicDir: path.join(motor, 'public')});
 const composition = await selectComposition({serveUrl, id: 'Carta', inputProps: props, chromiumOptions, browserExecutable});
 const still = (frame, output, extra = {}, scale = 1) =>
-  renderStill({chromiumOptions, browserExecutable, composition, serveUrl, frame: Math.min(composition.durationInFrames - 1, Math.round(frame)), output, inputProps: {...props, ...extra}, scale, imageFormat: 'jpeg', jpegQuality: 90});
+  renderStill({chromiumOptions, browserExecutable, composition: {...composition, props: {...composition.props, ...extra}}, serveUrl, frame: Math.min(composition.durationInFrames - 1, Math.round(frame)), output, inputProps: {...props, ...extra}, scale, imageFormat: 'jpeg', jpegQuality: 90});
 
 if (args.includes('--fotos')) {
   const ts = args[args.indexOf('--fotos') + 1].split(',').map(Number);
