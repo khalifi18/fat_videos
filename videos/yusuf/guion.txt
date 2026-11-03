@@ -2,20 +2,20 @@
 # formato: historia
 # fuentes: Corán, sura 12 (Yusuf): aleyas 4, 8-18, 19-20, 23, 36-42, 43-49, 54-56, 58-62, 92-100. Aleyas citadas: 12:18 y 12:92.
 # nota: los profetas no se representan con cara: solo siluetas y objetos (estrellas, pozo, túnica, caravana)
-# escenas a dibujar (motor/src/historias/yusuf.tsx): suenyo, hermanos, pozo, tunica, caravana, casa, carcel, reysueno, almacen, reencuentro, perdon, vista, leccion, pregunta
-[suenyo] يوسف، ولد النبي يعقوب، شاف فالمنام: أحد عشر كوكب، والشمس، والقمر، ساجدين ليه. | Yusuf, hijo del profeta Yaqub, soñó que once estrellas, el sol y la luna *se postraban ante él*.
-[hermanos] خوتو غارو منو، حيت بوهم كيحب يوسف بزاف. | Sus hermanos *sintieron envidia*, porque su padre quería mucho a Yusuf.
-[pozo] خداوه معاهم، ورماوه فالبير. | Se lo llevaron… y *lo arrojaron a un pozo*.
-[tunica] ورجعو عند بوهم بقَمِيصْ ديالو، فيه دم كذب، وقَالُو: كلاه الذيب. | Volvieron con su túnica manchada de *sangre falsa*: "se lo comió el lobo".
+# escenas a dibujar (motor/src/historias/yusuf.tsx): suenyo, hermanos, pozo, tunica, camellos, palacio, carcel, reysueno, almacen, reencuentro, perdon, vista, leccion, ypregunta
+[suenyo | night stars] يوسف، ولد النبي يعقوب، شاف فالمنام: أحد عشر كوكب، والشمس، والقمر، ساجدين ليه. | Yusuf, hijo del profeta Yaqub, soñó que once estrellas, el sol y la luna *se postraban ante él*.
+[hermanos | storm clouds] خوتو غارو منو، حيت بوهم كيحب يوسف بزاف. | Sus hermanos *sintieron envidia*, porque su padre quería mucho a Yusuf.
+[pozo | desert] خداوه معاهم، ورماوه فالبير. | Se lo llevaron… y *lo arrojaron a un pozo*.
+[tunica | red fabric] ورجعو عند بوهم بقَمِيصْ ديالو، فيه دم كذب، وقَالُو: كلاه الذيب. | Volvieron con su túnica manchada de *sangre falsa*: "se lo comió el lobo".
 [texto] فَصَبْرٌ جَمِيلٌ وَاللَّهُ الْمُسْتَعَانُ عَلَىٰ مَا تَصِفُونَ | "*Paciencia hermosa*; Allah es a quien se pide ayuda frente a lo que contáis."
-[caravana] جات قَافْلَة، خرجاتو من البير، وبيعاتو فمصر. | Pasó una caravana, lo sacó del pozo y *lo vendió en Egipto*.
-[casa] تربى فدار العزيز، وجاتو فتنة كبيرة… وقَالْ: معاذ الله! | Creció en casa del Aziz, le llegó *una gran tentación*… y dijo: "¡Que Allah me proteja!"
-[carcel] ودخلوه للحبس وهو بريء… وبقا صابر سنين. | Lo metieron en la cárcel *siendo inocente*… y *esperó con paciencia* durante años.
-[reysueno] الملك شاف منام: سبع بقرات سمان، وسبع عجاف. يوسف فسر ليه: سبع سنين خير، وسبع سنين جوع. | El rey soñó con siete vacas gordas y siete flacas. Yusuf explicó: *siete años de abundancia y siete de hambre*.
-[almacen] وولى مسؤول على خزائن مصر، وخبّا الحبوب. وهكا أنقذ البلاد من المجاعة. | Quedó a cargo de los almacenes de Egipto y *guardó el grano*: así salvó al país del hambre.
-[reencuentro] وجاو خوتو يشريو القوت… هو عرفهم، وهوما ما عرفوهش. | Sus hermanos llegaron a comprar comida… él los reconoció, y ellos a él *no*.
+[camellos | camels desert] جات قَافْلَة، خرجاتو من البير، وبيعاتو فمصر. | Pasó una caravana, lo sacó del pozo y *lo vendió en Egipto*.
+[palacio | columns] تربى فدار العزيز، وجاتو فتنة كبيرة… وقَالْ: معاذ الله! | Creció en casa del Aziz, le llegó *una gran tentación*… y dijo: "¡Que Allah me proteja!"
+[carcel | rain window] ودخلوه للحبس وهو بريء… وبقا صابر سنين. | Lo metieron en la cárcel *siendo inocente*… y *esperó con paciencia* durante años.
+[reysueno | wheat field] الملك شاف منام: سبع بقرات سمان، وسبع عجاف. يوسف فسر ليه: سبع سنين خير، وسبع سنين جوع. | El rey soñó con siete vacas gordas y siete flacas. Yusuf explicó: *siete años de abundancia y siete de hambre*.
+[almacen | farm] وولى مسؤول على خزائن مصر، وخبّا الحبوب. وهكا أنقذ البلاد من المجاعة. | Quedó a cargo de los almacenes de Egipto y *guardó el grano*: así salvó al país del hambre.
+[reencuentro | desert road] وجاو خوتو يشريو القوت… هو عرفهم، وهوما ما عرفوهش. | Sus hermanos llegaron a comprar comida… él los reconoció, y ellos a él *no*.
 [texto] لَا تَثْرِيبَ عَلَيْكُمُ الْيَوْمَ يَغْفِرُ اللَّهُ لَكُمْ | "*Hoy no hay reproche* contra vosotros. Que Allah os perdone."
-[perdon] كان قَادَرْ ينتقم… وسمح ليهم. | Podía vengarse… y *los perdonó*.
-[vista] القميص رجع لوجه بوه، وشاف من جديد، وتْحَقَّقْ المنام. | La túnica volvió al rostro de su padre, *volvió a ver*, y el sueño se cumplió.
-[leccion] الصبر والسماح… هوما اللي كيرفعو الإنسان. | La paciencia y el perdón *son los que elevan a la persona*.
-[pregunta] شنو قصة النبي اللي بغيتو فالفيديو الجاي؟ كتبوها فالكومونتير! | ¿Qué historia de profeta queréis en el próximo vídeo? *¡Escribidla en los comentarios!*
+[perdon | sunrise] كان قَادَرْ ينتقم… وسمح ليهم. | Podía vengarse… y *los perdonó*.
+[vista | light rays] القميص رجع لوجه بوه، وشاف من جديد، وتْحَقَّقْ المنام. | La túnica volvió al rostro de su padre, *volvió a ver*, y el sueño se cumplió.
+[leccion | sunset] الصبر والسماح… هوما اللي كيرفعو الإنسان. | La paciencia y el perdón *son los que elevan a la persona*.
+[ypregunta | night sky] شنو قصة النبي اللي بغيتو فالفيديو الجاي؟ كتبوها فالكومونتير! | ¿Qué historia de profeta queréis en el próximo vídeo? *¡Escribidla en los comentarios!*
