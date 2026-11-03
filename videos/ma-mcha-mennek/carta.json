@@ -1,0 +1,10 @@
+{
+ "fondo": "pergamino",
+ "lineas": [
+  {"ar": "عجباتني واحد الكلمة كتقول:", "es": "Me gustó una frase que dice:"},
+  {"ar": "اللي مشا منك… ماشي ديالك.", "es": "Lo que se fue de ti… no era tuyo."},
+  {"ar": "واللي تعطّل عليك… ماشي وقتو.", "es": "Y lo que se te retrasa… no es su momento."},
+  {"ar": "وإلا بكيتي اليوم من الوجع،", "es": "Y si hoy lloras de dolor,"},
+  {"ar": "غدا غادي تضحكي من الفرحة… وتنساي كلشي.", "es": "mañana reirás de alegría… y lo olvidarás todo."}
+ ]
+}
