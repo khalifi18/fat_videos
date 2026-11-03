@@ -1,0 +1,36 @@
+# tema: Historia del profeta Yusuf (versión larga, narrada en español)  ·  serie: Historias de los profetas
+# formato: historia
+# narracion: es
+# voz: pNInz6obpgDQGcFmaJgB
+# idioma: es
+# fuentes: Corán, sura 12 (Yusuf). Aleyas en árabe: 12:4, 12:18, 12:55, 12:87, 12:92 y 12:100 (revisar en quran.com antes de publicar)
+# nota: los profetas no se representan con cara: solo siluetas y objetos. La voz no recita el Corán: los versos salen en árabe en pantalla y la voz lee su traducción.
+# escenas (motor/src/historias/yusuf.tsx): suenyo, hermanos, padre, pozo, tunica, camellos, palacio, carcel, reysueno, almacen, hambre, reencuentro, copa, perdon, vista, leccion, ypregunta
+[suenyo | night stars] Esta es la historia de Yusuf, la paz sea con él, hijo del profeta Yaqub. Allah la llama «la mejor de las historias». [short pause] Cuando era niño, Yusuf tuvo un sueño que nunca olvidó.
+[texto] يَا أَبَتِ إِنِّي رَأَيْتُ أَحَدَ عَشَرَ كَوْكَبًا وَالشَّمْسَ وَالْقَمَرَ رَأَيْتُهُمْ لِي سَاجِدِينَ | «Padre, he visto once estrellas, el sol y la luna: los vi *postrarse ante mí*.» (12:4)
+[hermanos | storm clouds] Su padre lo quería mucho. Y sus hermanos lo vieron… y sintieron *envidia*.
+[padre | candle] Yaqub le advirtió: «No cuentes tu sueño a tus hermanos». Pero la envidia ya crecía en sus corazones.
+[pozo | desert] Un día pidieron a su padre llevarse a Yusuf al campo. Y allí, *lo arrojaron a un pozo*.
+[tunica | red fabric] Volvieron de noche, llorando, con su túnica manchada de *sangre falsa*. «Se lo comió el lobo», dijeron.
+[padre | rain window] Yaqub supo que mentían. No gritó, no los maldijo. Dijo:
+[texto] فَصَبْرٌ جَمِيلٌ وَاللَّهُ الْمُسْتَعَانُ عَلَىٰ مَا تَصِفُونَ | «*Paciencia hermosa*; Allah es a quien se pide ayuda frente a lo que contáis.» (12:18)
+[camellos | camels desert] Mientras tanto, pasó una caravana. Sacaron a Yusuf del pozo… y *lo vendieron en Egipto*.
+[palacio | columns] Lo compró un hombre importante y Yusuf creció en su casa. Un día llegó una gran prueba: lo invitaron a desobedecer a Allah. Yusuf se negó, corrió hacia la puerta y dijo: «¡Que Allah me proteja!»
+[carcel | rain window] Y aunque era inocente, lo metieron en la cárcel. Pasaron los años. Allí ayudaba a los demás presos, y a uno que saldría libre le pidió: «Acuérdate de mí ante el rey». Pero se olvidó.
+[reysueno | wheat field] Un día, el rey de Egipto soñó con siete vacas gordas devoradas por siete vacas flacas. Nadie supo explicarlo. Entonces aquel preso se acordó de Yusuf. Y Yusuf dijo: *siete años de abundancia*, y después *siete años de hambre*. Guardad el grano.
+[almacen | farm] El rey vio su sabiduría y su inocencia. Y Yusuf le pidió una responsabilidad:
+[texto] قَالَ اجْعَلْنِي عَلَىٰ خَزَائِنِ الْأَرْضِ ۖ إِنِّي حَفِيظٌ عَلِيمٌ | «*Ponme al frente de los almacenes de la tierra*; soy buen guardián y sé lo que hago.» (12:55)
+[almacen | farm] Así, durante los años buenos, Yusuf *guardó el grano*. Y cuando llegó el hambre, Egipto tenía comida para todos.
+[hambre | dry land] El hambre llegó también a la tierra de Yaqub. Sus hijos viajaron a Egipto a *comprar alimento*.
+[reencuentro | desert road] Yusuf los reconoció enseguida. Ellos a él, no. Ya no era el niño del pozo.
+[copa | gold] Les pidió que trajeran a su hermano pequeño, Binyamin. Y los puso a prueba para saber si *habían cambiado*.
+[padre | night sky] Yaqub, que había llorado tanto que perdió la vista, nunca perdió la esperanza. Y dijo a sus hijos:
+[texto] يَا بَنِيَّ اذْهَبُوا فَتَحَسَّسُوا مِن يُوسُفَ وَأَخِيهِ وَلَا تَيْأَسُوا مِن رَّوْحِ اللَّهِ | «Hijos míos, id y averiguad sobre Yusuf y su hermano, y *no desesperéis de la misericordia de Allah*.» (12:87)
+[reencuentro | desert road] Los hermanos volvieron ante Yusuf, avergonzados. Él, que podía vengarse, les dijo:
+[texto] لَا تَثْرِيبَ عَلَيْكُمُ الْيَوْمَ ۖ يَغْفِرُ اللَّهُ لَكُمْ ۖ وَهُوَ أَرْحَمُ الرَّاحِمِينَ | «*Hoy no hay reproche* contra vosotros. Que Allah os perdone; Él es el más misericordioso.» (12:92)
+[perdon | sunrise] Y les dio su túnica para que la pusieran sobre el rostro de su padre.
+[vista | light rays] Yaqub la puso sobre su rostro… y *volvió a ver*. Toda la familia viajó a Egipto, y se reunió con Yusuf. Después de tantos años.
+[texto] يَا أَبَتِ هَٰذَا تَأْوِيلُ رُؤْيَايَ مِن قَبْلُ قَدْ جَعَلَهَا رَبِّي حَقًّا | «Padre, esta es la interpretación de *mi sueño de antes*: mi Señor lo ha hecho realidad.» (12:100)
+[leccion | sunset] La paciencia de Yaqub. La honestidad de Yusuf. Y un perdón que *cambió a una familia entera*.
+[leccion | sunset] Que Allah nos dé paciencia en las pruebas, un corazón que sepa perdonar, y un final tan bueno como el de Yusuf. [warmly] Amín.
+[ypregunta | night sky] ¿Qué historia de profeta quieres escuchar ahora? Cuéntamelo en los comentarios.

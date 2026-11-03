@@ -76,7 +76,7 @@ if (modo === 'hikma') {
   // un dibujo por línea; el momento clave cae al 40 % de la frase
   planos = lineas.map((l, i) => {
     const a = desde(i), b = hasta(i);
-    if (l.busqueda === 'texto') return {texto: l.texto, a, b};
+    if (l.busqueda === 'texto') return {texto: l.arabe || l.texto, a, b};
     const [escena, ...opts] = (l.busqueda || 'luna').split(/\s+/);
     const k = Math.round((tiempos[i].ini + 0.4 * (tiempos[i].fin - tiempos[i].ini)) * FPS) - a;
     const pl = {texto: '', escena, opts, k, a, b};

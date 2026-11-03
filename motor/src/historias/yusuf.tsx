@@ -455,6 +455,74 @@ const Pregunta: React.FC<EscenaProps> = ({f}) => {
   );
 };
 
+const Padre: React.FC<EscenaProps> = ({f}) => {
+  const llama = 1 + 0.06 * Math.sin(f * 0.35);
+  return (
+    <Lienzo>
+      <Sky id="yu-s15" c={['#05070f', '#101a38', '#1f2b4f']} />
+      <Estrellas f={f} n={60} hasta={700} o={0.6} />
+      <Luna x={820} y={470} r={64} />
+      <Dunas y={1300} f={f} col={['#1d1a33', '#13102a']} />
+      {/* tienda */}
+      <path d="M180,1380 L540,880 L900,1380 Z" fill="#2a2038" stroke="#4a3a5e" strokeWidth={6} />
+      <path d="M440,1380 L540,1120 L640,1380 Z" fill="#0a0612" />
+      {/* vela y halo cálido */}
+      <Halo x={700} y={1280} r={260 * llama} color={ORO} o={0.8} />
+      <rect x={690} y={1290} width={20} height={70} rx={4} fill="#f3ead8" />
+      <ellipse cx={700} cy={1276} rx={9 * llama} ry={18 * llama} fill={ORO2} />
+      {/* el padre, sentado, con la cabeza baja */}
+      <Silueta x={470} y={1390} s={0.8} tipo="hombre" color={SIL} />
+      <Polvo f={f} n={14} />
+    </Lienzo>
+  );
+};
+
+const Hambre: React.FC<EscenaProps> = ({f, d}) => {
+  const t = (f / Math.max(1, d)) * 500;
+  const grietas = [[80, 1300, 260, 1380], [300, 1450, 520, 1380], [560, 1520, 760, 1440], [800, 1340, 980, 1420], [150, 1600, 400, 1560], [620, 1650, 900, 1590]];
+  return (
+    <Lienzo>
+      <Sky id="yu-s16" c={['#4a2a1a', '#a85a2a', '#f0b060']} />
+      <Sol x={540} y={620} r={110} f={f} />
+      <rect x={0} y={1200} width={1080} height={720} fill="#8c5f2b" />
+      <rect x={0} y={1200} width={1080} height={30} fill="#a8743a" />
+      {grietas.map(([x1, y1, x2, y2], i) => (
+        <path key={i} d={`M${x1},${y1} L${(x1 + x2) / 2},${y1 + 25} L${x2},${y2}`} stroke="#3a2412" strokeWidth={8} fill="none" strokeLinecap="round" />
+      ))}
+      {[0, 1].map((i) => (
+        <Camello key={i} x={-250 + i * 330 + t} y={1270} s={0.7} f={f + i * 9} />
+      ))}
+      {/* sacos vacíos */}
+      {[760, 900].map((x) => (
+        <path key={x} d={`M${x - 60},1500 Q${x - 80},1400 ${x - 30},1360 H${x + 30} Q${x + 80},1400 ${x + 60},1500 Z`} fill="#b8975a" stroke="#6a4a22" strokeWidth={5} />
+      ))}
+    </Lienzo>
+  );
+};
+
+const Copa: React.FC<EscenaProps> = ({f, k}) => {
+  const e = ease(p(f, 0, 14));
+  const luz = ease(p(f, k, 16));
+  return (
+    <Lienzo>
+      <Sky id="yu-s17" c={['#1a1030', '#4a2a50', '#8a5a4a']} />
+      <Halo x={540} y={800} r={360} color={ORO} o={0.4 + 0.5 * luz} />
+      <g transform={`translate(540 ${760 + (1 - e) * -300}) scale(${1.5 + 0.06 * Math.sin(f * 0.15)})`}>
+        <path d="M-90,-130 H90 Q96,10 40,60 V110 H90 V140 H-90 V110 H-40 V60 Q-96,10 -90,-130 Z" fill={ORO} stroke="#b98420" strokeWidth={8} strokeLinejoin="round" />
+        <ellipse cx={0} cy={-130} rx={90} ry={18} fill="#ffe3a0" />
+        <path d="M-60,-100 Q-60,0 -20,40" stroke="#fff3c0" strokeWidth={10} fill="none" strokeLinecap="round" opacity={0.7} />
+      </g>
+      {/* saco con la copa dentro y el hermano pequeño */}
+      <path d="M180,1500 Q150,1380 220,1320 H340 Q410,1380 380,1500 Z" fill="#b8975a" stroke="#6a4a22" strokeWidth={6} />
+      <Silueta x={760} y={1500} s={0.8} tipo="nino" color={SIL} />
+      <Silueta x={900} y={1500} s={0.85} tipo="hombre" color={SIL} />
+      <text x={540} y={1060} textAnchor="middle" fontFamily={serif} fontWeight={700} fontSize={120} fill={CREMA} opacity={0.8 * luz}>
+        ?
+      </text>
+    </Lienzo>
+  );
+};
+
 export const YUSUF: Record<string, React.FC<EscenaProps>> = {
   suenyo: Suenyo,
   hermanos: Hermanos,
@@ -470,6 +538,9 @@ export const YUSUF: Record<string, React.FC<EscenaProps>> = {
   vista: Vista,
   leccion: Leccion,
   ypregunta: Pregunta,
+  padre: Padre,
+  hambre: Hambre,
+  copa: Copa,
 };
 
 export const FOCOS_YUSUF: Record<string, FocoEscena> = {
@@ -487,4 +558,7 @@ export const FOCOS_YUSUF: Record<string, FocoEscena> = {
   vista: {x: 540, y: 1000},
   leccion: {x: 540, y: 740},
   ypregunta: {x: 540, y: 760},
+  padre: {x: 540, y: 1050},
+  hambre: {x: 540, y: 1000},
+  copa: {x: 540, y: 900},
 };
