@@ -3,6 +3,7 @@ import {AbsoluteFill, Composition, useCurrentFrame} from 'remotion';
 import {FPS, H, W} from './tema';
 import {Video, VideoProps} from './Video';
 import {ESCENAS} from './dibujos';
+import {Carta, CartaProps, tiemposCarta} from './Carta';
 
 const ejemplo: VideoProps = {
   audio: null,
@@ -34,6 +35,16 @@ export const Root: React.FC = () => (
       durationInFrames={FPS * 8}
       defaultProps={ejemplo}
       calculateMetadata={({props}) => ({durationInFrames: Math.ceil(props.duracion * FPS)})}
+    />
+    <Composition
+      id="Carta"
+      component={Carta}
+      width={W}
+      height={H}
+      fps={FPS}
+      durationInFrames={FPS * 12}
+      defaultProps={{firma: 'Fatima Andalussi', cierre: '', lineas: [{ar: 'كلمة', es: 'palabra'}]} as CartaProps}
+      calculateMetadata={({props}) => ({durationInFrames: Math.ceil(tiemposCarta(props.lineas).total)})}
     />
     <Composition id="Escena" component={VistaEscena} width={W} height={H} fps={FPS} durationInFrames={150} defaultProps={{escena: 'puerta', opts: [] as string[], k: 30, d: 150}} />
   </>
