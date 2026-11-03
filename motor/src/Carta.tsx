@@ -16,7 +16,7 @@ export type CartaProps = {
   fondo?: 'mesa' | 'cuaderno' | 'pergamino';
   tiempos?: number[][]; // segundo en que se dice cada palabra, por línea
   finVoz?: number;
-  audio?: string | null;
+  escala?: number; // texto más pequeño si es largo
 };
 
 const PALABRA = 0.16 * FPS; // separación entre palabras al escribir
@@ -286,13 +286,13 @@ const Hierbabuena: React.FC = () => (
   </svg>
 );
 
-export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fondo = 'mesa', tiempos, finVoz}) => {
+export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fondo = 'mesa', tiempos, finVoz, escala = 1}) => {
   const fr = useCurrentFrame();
   const {pal: tPal, escrito, total} = tiemposCarta(lineas, tiempos, finVoz);
   const f = portada ? escrito + FPS : fr;
   const zoom = interpolate(f, [0, total], [1.0, 1.07], {easing: Easing.inOut(Easing.sin)});
   const fin = portada ? 0 : interpolate(f, [total - 2.2 * FPS, total - 1.4 * FPS], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-  const k = fondo === 'cuaderno' ? 1.16 : fondo === 'pergamino' ? 1.08 : 1; // en el cuaderno la hoja es más grande
+  const k = (fondo === 'cuaderno' ? 1.16 : fondo === 'pergamino' ? 1.08 : 1) * escala; // en el cuaderno la hoja es más grande
   const llama = 0.85 + 0.15 * Math.sin(f / 7) * Math.sin(f / 11);
 
   const texto = (

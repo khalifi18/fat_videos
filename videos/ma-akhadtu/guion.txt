@@ -1,0 +1,7 @@
+# formato: hikma
+# Formato carta (ver carta.json). Texto tal cual del vídeo que mandó Fatima (lo pidió así).
+اليوم قرأت جملة بعمري ما رح أنساها.. | Hoy leí una frase que nunca en mi vida olvidaré…
+يقول الله عزّ وجلّ: | Dice Dios, el Altísimo:
+يا عبدي، ما أخذت منك إلا وأنا أعلم أنه سيؤذيك، | Siervo mío, no te quité nada sin saber que te haría daño,
+وما أخّرت عنك شيئًا إلا لأنه لا يليق بك. | y no te retrasé nada sino porque no era digno de ti.
+وإن بكيت من وجع اليوم، فغدًا أبكيك من فرح ينسيك كل ما مضى. | Y si hoy lloras de dolor, mañana te haré llorar de una alegría que te hará olvidar todo.

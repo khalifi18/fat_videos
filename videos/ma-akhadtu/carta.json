@@ -1,0 +1,26 @@
+{
+ "fondo": "pergamino",
+ "lineas": [
+  {
+   "ar": "اليوم قرأت جملة بعمري ما رح أنساها..",
+   "es": "Hoy leí una frase que nunca en mi vida olvidaré…"
+  },
+  {
+   "ar": "يقول الله عزّ وجلّ:",
+   "es": "Dice Dios, el Altísimo:"
+  },
+  {
+   "ar": "يا عبدي، ما أخذت منك إلا وأنا أعلم أنه سيؤذيك،",
+   "es": "Siervo mío, no te quité nada sin saber que te haría daño,"
+  },
+  {
+   "ar": "وما أخّرت عنك شيئًا إلا لأنه لا يليق بك.",
+   "es": "y no te retrasé nada sino porque no era digno de ti."
+  },
+  {
+   "ar": "وإن بكيت من وجع اليوم، فغدًا أبكيك من فرح ينسيك كل ما مضى.",
+   "es": "Y si hoy lloras de dolor, mañana te haré llorar de una alegría que te hará olvidar todo."
+  }
+ ],
+ "escala": 0.84
+}
