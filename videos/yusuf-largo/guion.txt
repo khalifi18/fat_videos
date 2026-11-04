@@ -1,7 +1,6 @@
 # tema: Historia del profeta Yusuf (versión larga, narrada en español)  ·  serie: Historias de los profetas
 # formato: historia
 # narracion: es
-# voz: pNInz6obpgDQGcFmaJgB
 # idioma: es
 # fuentes: Corán, sura 12 (Yusuf). Aleyas en árabe: 12:4, 12:18, 12:55, 12:87, 12:92 y 12:100 (revisar en quran.com antes de publicar)
 # nota: los profetas no se representan con cara: solo siluetas y objetos. La voz no recita el Corán: los versos salen en árabe en pantalla y la voz lee su traducción.
