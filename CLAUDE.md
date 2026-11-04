@@ -17,6 +17,7 @@ Ella es quien revisa la darija: su oído manda.
 `bash setup.sh` y `source .entorno` antes de los comandos del motor.
 
 ## Reglas
+- **Duración máxima de un vídeo: 1:30 min (90 s).** Es la norma de la cuenta. Los vídeos largos (p. ej. Yusuf, 3 min) fueron excepciones que ella aceptó; los siguientes, siempre cortos. Si el tema no cabe, propón dividirlo en partes.
 - Nunca muestres ni escribas la clave de ElevenLabs. Está en la variable de entorno `ELEVENLABS_API_KEY`.
 - ElevenLabs gratis: 10.000 créditos al mes (~25 vídeos). Antes de generar la voz, `voz.mjs --simular`
   y no regeneres el guion entero más de una vez sin preguntarle.
