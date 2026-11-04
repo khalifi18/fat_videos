@@ -53,14 +53,16 @@ export function leerGuion(dir) {
       if (!busqueda) busqueda = ambiente[n++ % ambiente.length];
       if (busqueda === '=' && !lineas.length) busqueda = ambiente[n++ % ambiente.length];
     }
-    let [darija, es = ''] = l.split('|').map((x) => x.trim());
+    let [darija, es = '', extra = ''] = l.split('|').map((x) => x.trim());
     // «# narracion: es»: la voz habla español. En las líneas [texto] la primera columna es el árabe (solo se ve) y
     // la voz lee la traducción; en las demás basta una columna con el español (con *clave*).
     let arabe = null;
     if (narraEs) {
       if (busqueda === 'texto') {
+        // «árabe | voz | subtítulo»: con tres columnas la voz (darija) y el subtítulo (español) son distintos
         arabe = darija;
         darija = es;
+        if (extra) es = extra;
       } else if (!es) es = darija;
     }
     // Etiquetas de emoción (eleven_v4): van a ElevenLabs pero no a pantalla ni a las palabras.
