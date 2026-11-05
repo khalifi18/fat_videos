@@ -1,7 +1,7 @@
 // Render del vídeo.
 //   node motor/scripts/render.mjs videos/<slug>            → out/video.mp4 + out/portada.jpg
 //   node motor/scripts/render.mjs videos/<slug> --hoja     → out/hoja.jpg (un fotograma por frase, para revisar)
-//   node motor/scripts/render.mjs videos/<slug> --still 4.2 → out/still.png (un instante, en segundos)
+//   node motor/scripts/render.mjs videos/<slug> --still 4.2 → out/still.jpg (un instante, en segundos)
 //   node motor/scripts/render.mjs videos/<slug> --portada   → solo out/portada.jpg
 // Antes: voz.mjs (voz y tiempos) y stock.mjs (clips).
 import fs from 'node:fs';
@@ -183,8 +183,8 @@ if (args.includes('--hoja')) {
   console.log(`OK · fotogramas ${a}-${fin} de ${composition.durationInFrames}`);
 } else if (args.includes('--still')) {
   const s = parseFloat(args[args.indexOf('--still') + 1]);
-  await still(s * FPS, path.join(out, 'still.png'));
-  console.log(`OK · ${path.join(out, 'still.png')}`);
+  await still(s * FPS, path.join(out, 'still.jpg'));
+  console.log(`OK · ${path.join(out, 'still.jpg')}`);
 } else {
   let ult = -1;
   await renderMedia({
