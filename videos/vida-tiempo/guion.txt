@@ -1,0 +1,14 @@
+# tema: الدنيا ساعة (la vida es un reloj)  ·  serie: Recordatorios
+# formato: historia
+# mundo: tiempo
+# fuentes: 70 años × 52 semanas = 3.640 semanas; 30 años × 52 = 1.560. Refrán «الوقت كالسيف إن لم تقطعه قطعك» y «الدنيا ساعة فاجعلها طاعة» (dichos conocidos)
+# planos del mundo 3D (motor/src/mundos/MundoTiempo.tsx): reloj, colina, semanas, treinta, arena, tumba, amanecer, general
+[reloj] واش عمركم حسبتو شحال غادي تعيشو فهاد الدنيا؟ | ¿Alguna vez habéis calculado *cuánto vais a vivir*?
+[colina] غير تسناو شوية… | Esperad un momento…
+[semanas] اللي كيعيش سبعين عام، عندو غير تلات آلاف وستمية وأربعين سيمانة. | Quien vive 70 años tiene solo *3.640 semanas*.
+[treinta] وإلا عندكم تلاتين عام، راه دازو ألف وخمسمية وستين… وما غاديش يرجعو. | Y si tenéis 30, ya pasaron *1.560*… y no vuelven.
+[arena] الفلوس كتمشي وكتجي… ولكن الْوَقْتْ ما كيرجعش. | El dinero va y viene… pero *el tiempo no vuelve*.
+[texto] الْوَقْتُ كَالسَّيْفِ، إِنْ لَمْ تَقْطَعْهُ قَطَعَكَ | «El tiempo es como una espada: si no la usas, *te corta*.»
+[tumba] وفَالْقَبْرْ، ما غاديش يمشي معاكم غير عملكم. | En la tumba solo os acompañan *vuestras obras*.
+[amanecer] إلا كانت الدنيا ساعة… فاجعلوها طاعة. | Si la vida es una hora… *hacedla obediencia a Allah*.
+[general] شنو غادي تديرو فهاد السيمانة؟ كتبوها فالكومونتير! | ¿Qué vais a hacer esta semana? *¡Escribidlo en los comentarios!*
