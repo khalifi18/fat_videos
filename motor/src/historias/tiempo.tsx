@@ -10,19 +10,19 @@ import {Capa, encuadre} from '../dibujos/camara2d';
 import type {FocoEscena} from '../dibujos/camara2d';
 
 const ID = 'tiempo';
-const FX = W / 2, FY = H * 0.42;
-const p = (x: number, a: number, len: number) => Math.min(1, Math.max(0, (x - a) / Math.max(1e-6, len)));
-const mix = (a: number, b: number, t: number) => a + (b - a) * t;
+export const FX = W / 2, FY = H * 0.42;
+export const p = (x: number, a: number, len: number) => Math.min(1, Math.max(0, (x - a) / Math.max(1e-6, len)));
+export const mix = (a: number, b: number, t: number) => a + (b - a) * t;
 const fmt = (n: number) => Math.round(n).toLocaleString('es-ES');
 
-type Vista = {c: [number, number]; z: number};
-const vmix = (a: Vista, b: Vista, t: number, dip = 0): Vista => {
+export type Vista = {c: [number, number]; z: number};
+export const vmix = (a: Vista, b: Vista, t: number, dip = 0): Vista => {
   const z = Math.exp(mix(Math.log(a.z), Math.log(b.z), t)) * (1 - dip * Math.sin(Math.PI * t));
   return {c: [mix(a.c[0], b.c[0], t), mix(a.c[1], b.c[1], t)], z};
 };
 
 // ───────────────────────── el mundo (coordenadas de mundo) ─────────────────────────
-const GY = 1500; // suelo
+export const GY = 1500; // suelo
 const TX = 600; // torre
 const PX0 = 1400, CELDA = 35, COLS = 70, FILAS = 52; // muro: 70 años (columnas) × 52 semanas (filas) = 3.640
 const PY0 = GY - FILAS * CELDA - 40;
@@ -30,21 +30,21 @@ const PW = COLS * CELDA, PH = FILAS * CELDA;
 const HX = 4500; // reloj de arena
 const MX = 5800; // tumba
 
-const ORO = '#ffcf6a', ORO2 = '#ffe3a0', CREMA = '#fbf3e6';
+export const ORO = '#ffcf6a', ORO2 = '#ffe3a0', CREMA = '#fbf3e6';
 
-const mezclaColor = (a: string, b: string, t: number) => {
+export const mezclaColor = (a: string, b: string, t: number) => {
   const pa = [1, 3, 5].map((i) => parseInt(a.slice(i, i + 2), 16));
   const pb = [1, 3, 5].map((i) => parseInt(b.slice(i, i + 2), 16));
   return '#' + pa.map((x, i) => Math.round(mix(x, pb[i], t)).toString(16).padStart(2, '0')).join('');
 };
 
 /** Capa con parallax: q<1 lejos (se mueve menos), q=1 mundo principal, q>1 primer plano */
-const Plano: React.FC<{v: Vista; q: number; children: React.ReactNode}> = ({v, q, children}) => {
+export const Plano: React.FC<{v: Vista; q: number; children: React.ReactNode}> = ({v, q, children}) => {
   const z = q === 1 ? v.z : Math.pow(v.z, q);
   return <g transform={`translate(${FX} ${FY}) scale(${z}) translate(${-v.c[0] * q} ${-v.c[1]})`}>{children}</g>;
 };
 
-const Cielo: React.FC<{alba: number; f: number}> = ({alba, f}) => (
+export const Cielo: React.FC<{alba: number; f: number}> = ({alba, f}) => (
   <g>
     <defs>
       <linearGradient id="ti-cielo" x1="0" y1="0" x2="0" y2="1">
@@ -73,7 +73,7 @@ const Cielo: React.FC<{alba: number; f: number}> = ({alba, f}) => (
   </g>
 );
 
-const Montanas: React.FC<{alba: number}> = ({alba}) => {
+export const Montanas: React.FC<{alba: number}> = ({alba}) => {
   const cap = (base: number, amp: number, fr: number, ph: number) => {
     let d = `M-1600,${GY + 400}`;
     for (let x = -1600; x <= 4200; x += 60) d += ` L${x},${base - amp * (0.5 + 0.5 * Math.sin(x / fr + ph)) - amp * 0.35 * Math.sin(x / (fr * 0.37) + ph * 2)}`;
@@ -87,7 +87,7 @@ const Montanas: React.FC<{alba: number}> = ({alba}) => {
   );
 };
 
-const Pueblo: React.FC<{alba: number; f: number}> = ({alba, f}) => (
+export const Pueblo: React.FC<{alba: number; f: number}> = ({alba, f}) => (
   <g>
     {Array.from({length: 46}).map((_, i) => {
       const x = -900 + i * 118 + rnd(i) * 40;
