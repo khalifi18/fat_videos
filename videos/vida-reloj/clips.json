@@ -1,0 +1,743 @@
+{
+ "lineas": [
+  {
+   "busqueda": "clock",
+   "candidatos": [
+    {
+     "slug": "slowly-approaching-a-clock-on-a-black-background-28897",
+     "id": "28897",
+     "vertical": true
+    },
+    {
+     "slug": "black-analog-clock-in-a-very-close-shot-28893",
+     "id": "28893",
+     "vertical": true
+    },
+    {
+     "slug": "analog-wall-clock-on-a-black-background-in-a-closed-28886",
+     "id": "28886",
+     "vertical": true
+    },
+    {
+     "slug": "metal-bells-alarm-clock-39834",
+     "id": "39834",
+     "vertical": true
+    },
+    {
+     "slug": "big-ben-clock-time-lapse-4079",
+     "id": "4079",
+     "vertical": true
+    },
+    {
+     "slug": "disk-clock-4478",
+     "id": "4478",
+     "vertical": true
+    },
+    {
+     "slug": "alarm-clock-ringing-on-a-wooden-table-28902",
+     "id": "28902",
+     "vertical": true
+    },
+    {
+     "slug": "an-hourglass-and-an-analog-wall-clock-28892",
+     "id": "28892",
+     "vertical": true
+    },
+    {
+     "slug": "sand-falling-from-an-hourglass-on-a-black-background-28901",
+     "id": "28901",
+     "vertical": true
+    },
+    {
+     "slug": "hands-on-an-automatic-watch-3672",
+     "id": "3672",
+     "vertical": true
+    },
+    {
+     "slug": "glass-hourglass-close-up-on-a-black-background-28889",
+     "id": "28889",
+     "vertical": true
+    },
+    {
+     "slug": "pocket-watch-moving-fast-on-snow-39822",
+     "id": "39822",
+     "vertical": true
+    },
+    {
+     "slug": "hands-of-a-wrist-watch-3653",
+     "id": "3653",
+     "vertical": true
+    },
+    {
+     "slug": "traffic-in-an-underground-tunnel-4067",
+     "id": "4067",
+     "vertical": true
+    },
+    {
+     "slug": "blue-sky-background-as-the-clouds-travel-blown-by-the-26108",
+     "id": "26108",
+     "vertical": true
+    },
+    {
+     "slug": "open-office-space-914",
+     "id": "914",
+     "vertical": true
+    },
+    {
+     "slug": "stunning-sunset-seen-from-the-sea-4119",
+     "id": "4119",
+     "vertical": true
+    },
+    {
+     "slug": "swiss-alps-snow-background-time-lapse-4283",
+     "id": "4283",
+     "vertical": true
+    },
+    {
+     "slug": "view-of-the-horizon-in-the-sea-while-a-sailboat-4477",
+     "id": "4477",
+     "vertical": true
+    },
+    {
+     "slug": "starry-sky-framed-by-trees-100824",
+     "id": "100824",
+     "vertical": true
+    },
+    {
+     "slug": "landscape-of-a-mountain-range-4366",
+     "id": "4366",
+     "vertical": true
+    }
+   ],
+   "idx": 0,
+   "clip": {
+    "id": "28897",
+    "archivo": "raw-28897.mp4",
+    "titulo": "Slowly approaching a clock on a black background - Free Stock Video",
+    "url": "https://mixkit.co/free-stock-video/slowly-approaching-a-clock-on-a-black-background-28897/"
+   }
+  },
+  {
+   "busqueda": "time lapse sky",
+   "candidatos": [
+    {
+     "slug": "moonlit-clouds-in-motion-time-lapse-1609",
+     "id": "1609",
+     "vertical": true
+    },
+    {
+     "slug": "time-lapse-of-sky-reflecting-on-a-building-101379",
+     "id": "101379",
+     "vertical": true
+    },
+    {
+     "slug": "sky-time-lapse-1905",
+     "id": "1905",
+     "vertical": true
+    },
+    {
+     "slug": "milky-way-in-the-sky-time-lapse-34764",
+     "id": "34764",
+     "vertical": true
+    },
+    {
+     "slug": "colorful-lit-tents-with-time-lapse-of-night-sky-and-15814",
+     "id": "15814",
+     "vertical": true
+    },
+    {
+     "slug": "starry-blue-sky-time-lapse-14559",
+     "id": "14559",
+     "vertical": true
+    },
+    {
+     "slug": "timelapse-of-the-sky-behind-a-mountain-43160",
+     "id": "43160",
+     "vertical": true
+    },
+    {
+     "slug": "clouds-in-blue-sky-time-lapse-12273",
+     "id": "12273",
+     "vertical": true
+    },
+    {
+     "slug": "bright-night-sky-timelapse-45338",
+     "id": "45338",
+     "vertical": true
+    },
+    {
+     "slug": "time-lapse-of-night-sky-in-joshua-tree-46114",
+     "id": "46114",
+     "vertical": true
+    },
+    {
+     "slug": "milky-way-in-a-clear-sky-time-lapse-35512",
+     "id": "35512",
+     "vertical": true
+    },
+    {
+     "slug": "clouds-moving-in-a-blue-sky-time-lapse-7016",
+     "id": "7016",
+     "vertical": true
+    },
+    {
+     "slug": "time-lapse-of-blue-sky-with-clouds-9441",
+     "id": "9441",
+     "vertical": true
+    },
+    {
+     "slug": "time-lapse-of-a-sky-in-the-desert-46146",
+     "id": "46146",
+     "vertical": true
+    },
+    {
+     "slug": "small-town-mountain-and-the-sky-time-lapse-18713",
+     "id": "18713",
+     "vertical": true
+    },
+    {
+     "slug": "sky-timelapse-over-istanbul-15705",
+     "id": "15705",
+     "vertical": true
+    },
+    {
+     "slug": "timelapse-of-the-sky-in-an-arid-environment-49793",
+     "id": "49793",
+     "vertical": true
+    },
+    {
+     "slug": "timelapse-of-the-sky-above-new-york-12061",
+     "id": "12061",
+     "vertical": true
+    },
+    {
+     "slug": "sky-timelapse-by-the-lake-20449",
+     "id": "20449",
+     "vertical": true
+    },
+    {
+     "slug": "sky-transitioning-from-night-to-sunrise-100831",
+     "id": "100831",
+     "vertical": true
+    },
+    {
+     "slug": "boardwalk-at-sunset-time-lapse-1775",
+     "id": "1775",
+     "vertical": true
+    },
+    {
+     "slug": "time-lapse-of-a-starry-sky-47040",
+     "id": "47040",
+     "vertical": true
+    },
+    {
+     "slug": "beautiful-time-lapse-of-a-starry-sky-in-the-mountains-14570",
+     "id": "14570",
+     "vertical": true
+    },
+    {
+     "slug": "time-lapse-of-a-starry-sky-in-the-desert-46388",
+     "id": "46388",
+     "vertical": true
+    }
+   ],
+   "idx": 0,
+   "clip": {
+    "id": "1609",
+    "archivo": "raw-1609.mp4",
+    "titulo": "Moonlit clouds in motion, time-lapse  - Free Stock Video",
+    "url": "https://mixkit.co/free-stock-video/moonlit-clouds-in-motion-time-lapse-1609/"
+   }
+  },
+  {
+   "busqueda": "sand falling",
+   "candidatos": [
+    {
+     "slug": "sand-falling-from-an-hourglass-on-a-black-background-28901",
+     "id": "28901",
+     "vertical": true
+    },
+    {
+     "slug": "white-sand-falling-inside-an-hourglass-28890",
+     "id": "28890",
+     "vertical": true
+    },
+    {
+     "slug": "coins-falling-on-the-sunny-sand-38407",
+     "id": "38407",
+     "vertical": true
+    },
+    {
+     "slug": "hourglass-on-a-black-background-28884",
+     "id": "28884",
+     "vertical": true
+    }
+   ],
+   "idx": 0,
+   "clip": {
+    "id": "28901",
+    "archivo": "raw-28901.mp4",
+    "titulo": "Sand falling from an hourglass on a black background - Free Stock Video",
+    "url": "https://mixkit.co/free-stock-video/sand-falling-from-an-hourglass-on-a-black-background-28901/"
+   }
+  },
+  {
+   "busqueda": "money",
+   "candidatos": [
+    {
+     "slug": "money-counting-machine-counting-up-money-45703",
+     "id": "45703",
+     "vertical": true
+    },
+    {
+     "slug": "close-up-to-a-counting-money-machine-46980",
+     "id": "46980",
+     "vertical": true
+    },
+    {
+     "slug": "fast-sequence-of-detailed-photos-of-banknote-parts-18261",
+     "id": "18261",
+     "vertical": true
+    },
+    {
+     "slug": "a-lot-of-cash-over-a-rotating-background-47005",
+     "id": "47005",
+     "vertical": true
+    },
+    {
+     "slug": "profit-on-the-stock-market-47012",
+     "id": "47012",
+     "vertical": true
+    },
+    {
+     "slug": "hands-flipping-through-a-wad-of-dollars-seen-very-close-18304",
+     "id": "18304",
+     "vertical": true
+    },
+    {
+     "slug": "a-bunch-of-dollar-bills-background-47517",
+     "id": "47517",
+     "vertical": true
+    },
+    {
+     "slug": "banknotes-falling-on-a-dark-background-18305",
+     "id": "18305",
+     "vertical": true
+    },
+    {
+     "slug": "little-clock-over-bills-background-46979",
+     "id": "46979",
+     "vertical": true
+    },
+    {
+     "slug": "stock-market-exchange-and-forex-prices-background-47006",
+     "id": "47006",
+     "vertical": true
+    },
+    {
+     "slug": "100-dollar-bills-on-a-rotating-surface-18249",
+     "id": "18249",
+     "vertical": true
+    },
+    {
+     "slug": "graphics-of-the-cryptocurrency-47210",
+     "id": "47210",
+     "vertical": true
+    },
+    {
+     "slug": "tower-of-100-dollars-being-burned-with-a-flame-18303",
+     "id": "18303",
+     "vertical": true
+    }
+   ],
+   "idx": 2,
+   "clip": {
+    "id": "18261",
+    "archivo": "raw-18261.mp4",
+    "titulo": "Fast sequence of detailed photos of banknote parts - Free Stock Video",
+    "url": "https://mixkit.co/free-stock-video/fast-sequence-of-detailed-photos-of-banknote-parts-18261/"
+   }
+  },
+  {
+   "busqueda": "night sky",
+   "candidatos": [
+    {
+     "slug": "dark-starry-night-100823",
+     "id": "100823",
+     "vertical": true
+    },
+    {
+     "slug": "lightning-in-the-night-sky-25081",
+     "id": "25081",
+     "vertical": true
+    },
+    {
+     "slug": "milky-way-seen-at-night-4148",
+     "id": "4148",
+     "vertical": true
+    },
+    {
+     "slug": "time-lapse-of-a-small-town-at-night-3132",
+     "id": "3132",
+     "vertical": true
+    },
+    {
+     "slug": "starry-night-in-the-desert-46119",
+     "id": "46119",
+     "vertical": true
+    },
+    {
+     "slug": "full-moon-on-halloween-night-loop-video-30605",
+     "id": "30605",
+     "vertical": true
+    },
+    {
+     "slug": "many-stars-in-the-night-sky-4124",
+     "id": "4124",
+     "vertical": true
+    },
+    {
+     "slug": "view-of-the-night-sky-filled-with-stars-39770",
+     "id": "39770",
+     "vertical": true
+    },
+    {
+     "slug": "aerial-view-of-city-traffic-at-night-11",
+     "id": "11",
+     "vertical": true
+    },
+    {
+     "slug": "night-sky-with-stars-at-a-calm-lake-time-lapse-1704",
+     "id": "1704",
+     "vertical": true
+    },
+    {
+     "slug": "stardust-and-clouds-over-mountains-at-night-46203",
+     "id": "46203",
+     "vertical": true
+    },
+    {
+     "slug": "starry-sky-framed-by-trees-100824",
+     "id": "100824",
+     "vertical": true
+    },
+    {
+     "slug": "skyline-of-a-desert-with-the-moon-at-night-40047",
+     "id": "40047",
+     "vertical": true
+    },
+    {
+     "slug": "thunderstorm-at-night-4422",
+     "id": "4422",
+     "vertical": true
+    },
+    {
+     "slug": "times-square-during-a-rainy-night-4332",
+     "id": "4332",
+     "vertical": true
+    },
+    {
+     "slug": "fireworks-illuminating-the-beach-sky-4157",
+     "id": "4157",
+     "vertical": true
+    },
+    {
+     "slug": "sky-transitioning-from-night-to-sunrise-100831",
+     "id": "100831",
+     "vertical": true
+    },
+    {
+     "slug": "full-moon-with-a-soft-haze-4433",
+     "id": "4433",
+     "vertical": true
+    },
+    {
+     "slug": "flight-through-clouds-towards-the-bright-full-moon-30316",
+     "id": "30316",
+     "vertical": true
+    },
+    {
+     "slug": "stars-in-space-background-1610",
+     "id": "1610",
+     "vertical": true
+    },
+    {
+     "slug": "full-moon-4305",
+     "id": "4305",
+     "vertical": true
+    },
+    {
+     "slug": "yellow-northern-lights-in-norway-4036",
+     "id": "4036",
+     "vertical": true
+    },
+    {
+     "slug": "matterhorn-mountain-landscape-4281",
+     "id": "4281",
+     "vertical": true
+    },
+    {
+     "slug": "traffic-in-an-underground-tunnel-4067",
+     "id": "4067",
+     "vertical": true
+    }
+   ],
+   "idx": 2,
+   "clip": {
+    "id": "4148",
+    "archivo": "raw-4148.mp4",
+    "titulo": "Milky way seen at night - Free Stock Video",
+    "url": "https://mixkit.co/free-stock-video/milky-way-seen-at-night-4148/"
+   }
+  },
+  {
+   "busqueda": "sunset",
+   "candidatos": [
+    {
+     "slug": "bright-orange-sunset-on-beach-2168",
+     "id": "2168",
+     "vertical": true
+    },
+    {
+     "slug": "stunning-sunset-seen-from-the-sea-4119",
+     "id": "4119",
+     "vertical": true
+    },
+    {
+     "slug": "sunset-perspective-in-the-city-3983",
+     "id": "3983",
+     "vertical": true
+    },
+    {
+     "slug": "sunset-from-a-peaceful-beach-44496",
+     "id": "44496",
+     "vertical": true
+    },
+    {
+     "slug": "the-sunset-near-the-seashore-3100",
+     "id": "3100",
+     "vertical": true
+    },
+    {
+     "slug": "two-cars-followed-each-other-on-the-road-at-sunset-50134",
+     "id": "50134",
+     "vertical": true
+    },
+    {
+     "slug": "sunset-in-the-open-sea-from-the-top-of-a-38948",
+     "id": "38948",
+     "vertical": true
+    },
+    {
+     "slug": "sunset-on-a-beach-with-a-palm-tree-44499",
+     "id": "44499",
+     "vertical": true
+    },
+    {
+     "slug": "sunset-through-a-car-side-mirror-100228",
+     "id": "100228",
+     "vertical": true
+    },
+    {
+     "slug": "beautiful-sunset-on-a-bay-from-above-4999",
+     "id": "4999",
+     "vertical": true
+    },
+    {
+     "slug": "lovers-holding-each-other-on-a-romantic-sunset-4664",
+     "id": "4664",
+     "vertical": true
+    },
+    {
+     "slug": "landscape-of-a-large-lake-during-sunset-from-the-air-4998",
+     "id": "4998",
+     "vertical": true
+    },
+    {
+     "slug": "palm-tree-in-front-of-the-sun-1191",
+     "id": "1191",
+     "vertical": true
+    },
+    {
+     "slug": "meadow-covered-with-grass-and-trees-in-the-blazing-sun-40657",
+     "id": "40657",
+     "vertical": true
+    },
+    {
+     "slug": "sun-setting-or-rising-over-palm-trees-1170",
+     "id": "1170",
+     "vertical": true
+    },
+    {
+     "slug": "watering-a-flower-pot-1780",
+     "id": "1780",
+     "vertical": true
+    },
+    {
+     "slug": "view-of-the-horizon-in-the-sea-while-a-sailboat-4477",
+     "id": "4477",
+     "vertical": true
+    },
+    {
+     "slug": "seabird-flying-over-water-1926",
+     "id": "1926",
+     "vertical": true
+    },
+    {
+     "slug": "sun-setting-over-a-garden-4205",
+     "id": "4205",
+     "vertical": true
+    },
+    {
+     "slug": "lake-surrounded-by-dry-grass-in-the-savanna-5030",
+     "id": "5030",
+     "vertical": true
+    },
+    {
+     "slug": "tour-high-above-a-city-at-dusk-41375",
+     "id": "41375",
+     "vertical": true
+    }
+   ],
+   "idx": 0,
+   "clip": {
+    "id": "2168",
+    "archivo": "raw-2168.mp4",
+    "titulo": "Bright orange sunset on beach - Free Stock Video",
+    "url": "https://mixkit.co/free-stock-video/bright-orange-sunset-on-beach-2168/"
+   }
+  },
+  {
+   "busqueda": "starry sky",
+   "candidatos": [
+    {
+     "slug": "view-of-a-starry-night-48024",
+     "id": "48024",
+     "vertical": true
+    },
+    {
+     "slug": "beautiful-bluish-landscape-of-a-lake-and-starry-sky-27023",
+     "id": "27023",
+     "vertical": true
+    },
+    {
+     "slug": "dark-starry-night-100823",
+     "id": "100823",
+     "vertical": true
+    },
+    {
+     "slug": "starry-night-in-the-desert-46119",
+     "id": "46119",
+     "vertical": true
+    },
+    {
+     "slug": "starry-sky-of-the-milky-way-time-lapse-34793",
+     "id": "34793",
+     "vertical": true
+    },
+    {
+     "slug": "starry-sky-during-winter-34873",
+     "id": "34873",
+     "vertical": true
+    },
+    {
+     "slug": "beautiful-time-lapse-of-a-starry-sky-27032",
+     "id": "27032",
+     "vertical": true
+    },
+    {
+     "slug": "time-lapse-of-a-starry-sky-47040",
+     "id": "47040",
+     "vertical": true
+    },
+    {
+     "slug": "beautiful-starry-sky-in-nature-time-lapse-26990",
+     "id": "26990",
+     "vertical": true
+    },
+    {
+     "slug": "night-sky-covered-with-stars-39768",
+     "id": "39768",
+     "vertical": true
+    },
+    {
+     "slug": "starry-sky-with-shooting-stars-100827",
+     "id": "100827",
+     "vertical": true
+    },
+    {
+     "slug": "beautiful-time-lapse-of-a-starry-sky-in-the-mountains-14570",
+     "id": "14570",
+     "vertical": true
+    },
+    {
+     "slug": "dark-blue-sky-full-of-stars-100826",
+     "id": "100826",
+     "vertical": true
+    },
+    {
+     "slug": "milky-way-in-the-sky-time-lapse-34764",
+     "id": "34764",
+     "vertical": true
+    },
+    {
+     "slug": "starry-sky-framed-by-trees-100824",
+     "id": "100824",
+     "vertical": true
+    },
+    {
+     "slug": "starry-sky-in-the-carpathian-mountains-34822",
+     "id": "34822",
+     "vertical": true
+    },
+    {
+     "slug": "sky-transitioning-from-night-to-sunrise-100831",
+     "id": "100831",
+     "vertical": true
+    },
+    {
+     "slug": "sky-on-a-night-to-sunrise-transition-100825",
+     "id": "100825",
+     "vertical": true
+    },
+    {
+     "slug": "view-of-the-night-sky-filled-with-stars-39770",
+     "id": "39770",
+     "vertical": true
+    },
+    {
+     "slug": "starry-sky-and-shooting-stars-100828",
+     "id": "100828",
+     "vertical": true
+    },
+    {
+     "slug": "milky-way-seen-from-the-beach-35574",
+     "id": "35574",
+     "vertical": true
+    },
+    {
+     "slug": "stardust-and-clouds-over-mountains-at-night-46203",
+     "id": "46203",
+     "vertical": true
+    },
+    {
+     "slug": "milky-way-in-the-cosmos-19636",
+     "id": "19636",
+     "vertical": true
+    },
+    {
+     "slug": "impressive-meteor-shower-seen-from-a-mountain-19477",
+     "id": "19477",
+     "vertical": true
+    }
+   ],
+   "idx": 9,
+   "clip": {
+    "id": "39768",
+    "archivo": "raw-39768.mp4",
+    "titulo": "Night sky covered with stars - Free Stock Video",
+    "url": "https://mixkit.co/free-stock-video/night-sky-covered-with-stars-39768/"
+   }
+  }
+ ]
+}
