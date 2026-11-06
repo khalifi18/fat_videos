@@ -37,13 +37,19 @@ export function leerGuion(dir) {
   for (let l of filas) {
     if (!l || l.startsWith('#')) continue;
     let busqueda = '';
+    let planoMundo = '';
     let fondoClip = '';
     const m = l.match(/^\[([^\]]+)\]\s*(.*)$/);
     if (m) {
       const b = m[1].trim().toLowerCase();
       // en hikma/pov solo [texto] es especial; cualquier otra [..] inicial es una etiqueta de voz
-      if (!centrado || b === 'texto') {
+      if (!centrado || b === 'texto' || b.startsWith('texto ')) {
         busqueda = b;
+        // historia en 3D: «[texto plano]» = línea con texto árabe en pantalla y la cámara en ese plano del mundo
+        if (b.startsWith('texto ')) {
+          busqueda = 'texto';
+          planoMundo = b.slice(6).trim();
+        }
         // historia: «[escena | búsqueda en inglés]» pone un clip de vídeo de fondo detrás de la escena
         if (formato === 'historia' && b.includes('|')) [busqueda, fondoClip] = b.split('|').map((x) => x.trim());
         l = m[2];
@@ -72,7 +78,7 @@ export function leerGuion(dir) {
       .split(/\s+/)
       .filter(Boolean)
       .map((w) => ({w, key: false}));
-    lineas.push({busqueda, fondo: fondoClip, arabe, texto: words.map((w) => w.w).join(' '), tts, words, es});
+    lineas.push({busqueda, plano: planoMundo, fondo: fondoClip, arabe, texto: words.map((w) => w.w).join(' '), tts, words, es});
   }
   if (!lineas.length) throw new Error('guion.txt está vacío');
   lineas.formato = formato;

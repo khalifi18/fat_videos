@@ -126,8 +126,8 @@ if (modo === 'historia' && lineas.mundo) {
   props.mundo = lineas.mundo;
   let previo = 'general';
   props.tramos = lineas.map((l, i) => {
-    const pl = (l.busqueda || 'general').split(/\s+/)[0];
-    if (pl !== 'texto') previo = pl; // en el refrán/aleya la cámara sigue donde estaba
+    const pl = (l.plano || l.busqueda || 'general').split(/\s+/)[0];
+    if (pl !== 'texto') previo = pl; // en el refrán/aleya sin plano la cámara sigue donde estaba
     return {plano: previo, t: i === 0 ? 0 : Math.max(0, tiempos[i].ini - 0.2)};
   });
 }
