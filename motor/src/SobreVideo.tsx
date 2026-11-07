@@ -29,14 +29,18 @@ export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, 
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, rgba(8,10,20,0.55) 0%, rgba(8,10,20,0.38) 55%, rgba(8,10,20,0.12) 100%)', opacity: Math.min(1, entra(nombre.t - 0.3, 0.8)) * sale}} />
       <AbsoluteFill style={{opacity: sale}}>
         {/* nombre */}
-        <div dir="rtl" style={{position: 'absolute', top: 470, left: 60, right: 60, textAlign: 'center', fontFamily: amiri, fontWeight: 700, fontSize: 92, color: C.oro, opacity: nombreE, transform: `translateY(${(1 - nombreE) * 24}px)`, textShadow: '0 4px 26px rgba(0,0,0,0.75)'}}>
-          {nombre.ar}
+        <div dir="rtl" style={{position: 'absolute', top: 440, left: 50, right: 50, textAlign: 'center', fontFamily: amiri, fontWeight: 700, color: C.oro, opacity: nombreE, transform: `translateY(${(1 - nombreE) * 24}px)`, textShadow: '0 4px 26px rgba(0,0,0,0.75)'}}>
+          {nombre.ar.split('\n').map((l, i) => (
+            <div key={i} style={{fontSize: i === 0 ? 80 : 62, lineHeight: 1.35}}>
+              {l}
+            </div>
+          ))}
           <div style={{margin: '14px auto 0', width: 560 * nombreE, height: 7, borderRadius: 4, background: '#c8382c'}} />
         </div>
         {/* frases */}
         {bloques.map((b, bi) => {
           const e = entra(b.t, 0.8);
-          const top = 650 + fila * 138;
+          const top = 735 + fila * 138;
           fila += b.ar.length;
           return (
             <div key={bi} dir="rtl" style={{position: 'absolute', top, left: 50, right: 50, textAlign: 'center', fontFamily: amiri, fontWeight: 700, fontSize: 92, lineHeight: 1.45, color: '#fffaf0', opacity: e, transform: `translateY(${(1 - e) * 30}px)`, textShadow: '0 4px 28px rgba(0,0,0,0.85), 0 0 6px rgba(0,0,0,0.6)'}}>
