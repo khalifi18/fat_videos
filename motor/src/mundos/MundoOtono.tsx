@@ -29,6 +29,7 @@ const PLANOS: Record<string, Mov> = {
   tiempo: {obj: [0, 3.0, -8], d: 22, az: 14, el: 11, fov: 52},
   luz: {obj: [0, 2.6, -1], d: 9, az: 180, el: 6, fov: 46},
   final: {obj: [0, 6, -16], d: 62, az: 28, el: 28, fov: 52},
+  caminar: {obj: [0, 1.7, -7], d: 7, az: 0, el: 2, fov: 58}, // se recalcula: cámara a la altura de los ojos, mirando por el puente
 };
 
 // paletas por estación (0 otoño, 1 otoño tardío, 2 invierno, 3 primavera)
@@ -68,14 +69,26 @@ export const MundoOtono: React.FC<{t: number; T: number; tramos: Tramo[]}> = ({t
 
   // cámara pegada a la silueta
   const plCam = Object.fromEntries(
-    Object.entries(PLANOS).map(([k, m]) => [k, {obj: [wx + m.obj[0], m.obj[1], wz + m.obj[2]] as [number, number, number], d: m.d, az: m.az + (yaw * 180) / Math.PI * 0.6, el: m.el, fov: m.fov} as PlanoCam]),
+    Object.entries(PLANOS).map(([k, m]) => {
+      if (k === 'caminar') {
+        // cámara en primera persona: a la altura de los ojos, mirando hacia donde sigue el puente, con un balanceo suave
+        const ahead = 9;
+        const P: [number, number, number] = [camino(wz - ahead) + Math.sin(t * 0.6) * 0.25, 1.55 + Math.sin(t * 5.2) * 0.025, wz - ahead];
+        const Cc = [wx + Math.sin(t * 2.6) * 0.04, 1.72 + Math.abs(Math.sin(t * 2.6)) * 0.05, wz];
+        const dh = Math.hypot(Cc[0] - P[0], Cc[2] - P[2]);
+        return [k, {obj: P, d: Math.hypot(dh, Cc[1] - P[1]), az: (Math.atan2(Cc[0] - P[0], Cc[2] - P[2]) * 180) / Math.PI, el: (Math.atan2(Cc[1] - P[1], dh) * 180) / Math.PI, fov: m.fov} as PlanoCam];
+      }
+      return [k, {obj: [wx + m.obj[0], m.obj[1], wz + m.obj[2]] as [number, number, number], d: m.d, az: m.az + (yaw * 180) / Math.PI * 0.6, el: m.el, fov: m.fov} as PlanoCam];
+    }),
   );
+  const planoActual = [...tramos].reverse().find((x) => t >= x.t)?.plano ?? 'puente';
+  const enCaminar = planoActual === 'caminar';
   const cam = camaraEn(plCam, tramos, t, 1.5);
   const camP = (() => {
     const az = (cam.az * Math.PI) / 180, el = (cam.el * Math.PI) / 180;
     return [cam.obj[0] + cam.d * Math.cos(el) * Math.sin(az), cam.obj[1] + cam.d * Math.sin(el), cam.obj[2] + cam.d * Math.cos(el) * Math.cos(az)];
   })();
-  const lejos = (x: number, y: number, z: number, d = 5.5) => (x - camP[0]) ** 2 + (y - camP[1]) ** 2 + (z - camP[2]) ** 2 > d * d;
+  const lejos = (x: number, y: number, z: number, d = enCaminar ? 0.8 : 5.5) => (x - camP[0]) ** 2 + (y - camP[1]) ** 2 + (z - camP[2]) ** 2 > d * d;
 
   const tablas = useRef<THREE.InstancedMesh>(null);
   const copas = useRef<THREE.InstancedMesh>(null);
@@ -108,6 +121,11 @@ export const MundoOtono: React.FC<{t: number; T: number; tramos: Tramo[]}> = ({t
     for (let i = 0; i < 70; i++) {
       const z = 20 - rnd() * 170, lado = rnd() < 0.5 ? -1 : 1;
       blobs.push({x: camino(z) + lado * (5.2 + rnd() * 3.5), y: 0.2 + rnd() * 0.5, z, r: 0.7 + rnd() * 0.8, a: 2000 + i});
+    }
+    // follaje espeso pegado a las barandillas (como un sauce a cada lado del puente)
+    for (let i = 0; i < 300; i++) {
+      const z = 22 - rnd() * 175, lado = rnd() < 0.5 ? -1 : 1;
+      blobs.push({x: camino(z) + lado * (3.1 + rnd() * 2.6), y: 0.4 + rnd() * 3.4, z, r: 0.55 + rnd() * 0.75, a: 3000 + i});
     }
     // partículas (hojas / nieve / pétalos)
     const NP = 520;
@@ -157,7 +175,7 @@ export const MundoOtono: React.FC<{t: number; T: number; tramos: Tramo[]}> = ({t
     if (im) {
       const m = new THREE.Matrix4(), col = new THREE.Color();
       r.blobs.forEach((b, i) => {
-        const e = (lejos(b.x, b.y, b.z, 6.5) ? 1 : 0.0001) * escalaHoja * (0.9 + 0.2 * ((i * 7) % 5) / 5);
+        const e = (lejos(b.x, b.y, b.z, enCaminar ? 0.8 : 6.5) ? 1 : 0.0001) * escalaHoja * (0.9 + 0.2 * ((i * 7) % 5) / 5);
         m.compose(new THREE.Vector3(b.x, b.y, b.z), new THREE.Quaternion(), new THREE.Vector3(b.r * e, b.r * e * 0.85, b.r * e));
         im.setMatrixAt(i, m);
         const pa = HOJAS[sa][i % 5], pb = HOJAS[sb][i % 5];
@@ -268,7 +286,7 @@ export const MundoOtono: React.FC<{t: number; T: number; tramos: Tramo[]}> = ({t
       {[-14, -2, 10].map((dx, i) => (
         <mesh key={'r' + i} position={[wx + dx, 8, wz - 14 - i * 9]} rotation={[0, 0.4, -0.45]}>
           <planeGeometry args={[4, 26]} />
-          <meshBasicMaterial map={r.rayo} transparent opacity={0.55 * (sa >= 2 ? 0.5 : 1)} depthWrite={false} blending={THREE.AdditiveBlending} side={THREE.DoubleSide} fog={false} />
+          <meshBasicMaterial map={r.rayo} transparent opacity={(enCaminar ? 0.16 : 0.55) * (sa >= 2 ? 0.5 : 1)} depthWrite={false} blending={THREE.AdditiveBlending} side={THREE.DoubleSide} fog={false} />
         </mesh>
       ))}
 
@@ -278,7 +296,7 @@ export const MundoOtono: React.FC<{t: number; T: number; tramos: Tramo[]}> = ({t
       </points>
 
       {/* LA SILUETA con su farol */}
-      <group position={[wx, 0.1, wz]} rotation={[0, yaw, 0]}>
+      <group position={[wx, 0.1, wz]} rotation={[0, yaw, 0]} visible={!enCaminar}>
         {/* manto */}
         <mesh position={[0, 1.2, 0]}>
           <cylinderGeometry args={[0.2, 0.36, 1.35, 14]} />
