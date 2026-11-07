@@ -60,7 +60,11 @@ export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, 
             </div>
           );
         })}
-        <div style={{position: 'absolute', top: 150, width: W, textAlign: 'center', fontFamily: sans, fontWeight: 700, fontSize: 30, letterSpacing: 2, color: 'rgba(255,255,255,0.7)', textShadow: '0 2px 12px rgba(0,0,0,0.8)'}}>{firma}</div>
+        {/* marca de Fatima */}
+        <div style={{position: 'absolute', top: 1690, width: W, textAlign: 'center', fontFamily: sans, fontWeight: 800, fontSize: 50, letterSpacing: 3, color: 'rgba(255,255,255,0.93)', textShadow: '0 3px 18px rgba(0,0,0,0.85)'}}>
+          {firma}
+          <div style={{margin: '10px auto 0', width: 150, height: 5, borderRadius: 3, background: C.oro}} />
+        </div>
       </AbsoluteFill>
     </AbsoluteFill>
   );
