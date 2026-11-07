@@ -3,6 +3,7 @@ import {AbsoluteFill, Composition, useCurrentFrame} from 'remotion';
 import {FPS, H, W} from './tema';
 import {Video, VideoProps} from './Video';
 import {ESCENAS} from './dibujos';
+import {SobreVideo, SobreVideoProps} from './SobreVideo';
 
 const ejemplo: VideoProps = {
   audio: null,
@@ -33,6 +34,16 @@ export const Root: React.FC = () => (
       fps={FPS}
       durationInFrames={FPS * 8}
       defaultProps={ejemplo}
+      calculateMetadata={({props}) => ({durationInFrames: Math.ceil(props.duracion * FPS)})}
+    />
+    <Composition
+      id="SobreVideo"
+      component={SobreVideo}
+      width={W}
+      height={H}
+      fps={FPS}
+      durationInFrames={FPS * 8}
+      defaultProps={{video: 'sobrevideo/fondo.mp4', duracion: 8, nombre: {ar: '', es: '', t: 0.5}, bloques: [], firma: 'Fatima Andalussi'} as SobreVideoProps}
       calculateMetadata={({props}) => ({durationInFrames: Math.ceil(props.duracion * FPS)})}
     />
     <Composition id="Escena" component={VistaEscena} width={W} height={H} fps={FPS} durationInFrames={150} defaultProps={{escena: 'puerta', opts: [] as string[], k: 30, d: 150}} />
