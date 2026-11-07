@@ -10,6 +10,9 @@ export type EscenaProps = {
   opts: string[]; // opciones del guion: [puerta cierra]
 };
 
+/** true cuando la escena va sobre un clip de vídeo de fondo (historia con «[escena | búsqueda]») */
+export const FondoVideoCtx = React.createContext(false);
+
 export const rnd = (i: number) => {
   const x = Math.sin(i * 127.1 + 311.7) * 43758.5453;
   return x - Math.floor(x);

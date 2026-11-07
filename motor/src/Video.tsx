@@ -5,6 +5,7 @@ import {easeOut, lerp, prog} from './util';
 import {Subtitulo, trozosEs} from './Subtitulos';
 import {ESCENAS, FOCOS} from './dibujos';
 import {Camara2D} from './dibujos/camara2d';
+import {FondoVideoCtx} from './dibujos/base';
 import {COLORES, ELEMENTOS} from './dibujos/elementos';
 import {Estrella8Fondo} from './dibujos/fondo';
 import {ThreeCanvas} from '@remotion/three';
@@ -70,7 +71,7 @@ const TarjetaTexto: React.FC<{texto: string; f: number}> = ({texto, f}) => {
   return (
     <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 40%, #3a2a1c 0%, #0d0a12 70%)', alignItems: 'center'}}>
       <div style={{position: 'absolute', top: 560, width: 760, height: 1, background: C.oro, opacity: 0.6 * e}} />
-      <div dir="rtl" style={{position: 'absolute', top: 600, left: 120, right: 120, textAlign: 'center', fontFamily: amiri, fontWeight: 700, fontSize: 92, lineHeight: 1.6, color: C.oro, opacity: e, transform: `translateY(${lerp(20, 0, e)}px)`, textShadow: '0 4px 30px rgba(0,0,0,0.6)'}}>
+      <div dir="rtl" style={{position: 'absolute', top: 600, left: 120, right: 120, textAlign: 'center', fontFamily: amiri, fontWeight: 700, fontSize: Math.max(54, Math.min(92, 92 - (texto.length - 40) * 0.55)), lineHeight: 1.6, color: C.oro, opacity: e, transform: `translateY(${lerp(20, 0, e)}px)`, textShadow: '0 4px 30px rgba(0,0,0,0.6)'}}>
         {texto}
       </div>
       <div style={{position: 'absolute', top: 1060, width: 760, height: 1, background: C.oro, opacity: 0.6 * e}} />
@@ -158,7 +159,7 @@ export const Video: React.FC<VideoProps> = (p) => {
       {centro && p.pov && <Pov texto={p.pov} frame={frame} />}
 
       {(centro || modo === 'historia') && la.arabe && !p.portada && frame < finVozF + 6 && (
-        <div dir="rtl" style={{position: 'absolute', top: centro ? 540 : 420, left: 80, right: 80, textAlign: 'center', fontFamily: amiri, fontWeight: 700, fontSize: 88, lineHeight: 1.5, color: C.oro, opacity: arabeE, textShadow: '0 4px 24px rgba(0,0,0,0.6)'}}>
+        <div dir="rtl" style={{position: 'absolute', top: centro ? 540 : 420, left: 80, right: 80, textAlign: 'center', fontFamily: amiri, fontWeight: 700, fontSize: 88, lineHeight: 1.5, color: C.oro, opacity: arabeE, textShadow: '0 4px 24px rgba(0,0,0,0.6)', ...(centro ? {} : {background: 'radial-gradient(ellipse at center, rgba(10,12,34,0.62) 0%, rgba(10,12,34,0.42) 55%, rgba(10,12,34,0) 100%)', padding: '26px 30px', borderRadius: 60, left: 50, right: 50})}}>
           {la.arabe}
         </div>
       )}
@@ -202,11 +203,19 @@ const Plano: React.FC<{pl: Plano; d: number; opacidad: number}> = ({pl, d, opaci
   const f = useCurrentFrame();
   if (pl.escena && ESCENAS[pl.escena]) {
     const E = ESCENAS[pl.escena];
+    const zoomFondo = 1.04 + 0.1 * (f / Math.max(1, d));
     return (
       <AbsoluteFill style={{opacity: opacidad}}>
-        <Camara2D f={f} d={d} semilla={[...pl.escena].reduce((a, c) => a + c.charCodeAt(0), 0)} foco={FOCOS[pl.escena]}>
-          <E f={f} d={d} k={pl.k ?? Math.round(d * 0.4)} opts={pl.opts ?? []} />
-        </Camara2D>
+        {pl.clip && (
+          <AbsoluteFill style={{transform: `scale(${zoomFondo})`}}>
+            <OffthreadVideo src={staticFile(pl.clip)} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+          </AbsoluteFill>
+        )}
+        <FondoVideoCtx.Provider value={!!pl.clip}>
+          <Camara2D f={f} d={d} semilla={[...pl.escena].reduce((a, c) => a + c.charCodeAt(0), 0)} foco={FOCOS[pl.escena]}>
+            <E f={f} d={d} k={pl.k ?? Math.round(d * 0.4)} opts={pl.opts ?? []} />
+          </Camara2D>
+        </FondoVideoCtx.Provider>
       </AbsoluteFill>
     );
   }

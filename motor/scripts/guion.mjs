@@ -31,17 +31,27 @@ export function leerGuion(dir) {
   const centrado = formato === 'hikma' || formato === 'pov';
   const ambiente = lista(cab('ambiente')) || ['sunset', 'ocean', 'clouds', 'rain', 'candle'];
 
+  const narraEs = (cab('narracion') || '').toLowerCase() === 'es';
   const lineas = [];
   let n = 0;
   for (let l of filas) {
     if (!l || l.startsWith('#')) continue;
     let busqueda = '';
+    let planoMundo = '';
+    let fondoClip = '';
     const m = l.match(/^\[([^\]]+)\]\s*(.*)$/);
     if (m) {
       const b = m[1].trim().toLowerCase();
       // en hikma/pov solo [texto] es especial; cualquier otra [..] inicial es una etiqueta de voz
-      if (!centrado || b === 'texto') {
+      if (!centrado || b === 'texto' || b.startsWith('texto ')) {
         busqueda = b;
+        // historia en 3D: «[texto plano]» = línea con texto árabe en pantalla y la cámara en ese plano del mundo
+        if (b.startsWith('texto ')) {
+          busqueda = 'texto';
+          planoMundo = b.slice(6).trim();
+        }
+        // historia: «[escena | búsqueda en inglés]» pone un clip de vídeo de fondo detrás de la escena
+        if (formato === 'historia' && b.includes('|')) [busqueda, fondoClip] = b.split('|').map((x) => x.trim());
         l = m[2];
       }
     }
@@ -49,7 +59,18 @@ export function leerGuion(dir) {
       if (!busqueda) busqueda = ambiente[n++ % ambiente.length];
       if (busqueda === '=' && !lineas.length) busqueda = ambiente[n++ % ambiente.length];
     }
-    const [darija, es = ''] = l.split('|').map((x) => x.trim());
+    let [darija, es = '', extra = ''] = l.split('|').map((x) => x.trim());
+    // «# narracion: es»: la voz habla español. En las líneas [texto] la primera columna es el árabe (solo se ve) y
+    // la voz lee la traducción; en las demás basta una columna con el español (con *clave*).
+    let arabe = null;
+    if (narraEs) {
+      if (busqueda === 'texto') {
+        // «árabe | voz | subtítulo»: con tres columnas la voz (darija) y el subtítulo (español) son distintos
+        arabe = darija;
+        darija = es;
+        if (extra) es = extra;
+      } else if (!es) es = darija;
+    }
     // Etiquetas de emoción (eleven_v4): van a ElevenLabs pero no a pantalla ni a las palabras.
     const tts = darija.replace(/\*/g, '').replace(/\s+/g, ' ').trim();
     const words = tts
@@ -57,7 +78,7 @@ export function leerGuion(dir) {
       .split(/\s+/)
       .filter(Boolean)
       .map((w) => ({w, key: false}));
-    lineas.push({busqueda, texto: words.map((w) => w.w).join(' '), tts, words, es});
+    lineas.push({busqueda, plano: planoMundo, fondo: fondoClip, arabe, texto: words.map((w) => w.w).join(' '), tts, words, es});
   }
   if (!lineas.length) throw new Error('guion.txt está vacío');
   lineas.formato = formato;
@@ -65,6 +86,8 @@ export function leerGuion(dir) {
   lineas.pov = pov;
   lineas.color = cab('color');
   lineas.elemento = (cab('elemento') || '').toLowerCase() || null;
+  lineas.voz = cab('voz');
+  lineas.idioma = cab('idioma');
   lineas.mundo = (cab('mundo') || '').toLowerCase() || null;
   return lineas;
 }

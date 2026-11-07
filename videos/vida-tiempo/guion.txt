@@ -1,0 +1,13 @@
+# tema: الدنيا ساعة (la vida es un reloj)  ·  serie: Recordatorios
+# formato: historia
+# fuentes: 70 años × 52 semanas = 3.640 semanas; 30 años × 52 = 1.560. Refrán «الوقت كالسيف إن لم تقطعه قطعك» y «الدنيا ساعة فاجعلها طاعة» (dichos conocidos)
+# escenas (motor/src/historias/tiempo.tsx): un solo mundo 2D continuo, la cámara viaja de la torre del reloj al muro de semanas, al reloj de arena, a la tumba y vuelve a la torre
+[tiempo-reloj] واش عمركم حسبتو شحال غادي تعيشو فهاد الدنيا؟ | ¿Alguna vez habéis calculado *cuánto vais a vivir*?
+[tiempo-colina] غير تسناو شوية… | Esperad un momento…
+[tiempo-semanas] اللي كيعيش سبعين عام، عندو غير تلات آلاف وستمية وأربعين سيمانة. | Quien vive 70 años tiene solo *3.640 semanas*.
+[tiempo-treinta] وإلا عندكم تلاتين عام، راه دازو ألف وخمسمية وستين… وما غاديش يرجعو. | Y si tenéis 30, ya pasaron *1.560*… y no vuelven.
+[tiempo-arena] الفلوس كتمشي وكتجي… ولكن الْوَقْتْ ما كيرجعش. | El dinero va y viene… pero *el tiempo no vuelve*.
+[tiempo-espada] الْوَقْتُ كَالسَّيْفِ، إِنْ لَمْ تَقْطَعْهُ قَطَعَكَ | «El tiempo es como una espada: si no la usas, *te corta*.»
+[tiempo-tumba] وفَالْقَبْرْ، ما غاديش يمشي معاكم غير عملكم. | En la tumba solo os acompañan *vuestras obras*.
+[tiempo-amanecer] إلا كانت الدنيا ساعة… فاجعلوها طاعة. | Si la vida es una hora… *hacedla obediencia a Allah*.
+[tiempo-cta] شنو غادي تديرو فهاد السيمانة؟ كتبوها فالكومونتير! | ¿Qué vais a hacer esta semana? *¡Escribidlo en los comentarios!*

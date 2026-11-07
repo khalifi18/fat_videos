@@ -19,7 +19,8 @@ const UA = {
 };
 const BASE = 'https://mixkit.co';
 const lineas = leerGuion(dir);
-if (lineas.formato === 'historia' || lineas.formato === 'hikma') {
+const historiaConFondos = lineas.formato === 'historia' && lineas.some((l) => l.fondo);
+if ((lineas.formato === 'historia' && !historiaConFondos) || lineas.formato === 'hikma') {
   console.log(`OK · el formato ${lineas.formato} no usa clips (0 descargas)`);
   process.exit(0);
 }
@@ -30,7 +31,7 @@ const jf = path.join(dir, 'clips.json');
 const estado = fs.existsSync(jf) ? JSON.parse(fs.readFileSync(jf, 'utf8')) : {};
 // Formato POV: 1–2 clips de fondo para todo el vídeo (# fondo:). Formato clips: uno por línea.
 const K = lineas.fondo ? 'fondo' : 'lineas';
-const objetivos = lineas.fondo ? lineas.fondo.slice(0, 2).map((q) => ({busqueda: q})) : lineas;
+const objetivos = historiaConFondos ? lineas.map((l) => ({busqueda: l.fondo || '='})) : lineas.fondo ? lineas.fondo.slice(0, 2).map((q) => ({busqueda: q})) : lineas;
 estado[K] ??= [];
 
 const espera = (ms) => new Promise((r) => setTimeout(r, ms));

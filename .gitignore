@@ -9,3 +9,5 @@ catalogo.jpg
 .entorno
 motor/package-lock.json
 .remotion/
+videos/*/original.mp4
+videos/*/musica/
