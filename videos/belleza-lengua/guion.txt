@@ -2,10 +2,11 @@
 # formato: historia
 # mundo: otono
 # idioma: ar
-# fuentes: dicho que circula atribuido al Imam Ali, pero NO está verificado (no se dice su nombre en la voz). Tema parecido: poema clásico «لسان الفتى نصف ونصف فؤاده».
+# fuentes: dicho atribuido al Imam Ali ibn Abi Talib (así aparece en la tarjeta que mandó Fatima; NO está verificado en fuentes; decisión de Fatima: poner su nombre). Tema parecido: poema clásico «لسان الفتى نصف ونصف فؤاده».
 # mundo 3D (motor/src/mundos/MundoOtono.tsx): puente de madera en un bosque de otoño; silueta con farol; palabras doradas; luz de la mente; pasan las estaciones. Planos: puente, espera, lengua, mente, tiempo, luz, final
 [puente] فين كاين الجمال الحقيقي ديال الإنسان؟ | ¿Dónde está la verdadera belleza de una persona?
 [espera] غير تسناو شوية… | Esperad un momento…
+[texto espera] الْإِمَامُ عَلِيُّ بْنُ أَبِي طَالِبٍ، رَضِيَ اللهُ عَنْهُ: | El Imam Ali ibn Abi Talib, que Allah esté complacido con él:
 [texto lengua] جَمَالُ الْإِنْسَانِ فِي لِسَانِهِ | «La belleza del ser humano está en *su lengua*»
 [texto mente] وَالنِّصْفُ الْآخَرُ فِي عَقْلِهِ | «y la otra mitad, *en su mente*»
 [texto tiempo] أَمَّا الْوَجْهُ فَمُجَرَّدُ غِطَاءٍ يَتَغَيَّرُ مَعَ مُرُورِ الزَّمَنِ | «El rostro no es más que una cubierta que *cambia con el tiempo*»
