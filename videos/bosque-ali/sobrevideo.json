@@ -1,6 +1,6 @@
 {
   "corte": 12.4,
-  "portada": 10.5,
+  "portada": 9.5,
   "nombre": {
     "ar": "قَالَ الْإِمَامُ عَلِيُّ بْنُ أَبِي طَالِبٍ\nرَضِيَ اللهُ عَنْهُ",
     "es": "Dijo el Imam Ali ibn Abi Talib, que Allah esté complacido con él",
@@ -29,5 +29,6 @@
       "es": "«El rostro no es más que una cubierta que cambia con el tiempo»",
       "t": 7.6
     }
-  ]
+  ],
+  "sync": true
 }
