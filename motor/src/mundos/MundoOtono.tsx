@@ -125,7 +125,7 @@ export const MundoOtono: React.FC<{t: number; T: number; tramos: Tramo[]}> = ({t
     // follaje espeso pegado a las barandillas (como un sauce a cada lado del puente)
     for (let i = 0; i < 300; i++) {
       const z = 22 - rnd() * 175, lado = rnd() < 0.5 ? -1 : 1;
-      blobs.push({x: camino(z) + lado * (3.1 + rnd() * 2.6), y: 0.4 + rnd() * 3.4, z, r: 0.55 + rnd() * 0.75, a: 3000 + i});
+      blobs.push({x: camino(z) + lado * (4.3 + rnd() * 2.6), y: 0.4 + rnd() * 3.4, z, r: 0.5 + rnd() * 0.6, a: 3000 + i});
     }
     // partículas (hojas / nieve / pétalos)
     const NP = 520;
@@ -175,7 +175,7 @@ export const MundoOtono: React.FC<{t: number; T: number; tramos: Tramo[]}> = ({t
     if (im) {
       const m = new THREE.Matrix4(), col = new THREE.Color();
       r.blobs.forEach((b, i) => {
-        const e = (lejos(b.x, b.y, b.z, enCaminar ? 0.8 : 6.5) ? 1 : 0.0001) * escalaHoja * (0.9 + 0.2 * ((i * 7) % 5) / 5);
+        const e = (lejos(b.x, b.y, b.z, enCaminar ? b.r * 1.4 + 0.9 : 6.5) ? 1 : 0.0001) * escalaHoja * (0.9 + 0.2 * ((i * 7) % 5) / 5);
         m.compose(new THREE.Vector3(b.x, b.y, b.z), new THREE.Quaternion(), new THREE.Vector3(b.r * e, b.r * e * 0.85, b.r * e));
         im.setMatrixAt(i, m);
         const pa = HOJAS[sa][i % 5], pb = HOJAS[sb][i % 5];
