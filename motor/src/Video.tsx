@@ -159,7 +159,7 @@ export const Video: React.FC<VideoProps> = (p) => {
       {centro && p.pov && <Pov texto={p.pov} frame={frame} />}
 
       {(centro || modo === 'historia') && la.arabe && !p.portada && frame < finVozF + 6 && (
-        <div dir="rtl" style={{position: 'absolute', top: centro ? 540 : 420, left: 80, right: 80, textAlign: 'center', fontFamily: amiri, fontWeight: 700, fontSize: 88, lineHeight: 1.5, color: C.oro, opacity: arabeE, textShadow: '0 4px 24px rgba(0,0,0,0.6)'}}>
+        <div dir="rtl" style={{position: 'absolute', top: centro ? 540 : 420, left: 80, right: 80, textAlign: 'center', fontFamily: amiri, fontWeight: 700, fontSize: 88, lineHeight: 1.5, color: C.oro, opacity: arabeE, textShadow: '0 4px 24px rgba(0,0,0,0.6)', ...(centro ? {} : {background: 'radial-gradient(ellipse at center, rgba(10,12,34,0.62) 0%, rgba(10,12,34,0.42) 55%, rgba(10,12,34,0) 100%)', padding: '26px 30px', borderRadius: 60, left: 50, right: 50})}}>
           {la.arabe}
         </div>
       )}

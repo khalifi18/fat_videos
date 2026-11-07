@@ -1,0 +1,13 @@
+# tema: جمال الإنسان في لسانه (la belleza está en la lengua y en la mente)  ·  serie: Recordatorios
+# formato: historia
+# mundo: otono
+# idioma: ar
+# fuentes: dicho que circula atribuido al Imam Ali, pero NO está verificado (no se dice su nombre en la voz). Tema parecido: poema clásico «لسان الفتى نصف ونصف فؤاده».
+# mundo 3D (motor/src/mundos/MundoOtono.tsx): puente de madera en un bosque de otoño; silueta con farol; palabras doradas; luz de la mente; pasan las estaciones. Planos: puente, espera, lengua, mente, tiempo, luz, final
+[puente] فين كاين الجمال الحقيقي ديال الإنسان؟ | ¿Dónde está la verdadera belleza de una persona?
+[espera] غير تسناو شوية… | Esperad un momento…
+[texto lengua] جَمَالُ الْإِنْسَانِ فِي لِسَانِهِ | «La belleza del ser humano está en *su lengua*»
+[texto mente] وَالنِّصْفُ الْآخَرُ فِي عَقْلِهِ | «y la otra mitad, *en su mente*»
+[texto tiempo] أَمَّا الْوَجْهُ فَمُجَرَّدُ غِطَاءٍ يَتَغَيَّرُ مَعَ مُرُورِ الزَّمَنِ | «El rostro no es más que una cubierta que *cambia con el tiempo*»
+[luz] الوجه كيتبدل مع السنين… والكلمة الزوينة والعقل الزوين كيبقاو. | El rostro cambia con los años… la buena palabra y la mente sabia *se quedan*.
+[final] شكون الشخص اللي كلامو وعقلو خلاك تحبو؟ كتبها فالكومونتير. | ¿Quién te conquistó por *su forma de hablar y de pensar*? Escríbelo en los comentarios.
