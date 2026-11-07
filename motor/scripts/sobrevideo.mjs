@@ -43,8 +43,8 @@ if (conVoz) {
 const lento = Math.max(1, duracion / cfg.corte); // ralentiza el vídeo si la voz dura más que el vídeo
 const fondo = path.join(pub, 'sobrevideo', 'fondo.mp4');
 execFileSync('ffmpeg', [
-  '-v', 'error', '-y', '-i', path.join(dir, 'original.mp4'), '-t', String(cfg.corte),
-  '-vf', `scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,setpts=${lento.toFixed(4)}*PTS,fps=30,setsar=1`,
+  '-v', 'error', '-y', ...(cfg.inicio ? ['-ss', String(cfg.inicio)] : []), '-i', path.join(dir, 'original.mp4'), '-t', String(cfg.corte),
+  '-vf', `scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,unsharp=5:5:0.7,setpts=${lento.toFixed(4)}*PTS,fps=30,setsar=1`,
   '-t', String(duracion),
   '-c:v', 'libx264', '-preset', 'medium', '-crf', '17', '-pix_fmt', 'yuv420p', ...(conVoz ? ['-an'] : ['-c:a', 'aac', '-b:a', '192k']), fondo,
 ]);

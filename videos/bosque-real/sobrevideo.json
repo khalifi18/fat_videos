@@ -1,0 +1,35 @@
+{
+  "corte": 16,
+  "portada": 9.5,
+  "nombre": {
+    "ar": "قَالَ الْإِمَامُ عَلِيُّ بْنُ أَبِي طَالِبٍ\nرَضِيَ اللهُ عَنْهُ",
+    "es": "Dijo el Imam Ali ibn Abi Talib, que Allah esté complacido con él",
+    "t": 0.6
+  },
+  "bloques": [
+    {
+      "ar": [
+        "جَمَالُ الْإِنْسَانِ فِي لِسَانِهِ"
+      ],
+      "es": "«La belleza del ser humano está en su lengua»",
+      "t": 2.2
+    },
+    {
+      "ar": [
+        "وَالنِّصْفُ الْآخَرُ فِي عَقْلِهِ"
+      ],
+      "es": "«y la otra mitad, en su mente»",
+      "t": 5.0
+    },
+    {
+      "ar": [
+        "أَمَّا الْوَجْهُ فَمُجَرَّدُ غِطَاءٍ",
+        "يَتَغَيَّرُ مَعَ مُرُورِ الزَّمَنِ"
+      ],
+      "es": "«El rostro no es más que una cubierta que cambia con el tiempo»",
+      "t": 7.6
+    }
+  ],
+  "sync": true,
+  "inicio": 2
+}
