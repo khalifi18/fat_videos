@@ -286,6 +286,43 @@ const Hierbabuena: React.FC = () => (
   </svg>
 );
 
+
+/** Polvo dorado que sube despacio y pétalos de margarita que caen: da vida y profundidad a la hoja */
+const Brillos: React.FC<{f: number}> = ({f}) => {
+  const r = (i: number, k: number) => {
+    const x = Math.sin(i * 127.1 + k * 311.7) * 43758.5453;
+    return x - Math.floor(x);
+  };
+  return (
+    <AbsoluteFill style={{pointerEvents: 'none', mixBlendMode: 'screen'}}>
+      {Array.from({length: 36}).map((_, i) => {
+        const sz = 5 + r(i, 1) * 13;
+        const y = 2000 - ((f * (0.55 + r(i, 2) * 0.8) + r(i, 3) * 2200) % 2200);
+        const x = r(i, 4) * 1080 + Math.sin(f / 40 + i) * 26;
+        return <div key={i} style={{position: 'absolute', left: x, top: y, width: sz, height: sz, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,226,150,0.95) 0%, rgba(255,200,110,0.35) 55%, rgba(255,200,110,0) 100%)', opacity: 0.35 + 0.55 * Math.abs(Math.sin(f / 30 + i * 1.9)), filter: sz > 12 ? 'blur(1.5px)' : undefined}} />;
+      })}
+    </AbsoluteFill>
+  );
+};
+
+const Petalos: React.FC<{f: number}> = ({f}) => {
+  const r = (i: number, k: number) => {
+    const x = Math.sin(i * 91.7 + k * 17.3) * 12345.678;
+    return x - Math.floor(x);
+  };
+  return (
+    <AbsoluteFill style={{pointerEvents: 'none'}}>
+      {Array.from({length: 9}).map((_, i) => {
+        const v = 0.7 + r(i, 1) * 0.7;
+        const y = -80 + ((f * v + r(i, 2) * 2100) % 2150);
+        const x = r(i, 3) * 1080 + Math.sin(f / 55 + i * 2.1) * 70;
+        const rot = f * (0.6 + r(i, 4) * 1.2) + i * 40;
+        return <div key={i} style={{position: 'absolute', left: x, top: y, width: 22 + r(i, 5) * 14, height: 46 + r(i, 6) * 22, borderRadius: '50% 50% 50% 50% / 62% 62% 38% 38%', background: 'linear-gradient(180deg, #fffaf0 0%, #f1e2c2 100%)', opacity: 0.72, transform: `rotate(${rot}deg)`, boxShadow: '0 4px 10px rgba(0,0,0,0.25)'}} />;
+      })}
+    </AbsoluteFill>
+  );
+};
+
 export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fondo = 'mesa', tiempos, finVoz, escala = 1}) => {
   const fr = useCurrentFrame();
   const {pal: tPal, escrito, total} = tiemposCarta(lineas, tiempos, finVoz);
@@ -350,6 +387,8 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fon
       <AbsoluteFill style={{background: '#4a231c'}}>
         <AbsoluteFill style={{transform: `scale(${zoom})`, transformOrigin: '50% 45%'}}>
           <Pergamino f={f}>{texto}</Pergamino>
+          <Brillos f={fr} />
+          <Petalos f={fr} />
         </AbsoluteFill>
         {cierreEl}
       </AbsoluteFill>

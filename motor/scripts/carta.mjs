@@ -54,17 +54,28 @@ if (args.includes('--fotos')) {
     await renderMedia({chromiumOptions, browserExecutable, composition, serveUrl, codec: 'h264', crf: 12, outputLocation: mudo, inputProps: props, muted: true});
     const dur = composition.durationInFrames / 30;
     const ent = ['-i', mudo];
-    const pistas = [];
+    // Sonido cuidado: la voz va limpia (filtro de graves y compresor suave); la música baja sola mientras habla la voz
+    // (sidechain) y sube un poco en las pausas; al final se iguala el volumen (-14 LUFS, como piden TikTok e Instagram).
+    let filtro;
     if (conVoz) {
       ent.push('-i', vozF);
-      pistas.push(`[${pistas.length + 1}:a]adelay=${RETRASO * 1000}:all=1,volume=1.0[v]`);
-    }
-    if (musica) {
+      if (musica) {
+        ent.push('-i', musica);
+        filtro = [
+          `[1:a]adelay=${RETRASO * 1000}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,volume=1.0,asplit=2[v1][v2]`,
+          `[2:a]volume=0.30,afade=t=in:d=1.2,afade=t=out:st=${(dur - 2.2).toFixed(2)}:d=2.2[m0]`,
+          `[m0][v2]sidechaincompress=threshold=0.03:ratio=9:attack=25:release=450:makeup=1[m]`,
+          `[v1][m]amix=inputs=2:normalize=0:duration=longest,apad,loudnorm=I=-14:TP=-1.5:LRA=7[a]`,
+        ].join(';');
+      } else {
+        filtro = `[1:a]adelay=${RETRASO * 1000}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,apad,loudnorm=I=-14:TP=-1.5:LRA=7[a]`;
+      }
+    } else if (musica) {
       ent.push('-i', musica);
-      pistas.push(`[${pistas.length + 1}:a]volume=${conVoz ? 0.16 : 0.6},afade=t=in:d=0.8,afade=t=out:st=${dur - 2}:d=2[m]`);
+      filtro = `[1:a]volume=0.6,afade=t=in:d=0.8,afade=t=out:st=${(dur - 2).toFixed(2)}:d=2,apad[a]`;
+    } else {
+      ent.push('-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=stereo'); // pista muda: algunas apps rechazan vídeos sin audio
     }
-    if (!pistas.length) ent.push('-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=stereo'); // pista muda: algunas apps rechazan vídeos sin audio
-    const filtro = pistas.length ? [...pistas, `${pistas.map((p) => p.slice(p.lastIndexOf('['))).join('')}amix=inputs=${pistas.length}:normalize=0:duration=longest,apad[a]`].join(';') : null;
     execFileSync('ffmpeg', ['-v', 'error', '-y', ...ent, ...(filtro ? ['-filter_complex', filtro, '-map', '0:v', '-map', '[a]'] : ['-map', '0:v', '-map', '1:a']), '-t', String(dur), '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k', path.join(out, 'video.mp4')]);
     fs.unlinkSync(mudo);
   }
