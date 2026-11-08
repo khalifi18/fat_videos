@@ -1,0 +1,12 @@
+# tema: «وإن اجتمعوا على أن يضروك…» (hadiz de Ibn Abbas: nadie puede dañarte sino con lo que Allah ya escribió para ti) · protegida por una luz
+# formato: historia
+# mundo: burbuja
+# idioma: ar
+# fuentes: Tirmidhi n.º 2516 (hasan sahih); también en Riyad as-Salihin n.º 62 y en las 40 de Nawawi n.º 19
+# mundo 3D (motor/src/mundos/MundoBurbuja.tsx): persona sentada en un callejón, dentro de una esfera de luz; figuras de sombra lanzan flechas de sombra que rebotan; al final amanece. Planos: general, anillo, golpe, cerca, amanecer, final
+[general] واش كتخاف من الناس اللي بغاو يضرو بك؟ | ¿Tienes miedo de quienes quieren hacerte daño?
+[texto anillo] وَإِنِ اجْتَمَعُوا عَلَى أَنْ يَضُرُّوكَ بِشَيْءٍ | «Y si se juntan para hacerte daño con algo,»
+[texto golpe] لَمْ يَضُرُّوكَ إِلَّا بِشَيْءٍ قَدْ كَتَبَهُ اللَّهُ عَلَيْكَ | «no podrán dañarte sino con lo que *Allah ya escribió para ti*.»
+[texto cerca] رُفِعَتِ الْأَقْلَامُ وَجَفَّتِ الصُّحُفُ | «Se alzaron las plumas y *se secaron las páginas*.»
+[amanecer] نتي محمية… والله هو الحافظ. | Estás protegida… y *Allah es el mejor protector*.
+[final] صيفطها لشي واحد خايف. | Envíaselo a alguien que *tenga miedo*.
