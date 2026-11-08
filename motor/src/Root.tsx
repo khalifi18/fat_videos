@@ -6,7 +6,7 @@ import {ESCENAS} from './dibujos';
 import {ThreeCanvas} from '@remotion/three';
 import {MUNDOS} from './mundos';
 import type {Tramo} from './mundos/camara';
-import {SobreVideo, SobreVideoProps} from './SobreVideo';
+import {Proteccion, ProteccionProps, SobreVideo, SobreVideoProps} from './SobreVideo';
 import {Carta, CartaProps, tiemposCarta} from './Carta';
 
 const ejemplo: VideoProps = {
@@ -74,6 +74,16 @@ export const Root: React.FC = () => (
       durationInFrames={FPS * 12}
       defaultProps={{firma: 'Fatima Andalussi', cierre: '', lineas: [{ar: 'كلمة', es: 'palabra'}]} as CartaProps}
       calculateMetadata={({props}) => ({durationInFrames: Math.ceil(tiemposCarta(props.lineas, props.tiempos, props.finVoz).total)})}
+    />
+    <Composition
+      id="Proteccion"
+      component={Proteccion}
+      width={W}
+      height={H}
+      fps={FPS}
+      durationInFrames={FPS * 8}
+      defaultProps={{video: 'sobrevideo/fondo.mp4', duracion: 8, lineas: [], firma: 'Fatima Andalussi', burbuja: {cx: 540, cy: 960, r: 380}, amanecer: 6} as ProteccionProps}
+      calculateMetadata={({props}) => ({durationInFrames: Math.ceil(props.duracion * FPS)})}
     />
     <Composition
       id="SoloMundo"
