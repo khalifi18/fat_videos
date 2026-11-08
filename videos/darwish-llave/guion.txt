@@ -3,7 +3,7 @@
 # idioma: ar
 # fuentes: la tarjeta de Fatima atribuye el texto a Mahmud Darwish; NO está verificado (no aparece en sus obras). La captura corta la primera palabra de la última línea: se completó con «لا» («لا أعود أنظر إلى مفتاحه»)
 اليوم قرأت جملة بعمري ما رح أنساها.. | Hoy leí una frase que nunca en mi vida olvidaré…
-تُنْسَبُ إِلَى مَحْمُودٍ دَرْوِيش: | Se atribuye a Mahmud Darwish:
+تُنْسَبُ إِلَى مَحْمُودٍ دِرْوِيش: | Se atribuye a Mahmud Darwish:
 لَا يَهْزِمُنِي غِيَاب، | No me derrota una ausencia,
 وَلَا يَكْسِرُنِي تَجَاهُل؛ | ni me rompe un desprecio;
 فَأَنَا الَّذِي إِنْ أَغْلَقْتُ بَابًا، | pues soy quien, si cierra una puerta,
