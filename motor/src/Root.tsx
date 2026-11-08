@@ -7,6 +7,7 @@ import {ThreeCanvas} from '@remotion/three';
 import {MUNDOS} from './mundos';
 import type {Tramo} from './mundos/camara';
 import {SobreVideo, SobreVideoProps} from './SobreVideo';
+import {Carta, CartaProps, tiemposCarta} from './Carta';
 
 const ejemplo: VideoProps = {
   audio: null,
@@ -63,6 +64,16 @@ export const Root: React.FC = () => (
       durationInFrames={FPS * 8}
       defaultProps={{video: 'sobrevideo/fondo.mp4', duracion: 8, nombre: {ar: '', es: '', t: 0.5}, bloques: [], firma: 'Fatima Andalussi'} as SobreVideoProps}
       calculateMetadata={({props}) => ({durationInFrames: Math.ceil(props.duracion * FPS)})}
+    />
+    <Composition
+      id="Carta"
+      component={Carta}
+      width={W}
+      height={H}
+      fps={FPS}
+      durationInFrames={FPS * 12}
+      defaultProps={{firma: 'Fatima Andalussi', cierre: '', lineas: [{ar: 'كلمة', es: 'palabra'}]} as CartaProps}
+      calculateMetadata={({props}) => ({durationInFrames: Math.ceil(tiemposCarta(props.lineas, props.tiempos, props.finVoz).total)})}
     />
     <Composition
       id="SoloMundo"
