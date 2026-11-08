@@ -51,7 +51,7 @@ if (args.includes('--fotos')) {
 } else {
   if (!args.includes('--portada')) {
     const mudo = path.join(out, 'mudo.mp4');
-    await renderMedia({chromiumOptions, browserExecutable, composition, serveUrl, codec: 'h264', crf: 18, outputLocation: mudo, inputProps: props, muted: true});
+    await renderMedia({chromiumOptions, browserExecutable, composition, serveUrl, codec: 'h264', crf: 12, outputLocation: mudo, inputProps: props, muted: true});
     const dur = composition.durationInFrames / 30;
     const ent = ['-i', mudo];
     const pistas = [];
@@ -65,7 +65,7 @@ if (args.includes('--fotos')) {
     }
     if (!pistas.length) ent.push('-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=stereo'); // pista muda: algunas apps rechazan vídeos sin audio
     const filtro = pistas.length ? [...pistas, `${pistas.map((p) => p.slice(p.lastIndexOf('['))).join('')}amix=inputs=${pistas.length}:normalize=0:duration=longest,apad[a]`].join(';') : null;
-    execFileSync('ffmpeg', ['-v', 'error', '-y', ...ent, ...(filtro ? ['-filter_complex', filtro, '-map', '0:v', '-map', '[a]'] : ['-map', '0:v', '-map', '1:a']), '-t', String(dur), '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', path.join(out, 'video.mp4')]);
+    execFileSync('ffmpeg', ['-v', 'error', '-y', ...ent, ...(filtro ? ['-filter_complex', filtro, '-map', '0:v', '-map', '[a]'] : ['-map', '0:v', '-map', '1:a']), '-t', String(dur), '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k', path.join(out, 'video.mp4')]);
     fs.unlinkSync(mudo);
   }
   await still(0, path.join(out, 'portada.jpg'), {portada: true});
