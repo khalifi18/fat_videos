@@ -175,7 +175,7 @@ export const Proteccion: React.FC<ProteccionProps> = ({video, duracion, lineas, 
           </div>
         )}
         {actual && (
-          <div style={{position: 'absolute', top: 1450, left: 80, right: 80, textAlign: 'center', fontFamily: sans, fontWeight: 800, fontSize: 52, lineHeight: 1.3, color: '#fff', opacity: ae, textShadow: '0 3px 18px rgba(0,0,0,0.9)'}}>
+          <div style={{position: 'absolute', top: 1410, left: 70, right: 70, textAlign: 'center', fontFamily: sans, fontWeight: 800, fontSize: 50, lineHeight: 1.3, color: '#fff', opacity: ae, textShadow: '0 3px 18px rgba(0,0,0,0.9)'}}>
             {actual.es.replace(/\*/g, '')}
           </div>
         )}
