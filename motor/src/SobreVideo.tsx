@@ -139,8 +139,8 @@ export const Proteccion: React.FC<ProteccionProps> = ({video, duracion, lineas, 
           const largo = Math.hypot(x - x0, y - y0);
           const pts = [
             [x, y],
-            [x - ux * 160 * Math.min(1, f.ext * 1.4 + 0.2) - uy * base, y - uy * 160 * Math.min(1, f.ext * 1.4 + 0.2) + ux * base],
-            [x - ux * 160 * Math.min(1, f.ext * 1.4 + 0.2) + uy * base, y - uy * 160 * Math.min(1, f.ext * 1.4 + 0.2) - ux * base],
+            [x + ux * 190 * Math.min(1, f.ext * 1.4 + 0.2) - uy * base, y + uy * 190 * Math.min(1, f.ext * 1.4 + 0.2) + ux * base],
+            [x + ux * 190 * Math.min(1, f.ext * 1.4 + 0.2) + uy * base, y + uy * 190 * Math.min(1, f.ext * 1.4 + 0.2) - ux * base],
           ];
           return (
             <g key={f.i} opacity={(1 - alba) * 0.92 * Math.min(1, largo / 20)}>
