@@ -160,7 +160,7 @@ const still = async (frame, output, extra = {}, scale = 1) =>
     imageFormat: output.endsWith('.png') ? 'png' : 'jpeg',
     jpegQuality: 90,
   });
-const portada = () => still(Math.min(desde(1) - 2, FPS * 1.2), path.join(out, 'portada.jpg'), {portada: true});
+const portada = () => still(Math.min(lineas.length > 1 ? desde(1) - 2 : FPS * 1.5, FPS * 1.2), path.join(out, 'portada.jpg'), {portada: true});
 
 if (args.includes('--hoja')) {
   const hd = path.join(out, 'hoja');

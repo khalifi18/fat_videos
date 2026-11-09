@@ -31,7 +31,8 @@ const MALOS = ['#8a8794', '#77747f', '#9b98a4', '#6f6c78'];
 export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = ({t, T, tramos}) => {
   const {camera, scene, gl} = useThree();
   const cam = camaraEn(PLANOS, tramos, t, 1.4);
-  const sacude = clamp((t - 0.5) / 0.5) * (1 - clamp((t - 6.4) / 1.0)); // el colador se agita mientras se filtra
+  const ta = t * 2.6; // la animación va más rápida: la frase se dice una sola vez
+  const sacude = clamp((ta - 0.5) / 0.5) * (1 - clamp((ta - 6.4) / 1.0)); // el colador se agita mientras se filtra
 
   const r = useMemo(() => {
     const rnd = azar(91);
@@ -75,8 +76,8 @@ export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = (
     scene.fog = new THREE.Fog('#f6e6d6', 24, 70);
   });
 
-  const shakeX = Math.sin(t * 17) * 0.09 * sacude;
-  const shakeR = Math.sin(t * 13 + 1) * 0.035 * sacude;
+  const shakeX = Math.sin(ta * 17) * 0.09 * sacude;
+  const shakeR = Math.sin(ta * 13 + 1) * 0.035 * sacude;
 
   return (
     <>
@@ -185,11 +186,11 @@ export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = (
       {r.personas.map((p, i) => {
         let x = SX + p.x0, y = p.y0, z = p.z0, rot = 0, rz = 0;
         if (p.malo) {
-          const tf = t - p.tCae;
+          const tf = ta - p.tCae;
           if (tf < 0) {
             // se agitan en el colador
-            x += Math.sin(t * 9 + p.fase) * 0.12 * sacude;
-            y += Math.abs(Math.sin(t * 7 + p.fase)) * 0.1 * sacude;
+            x += Math.sin(ta * 9 + p.fase) * 0.12 * sacude;
+            y += Math.abs(Math.sin(ta * 7 + p.fase)) * 0.1 * sacude;
           } else {
             // caen por los agujeros hasta la papelera y se amontonan
             const g = 9.0;
@@ -205,15 +206,15 @@ export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = (
           }
         } else {
           // las buenas se quedan, respiran y se juntan al centro cuando los otros se van
-          const juntan = sm((t - 2.0) / 4.5);
-          x = mixN(x, SX + p.x0 * 0.55, juntan) + Math.sin(t * 1.4 + p.fase) * 0.03 + Math.sin(t * 9 + p.fase) * 0.06 * sacude;
-          y = y + Math.sin(t * 2.2 + p.fase) * 0.025 + Math.abs(Math.sin(t * 7 + p.fase)) * 0.07 * sacude;
+          const juntan = sm((ta - 2.0) / 4.5);
+          x = mixN(x, SX + p.x0 * 0.55, juntan) + Math.sin(ta * 1.4 + p.fase) * 0.03 + Math.sin(ta * 9 + p.fase) * 0.06 * sacude;
+          y = y + Math.sin(ta * 2.2 + p.fase) * 0.025 + Math.abs(Math.sin(ta * 7 + p.fase)) * 0.07 * sacude;
         }
         const esc = p.esc * 0.8;
-        const cae = p.malo && t - p.tCae > 0 && y > 0.9;
+        const cae = p.malo && ta - p.tCae > 0 && y > 0.9;
         const piel = p.malo ? '#b7bbcc' : p.piel;
         const ropa = p.col;
-        const guino = !p.malo && Math.sin(t * 1.3 + p.fase) > 0.985;
+        const guino = !p.malo && Math.sin(ta * 1.3 + p.fase) > 0.985;
         return (
           <group key={i} position={[x, y, z]} rotation={[rz, 0, rot]} scale={esc}>
             {/* cuerpo y brazos */}
