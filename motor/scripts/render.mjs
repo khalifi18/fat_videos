@@ -39,12 +39,12 @@ const cjson = fs.existsSync(cj) ? JSON.parse(fs.readFileSync(cj, 'utf8')) : {};
 const modo = lineas.formato;
 const pov = modo === 'pov';
 
-const finVoz = palabras[palabras.length - 1].e;
+const finVoz = palabras[palabras.length - 1].e + (lineas.cola || 0); // «# cola: N» alarga la escena sin más voz
 const duracion = finVoz + 0.3 + 2.4; // voz + respiro + cierre
 const durF = Math.ceil(duracion * FPS);
 const tiempos = lineas.map((_, i) => {
   const ws = palabras.filter((w) => w.l === i);
-  return {ini: ws[0].s, fin: ws[ws.length - 1].e};
+  return {ini: ws[0].s, fin: ws[ws.length - 1].e + (i === lineas.length - 1 ? lineas.cola || 0 : 0)};
 });
 const desde = (i) => (i === 0 ? 0 : Math.round(tiempos[i].ini * FPS) - 4);
 const hasta = (i) => (i === lineas.length - 1 ? durF : desde(i + 1) + 8);

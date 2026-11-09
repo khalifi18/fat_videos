@@ -1,6 +1,7 @@
 # tema: «صفّي ناسك… يرتاح راسك» (filtra a tu gente y tu mente descansa) · versión propia de la idea del colador
 # formato: historia
 # mundo: colador
+# cola: 4
 # idioma: ar
 # mundo 3D (motor/src/mundos/MundoColador.tsx): mano con manga verde salvia sostiene un colador; las figuritas apagadas caen a una papelera, las cálidas se quedan. Planos: general, cerca, final
 [texto general] صَفِّي نَاسْكْ… يْرْتَاحْ رَاسْكْ. | Filtra a tu gente… *y tu mente descansa*.

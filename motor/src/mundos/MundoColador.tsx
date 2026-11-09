@@ -31,7 +31,7 @@ const MALOS = ['#8a8794', '#77747f', '#9b98a4', '#6f6c78'];
 export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = ({t, T, tramos}) => {
   const {camera, scene, gl} = useThree();
   const cam = camaraEn(PLANOS, tramos, t, 1.4);
-  const ta = t * 2.6; // la animación va más rápida: la frase se dice una sola vez
+  const ta = t * 1.0; // la animación va más rápida: la frase se dice una sola vez
   const sacude = clamp((ta - 0.5) / 0.5) * (1 - clamp((ta - 6.4) / 1.0)); // el colador se agita mientras se filtra
 
   const r = useMemo(() => {
