@@ -29,7 +29,7 @@ const BUENOS = ['#e9a14a', '#d96a5a', '#3f9c98', '#f2c94c', '#c9578a', '#5a82c8'
 const MALOS = ['#8a8794', '#77747f', '#9b98a4', '#6f6c78'];
 
 export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = ({t, T, tramos}) => {
-  const {camera, scene} = useThree();
+  const {camera, scene, gl} = useThree();
   const cam = camaraEn(PLANOS, tramos, t, 1.4);
   const sacude = clamp((t - 0.5) / 0.5) * (1 - clamp((t - 6.4) / 1.0)); // el colador se agita mientras se filtra
 
@@ -59,6 +59,8 @@ export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = (
         xB: (rnd() - 0.5) * 1.5, zB: (rnd() - 0.5) * 1.1, // dónde acaba dentro de la papelera
         giro: (rnd() - 0.5) * 9, fase: rnd() * 6,
         esc: 0.85 + rnd() * 0.3,
+        piel: ['#f1c9a5', '#e0a97f', '#c98f66', '#8a5a3c', '#f6d7bb'][Math.floor(rnd() * 5)],
+        pelo: ['#3a2a22', '#5a3a28', '#1c1420', '#8a5a2c', '#2a1a14'][Math.floor(rnd() * 5)],
       };
     });
     return {malla, personas, brillo: texturaBrillo('255,226,170')};
@@ -66,6 +68,8 @@ export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = (
 
   const skyU = useMemo(() => ({uTop: {value: new THREE.Color('#f6dcc8')}, uHor: {value: new THREE.Color('#fbeee0')}}), []);
   useLayoutEffect(() => {
+    gl.shadowMap.enabled = true;
+    gl.shadowMap.type = THREE.PCFSoftShadowMap;
     ponerCamara(camera as THREE.PerspectiveCamera, cam);
     scene.background = new THREE.Color('#f6e6d6');
     scene.fog = new THREE.Fog('#f6e6d6', 24, 70);
@@ -77,7 +81,7 @@ export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = (
   return (
     <>
       <hemisphereLight args={['#fff1e0', '#c9a98a', 1.35]} />
-      <directionalLight position={[-8, 14, 10]} intensity={1.7} color={'#fff0dc'} />
+      <directionalLight position={[-7, 15, 11]} intensity={1.9} color={'#fff0dc'} castShadow shadow-mapSize-width={2048} shadow-mapSize-height={2048} shadow-camera-left={-9} shadow-camera-right={9} shadow-camera-top={12} shadow-camera-bottom={-3} shadow-camera-near={1} shadow-camera-far={45} shadow-bias={-0.0004} shadow-radius={5} />
       <directionalLight position={[10, 6, -4]} intensity={0.5} color={'#ffd6b0'} />
 
       {/* fondo y mesa */}
@@ -89,14 +93,14 @@ export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = (
         <planeGeometry args={[40, 30]} />
         <meshBasicMaterial map={r.brillo} transparent opacity={0.5} depthWrite={false} />
       </mesh>
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
         <planeGeometry args={[80, 40]} />
         <meshStandardMaterial color={'#ead2bc'} roughness={0.9} />
       </mesh>
 
       {/* PAPELERA */}
       <group position={[0, 0, 0]}>
-        <mesh position={[0, BIN_Y / 2, 0]}>
+        <mesh position={[0, BIN_Y / 2, 0]} castShadow receiveShadow>
           <cylinderGeometry args={[1.85, 1.6, BIN_Y, 40, 1, true]} />
           <meshStandardMaterial color={'#c9ccd4'} metalness={0.3} roughness={0.38} side={THREE.DoubleSide} />
         </mesh>
@@ -129,7 +133,7 @@ export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = (
 
       {/* COLADOR */}
       <group position={[SX + shakeX, SY, 0]} rotation={[0, 0, shakeR]}>
-        <mesh position={[0, 0, 0]}>
+        <mesh position={[0, 0, 0]} castShadow receiveShadow>
           <sphereGeometry args={[RC, 40, 20, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2]} />
           <meshStandardMaterial color={'#d4d7de'} metalness={0.3} roughness={0.35} alphaMap={r.malla} alphaTest={0.5} transparent={false} side={THREE.DoubleSide} />
         </mesh>
@@ -205,25 +209,76 @@ export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = (
           x = mixN(x, SX + p.x0 * 0.55, juntan) + Math.sin(t * 1.4 + p.fase) * 0.03 + Math.sin(t * 9 + p.fase) * 0.06 * sacude;
           y = y + Math.sin(t * 2.2 + p.fase) * 0.025 + Math.abs(Math.sin(t * 7 + p.fase)) * 0.07 * sacude;
         }
-        const esc = p.esc * 0.78;
+        const esc = p.esc * 0.8;
+        const cae = p.malo && t - p.tCae > 0 && y > 0.9;
+        const piel = p.malo ? '#b7bbcc' : p.piel;
+        const ropa = p.col;
+        const guino = !p.malo && Math.sin(t * 1.3 + p.fase) > 0.985;
         return (
           <group key={i} position={[x, y, z]} rotation={[rz, 0, rot]} scale={esc}>
-            <mesh position={[0, 0.5, 0]}>
-              <capsuleGeometry args={[0.3, 0.55, 6, 12]} />
-              <meshStandardMaterial color={p.col} roughness={0.7} emissive={p.malo ? '#000000' : p.col} emissiveIntensity={p.malo ? 0 : 0.12} />
+            {/* cuerpo y brazos */}
+            <mesh position={[0, 0.42, 0]} castShadow>
+              <capsuleGeometry args={[0.34, 0.4, 8, 16]} />
+              <meshPhysicalMaterial color={ropa} roughness={0.55} clearcoat={0.3} clearcoatRoughness={0.5} emissive={p.malo ? '#000000' : ropa} emissiveIntensity={p.malo ? 0 : 0.1} />
             </mesh>
-            <mesh position={[0, 1.2, 0]}>
-              <sphereGeometry args={[0.3, 16, 12]} />
-              <meshStandardMaterial color={p.malo ? '#a29fab' : '#f1c9a5'} roughness={0.7} />
+            <mesh position={[-0.4, 0.5, 0]} rotation={[0, 0, cae ? 2.4 : 0.55]} castShadow>
+              <capsuleGeometry args={[0.1, 0.34, 6, 10]} />
+              <meshPhysicalMaterial color={ropa} roughness={0.55} />
             </mesh>
-            <mesh position={[-0.28, 0.52, 0]} rotation={[0, 0, 0.5]}>
-              <capsuleGeometry args={[0.09, 0.35, 4, 8]} />
-              <meshStandardMaterial color={p.col} roughness={0.7} />
+            <mesh position={[0.4, 0.5, 0]} rotation={[0, 0, cae ? -2.4 : -0.55]} castShadow>
+              <capsuleGeometry args={[0.1, 0.34, 6, 10]} />
+              <meshPhysicalMaterial color={ropa} roughness={0.55} />
             </mesh>
-            <mesh position={[0.28, 0.52, 0]} rotation={[0, 0, -0.5]}>
-              <capsuleGeometry args={[0.09, 0.35, 4, 8]} />
-              <meshStandardMaterial color={p.col} roughness={0.7} />
+            {/* cabeza grande, pelo y cara */}
+            <mesh position={[0, 1.18, 0]} castShadow>
+              <sphereGeometry args={[0.46, 28, 22]} />
+              <meshPhysicalMaterial color={piel} roughness={0.6} clearcoat={0.15} />
             </mesh>
+            <mesh position={[0, 1.34, -0.04]} rotation={[0.25, 0, 0]} scale={[1, 0.8, 1]} castShadow>
+              <sphereGeometry args={[0.48, 24, 16, 0, Math.PI * 2, 0, Math.PI * 0.55]} />
+              <meshPhysicalMaterial color={p.pelo} roughness={0.7} />
+            </mesh>
+            {[-0.18, 0.18].map((ex, k) => (
+              <group key={k} position={[ex, 1.2, 0.41]}>
+                <mesh scale={[1, guino && k === 0 ? 0.15 : cae ? 1.3 : 1, 0.6]}>
+                  <sphereGeometry args={[0.115, 14, 12]} />
+                  <meshBasicMaterial color={'#ffffff'} />
+                </mesh>
+                <mesh position={[0, p.malo && !cae ? -0.025 : 0, 0.07]} scale={[1, guino && k === 0 ? 0.15 : 1, 1]}>
+                  <sphereGeometry args={[0.062, 12, 10]} />
+                  <meshBasicMaterial color={'#1c1420'} />
+                </mesh>
+                <mesh position={[0.022, 0.025, 0.12]}>
+                  <sphereGeometry args={[0.02, 8, 6]} />
+                  <meshBasicMaterial color={'#ffffff'} />
+                </mesh>
+                {/* ceja (triste o contenta) */}
+                <mesh position={[0, 0.17, 0.02]} rotation={[0, 0, (k === 0 ? 1 : -1) * (p.malo ? (cae ? -0.1 : 0.4) : -0.15)]}>
+                  <capsuleGeometry args={[0.02, 0.1, 4, 6]} />
+                  <meshBasicMaterial color={p.pelo} />
+                </mesh>
+              </group>
+            ))}
+            {/* boca */}
+            {cae ? (
+              <mesh position={[0, 1.02, 0.43]} scale={[1, 1.25, 0.5]}>
+                <sphereGeometry args={[0.06, 10, 8]} />
+                <meshBasicMaterial color={'#3a1a22'} />
+              </mesh>
+            ) : (
+              <mesh position={[0, p.malo ? 1.0 : 1.05, 0.44]} rotation={[0, 0, p.malo ? 0 : Math.PI]}>
+                <torusGeometry args={[0.085, 0.017, 6, 14, Math.PI]} />
+                <meshBasicMaterial color={'#5a2a2a'} />
+              </mesh>
+            )}
+            {/* mejillas */}
+            {!p.malo &&
+              [-0.27, 0.27].map((cx, k) => (
+                <mesh key={k} position={[cx, 1.08, 0.36]} scale={[1, 0.65, 0.4]}>
+                  <sphereGeometry args={[0.09, 10, 8]} />
+                  <meshBasicMaterial color={'#ff9a8a'} transparent opacity={0.5} />
+                </mesh>
+              ))}
           </group>
         );
       })}
