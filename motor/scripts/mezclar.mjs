@@ -18,9 +18,9 @@ if (!fs.existsSync(video) || !fs.existsSync(voz) || !musica) {
 const dur = Number(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', video]).toString().trim());
 const tmp = path.join(out, 'con-musica.mp4');
 const filtro = [
-  `[1:a]highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,asplit=2[v1][v2]`,
-  `[2:a]volume=0.30,afade=t=in:d=1.2,afade=t=out:st=${(dur - 2.2).toFixed(2)}:d=2.2[m0]`,
-  `[m0][v2]sidechaincompress=threshold=0.03:ratio=9:attack=25:release=450:makeup=1[m]`,
+  `[1:a]highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,apad,asplit=2[v1][v2]`,
+  `[2:a]volume=0.55,afade=t=in:d=1.2,afade=t=out:st=${(dur - 2.2).toFixed(2)}:d=2.2[m0]`,
+  `[m0][v2]sidechaincompress=threshold=0.03:ratio=10:attack=25:release=700:makeup=1[m]`,
   `[v1][m]amix=inputs=2:normalize=0:duration=longest,apad,loudnorm=I=-14:TP=-1.5:LRA=7[a]`,
 ].join(';');
 execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', video, '-i', voz, '-stream_loop', '-1', '-i', musica, '-filter_complex', filtro, '-map', '0:v', '-map', '[a]', '-t', String(dur), '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k', tmp]);

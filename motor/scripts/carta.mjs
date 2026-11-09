@@ -62,7 +62,7 @@ if (args.includes('--fotos')) {
       if (musica) {
         ent.push('-i', musica);
         filtro = [
-          `[1:a]adelay=${RETRASO * 1000}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,volume=1.0,asplit=2[v1][v2]`,
+          `[1:a]adelay=${RETRASO * 1000}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,volume=1.0,apad,asplit=2[v1][v2]`,
           `[2:a]volume=0.30,afade=t=in:d=1.2,afade=t=out:st=${(dur - 2.2).toFixed(2)}:d=2.2[m0]`,
           `[m0][v2]sidechaincompress=threshold=0.03:ratio=9:attack=25:release=450:makeup=1[m]`,
           `[v1][m]amix=inputs=2:normalize=0:duration=longest,apad,loudnorm=I=-14:TP=-1.5:LRA=7[a]`,

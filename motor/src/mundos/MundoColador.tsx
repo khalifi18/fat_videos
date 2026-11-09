@@ -31,8 +31,9 @@ const MALOS = ['#8a8794', '#77747f', '#9b98a4', '#6f6c78'];
 export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = ({t, T, tramos}) => {
   const {camera, scene, gl} = useThree();
   const cam = camaraEn(PLANOS, tramos, t, 1.4);
-  const ta = t * 1.0; // la animación va más rápida: la frase se dice una sola vez
-  const sacude = clamp((ta - 0.5) / 0.5) * (1 - clamp((ta - 6.4) / 1.0)); // el colador se agita mientras se filtra
+  const ta = t * 0.62; // caída lenta, repartida por todo el vídeo // la animación va más rápida: la frase se dice una sola vez
+  const activo = clamp((ta - 0.4) / 0.4) * (1 - clamp((ta - 6.2) / 1.2));
+  const sacude = 0.4 + 0.6 * activo; // el colador no para de moverse; se agita más cuando caen figuras // el colador se agita mientras se filtra
 
   const r = useMemo(() => {
     const rnd = azar(91);
@@ -76,8 +77,8 @@ export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = (
     scene.fog = new THREE.Fog('#f6e6d6', 24, 70);
   });
 
-  const shakeX = Math.sin(ta * 17) * 0.09 * sacude;
-  const shakeR = Math.sin(ta * 13 + 1) * 0.035 * sacude;
+  const shakeX = Math.sin(t * 11) * 0.075 * sacude + Math.sin(t * 1.3) * 0.16;
+  const shakeR = Math.sin(t * 9 + 1) * 0.028 * sacude + Math.sin(t * 1.0) * 0.035;
 
   return (
     <>
@@ -189,8 +190,8 @@ export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = (
           const tf = ta - p.tCae;
           if (tf < 0) {
             // se agitan en el colador
-            x += Math.sin(ta * 9 + p.fase) * 0.12 * sacude;
-            y += Math.abs(Math.sin(ta * 7 + p.fase)) * 0.1 * sacude;
+            x += Math.sin(t * 9 + p.fase) * 0.12 * sacude;
+            y += Math.abs(Math.sin(t * 7 + p.fase)) * 0.1 * sacude;
           } else {
             // caen por los agujeros hasta la papelera y se amontonan
             const g = 9.0;
@@ -207,8 +208,8 @@ export const MundoColador: React.FC<{t: number; T: number; tramos: Tramo[]}> = (
         } else {
           // las buenas se quedan, respiran y se juntan al centro cuando los otros se van
           const juntan = sm((ta - 2.0) / 4.5);
-          x = mixN(x, SX + p.x0 * 0.55, juntan) + Math.sin(ta * 1.4 + p.fase) * 0.03 + Math.sin(ta * 9 + p.fase) * 0.06 * sacude;
-          y = y + Math.sin(ta * 2.2 + p.fase) * 0.025 + Math.abs(Math.sin(ta * 7 + p.fase)) * 0.07 * sacude;
+          x = mixN(x, SX + p.x0 * 0.55, juntan) + Math.sin(t * 1.4 + p.fase) * 0.03 + Math.sin(t * 9 + p.fase) * 0.06 * sacude;
+          y = y + Math.sin(t * 2.2 + p.fase) * 0.025 + Math.abs(Math.sin(t * 7 + p.fase)) * 0.07 * sacude;
         }
         const esc = p.esc * 0.8;
         const cae = p.malo && ta - p.tCae > 0 && y > 0.9;
