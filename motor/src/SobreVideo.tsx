@@ -1,7 +1,7 @@
 // Un vídeo ya hecho (se deja tal cual, con su sonido) con frases escritas encima que van apareciendo.
 import React from 'react';
 import {AbsoluteFill, OffthreadVideo, interpolate, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
-import {C, W, amiri, sans} from './tema';
+import {C, W, amiri, cairo, sans} from './tema';
 
 export type Bloque = {ar: string[]; es: string; t: number}; // líneas en árabe, traducción, segundo en que entra
 export type SobreVideoProps = {
@@ -24,32 +24,34 @@ export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, 
   const actual = [...bloques].reverse().find((b) => s >= b.t) ?? null;
   return (
     <AbsoluteFill style={{background: '#000'}}>
-      <OffthreadVideo src={staticFile(video)} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+      <AbsoluteFill style={{transform: `scale(${1 + 0.07 * (s / duracion)})`, transformOrigin: '50% 55%'}}>
+        <OffthreadVideo src={staticFile(video)} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+      </AbsoluteFill>
       {/* velo suave para que se lea el texto */}
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, rgba(8,10,20,0.55) 0%, rgba(8,10,20,0.38) 55%, rgba(8,10,20,0.12) 100%)', opacity: Math.min(1, entra(nombre.t - 0.3, 0.8)) * sale}} />
       <AbsoluteFill style={{opacity: sale}}>
         {/* nombre */}
-        <div dir="rtl" style={{position: 'absolute', top: 440, left: 50, right: 50, textAlign: 'center', fontFamily: amiri, fontWeight: 700, color: C.oro, opacity: nombreE, transform: `translateY(${(1 - nombreE) * 24}px)`, textShadow: '0 4px 26px rgba(0,0,0,0.75)'}}>
+        <div dir="rtl" style={{position: 'absolute', top: 440, left: 50, right: 50, textAlign: 'center', fontFamily: cairo, fontWeight: 900, color: C.oro, opacity: nombreE, transform: `translateY(${(1 - nombreE) * 24}px)`, textShadow: '0 4px 26px rgba(0,0,0,0.75)'}}>
           {nombre.ar.split('\n').map((l, i) => (
-            <div key={i} style={{fontSize: i === 0 ? 80 : 62, lineHeight: 1.35}}>
+            <div key={i} style={{fontSize: i === 0 ? 84 : 64, lineHeight: 1.4}}>
               {l}
             </div>
           ))}
           <div style={{margin: '14px auto 0', width: 560 * nombreE, height: 7, borderRadius: 4, background: '#c8382c'}} />
         </div>
-        {/* frases */}
-        {bloques.map((b, bi) => {
-          const e = entra(b.t, 0.8);
-          const top = 735 + fila * 138;
-          fila += b.ar.length;
-          return (
-            <div key={bi} dir="rtl" style={{position: 'absolute', top, left: 50, right: 50, textAlign: 'center', fontFamily: amiri, fontWeight: 700, fontSize: 92, lineHeight: 1.45, color: '#fffaf0', opacity: e, transform: `translateY(${(1 - e) * 30}px)`, textShadow: '0 4px 28px rgba(0,0,0,0.85), 0 0 6px rgba(0,0,0,0.6)'}}>
-              {b.ar.map((l, i) => (
-                <div key={i}>{l}</div>
-              ))}
-            </div>
-          );
-        })}
+        {/* frases (en columna, para que nunca se pisen) */}
+        <div style={{position: 'absolute', top: 650, left: 40, right: 40, display: 'flex', flexDirection: 'column', gap: 6}}>
+          {bloques.map((b, bi) => {
+            const e = entra(b.t, 0.7);
+            return (
+              <div key={bi} dir="rtl" style={{textAlign: 'center', fontFamily: cairo, fontWeight: 900, fontSize: 80, lineHeight: 1.5, color: '#ffffff', opacity: e, transform: `translateY(${(1 - e) * 46}px) scale(${1 + (1 - e) * 0.14})`, filter: `blur(${(1 - e) * 7}px)`, textShadow: '0 5px 30px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.8), 0 2px 2px rgba(0,0,0,0.9)'}}>
+                {b.ar.map((l, i) => (
+                  <div key={i}>{l.split('*').map((tr, j) => (j % 2 ? <span key={j} style={{color: C.oro}}>{tr}</span> : <span key={j}>{tr}</span>))}</div>
+                ))}
+              </div>
+            );
+          })}
+        </div>
         {/* traducción (cambia con cada frase) */}
         {bloques.map((b, bi) => {
           const sig = bloques[bi + 1]?.t ?? duracion + 1;

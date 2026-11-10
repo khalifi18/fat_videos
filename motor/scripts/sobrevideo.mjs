@@ -43,12 +43,25 @@ if (conVoz) {
 }
 const lento = Math.max(1, duracion / cfg.corte); // ralentiza el vídeo si la voz dura más que el vídeo
 const fondo = path.join(pub, 'sobrevideo', 'fondo.mp4');
-execFileSync('ffmpeg', [
-  '-v', 'error', '-y', ...(cfg.inicio ? ['-ss', String(cfg.inicio)] : []), '-i', path.join(dir, 'original.mp4'), '-t', String(cfg.corte),
-  '-vf', `scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,unsharp=5:5:0.7,setpts=${lento.toFixed(4)}*PTS,fps=30,setsar=1`,
-  '-t', String(duracion),
-  '-c:v', 'libx264', '-preset', 'medium', '-crf', '17', '-pix_fmt', 'yuv420p', ...(conVoz ? ['-an'] : ['-c:a', 'aac', '-b:a', '192k']), fondo,
-]);
+const base = ['-v', 'error', '-y', ...(cfg.inicio ? ['-ss', String(cfg.inicio)] : []), '-i', path.join(dir, 'original.mp4')];
+if (cfg.marco) {
+  // «marco»: clip horizontal en una franja de 640 px (más nítida que recortar a 405) sobre el mismo clip desenfocado y oscuro
+  const x0 = Math.max(0, Math.min(640, cfg.marco.x0 ?? 320));
+  const fc = [
+    `[0:v]split=2[a][b]`,
+    `[a]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=40:4,eq=brightness=-0.15:saturation=0.85[bg]`,
+    `[b]crop=640:720:${x0}:0,scale=1080:1215:flags=lanczos,unsharp=5:5:0.8[fg]`,
+    `[bg][fg]overlay=0:(H-h)/2,setpts=${lento.toFixed(4)}*PTS,fps=30,setsar=1[v]`,
+  ].join(';');
+  execFileSync('ffmpeg', [...base, '-filter_complex', fc, '-map', '[v]', '-t', String(duracion), '-an', '-c:v', 'libx264', '-preset', 'medium', '-crf', '16', '-pix_fmt', 'yuv420p', fondo]);
+} else {
+  execFileSync('ffmpeg', [
+    ...base, '-t', String(cfg.corte),
+    '-vf', `scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,unsharp=5:5:0.7,setpts=${lento.toFixed(4)}*PTS,fps=30,setsar=1`,
+    '-t', String(duracion),
+    '-c:v', 'libx264', '-preset', 'medium', '-crf', '17', '-pix_fmt', 'yuv420p', ...(conVoz ? ['-an'] : ['-c:a', 'aac', '-b:a', '192k']), fondo,
+  ]);
+}
 const props = {video: 'sobrevideo/fondo.mp4', duracion, nombre, bloques, firma: cfg.firma || 'Fatima Andalussi'};
 const chromiumOptions = {gl: process.env.REMOTION_GL || 'angle'};
 const browserExecutable = process.env.REMOTION_BROWSER || null;
