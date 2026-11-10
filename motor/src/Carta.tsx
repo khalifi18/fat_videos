@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill, interpolate, useCurrentFrame, Easing} from 'remotion';
+import {AbsoluteFill, interpolate, useCurrentFrame, Easing, OffthreadVideo, staticFile} from 'remotion';
 import {loadFont as loadRuqaa} from '@remotion/google-fonts/ArefRuqaa';
 import {FPS, serif, sans, amiri} from './tema';
 
@@ -13,7 +13,7 @@ export type CartaProps = {
   cierre: string;
   lineas: {ar: string; es: string}[];
   portada?: boolean;
-  fondo?: 'mesa' | 'cuaderno' | 'pergamino' | 'rosas';
+  fondo?: 'mesa' | 'cuaderno' | 'pergamino' | 'rosas' | 'rosasreales';
   tiempos?: number[][]; // segundo en que se dice cada palabra, por línea
   finVoz?: number;
   escala?: number; // texto más pequeño si es largo
@@ -185,14 +185,15 @@ const FLORES = (() => {
   });
 })();
 
-const Pergamino: React.FC<{children: React.ReactNode; f: number; rosas?: boolean}> = ({children, f, rosas}) => {
+const Pergamino: React.FC<{children: React.ReactNode; f: number; rosas?: boolean; real?: boolean}> = ({children, f, rosas, real}) => {
   const W2 = 900, H2 = 1290;
   const sol = Math.sin(f / 70) * 25;
   return (
     <AbsoluteFill>
+      {real && <OffthreadVideo src={staticFile('carta/fondo.mp4')} muted style={{position: 'absolute', inset: 0, width: 1080, height: 1920}} />}
       {/* tela de punto, granate */}
-      <AbsoluteFill style={{background: 'linear-gradient(160deg, #5a2a22 0%, #7a3a2c 35%, #5e2c24 60%, #43201b 100%)'}} />
-      <svg width="1080" height="1920" style={{position: 'absolute', inset: 0}}>
+      {!real && <AbsoluteFill style={{background: 'linear-gradient(160deg, #5a2a22 0%, #7a3a2c 35%, #5e2c24 60%, #43201b 100%)'}} />}
+      {!real && <svg width="1080" height="1920" style={{position: 'absolute', inset: 0}}>
         <filter id="punto">
           <feTurbulence type="fractalNoise" baseFrequency="0.06 0.18" numOctaves="2" seed="5" />
           <feColorMatrix values="0 0 0 0 0.15  0 0 0 0 0.05  0 0 0 0 0.03  0 0 0 0.8 0" />
@@ -208,9 +209,9 @@ const Pergamino: React.FC<{children: React.ReactNode; f: number; rosas?: boolean
         {/* margaritas arriba */}
         <rect x="-20" y="-20" width="1120" height="330" fill="#2a1a12" opacity="0.65" filter="blur(20px)" />
         {FLORES.map((m, i) => (rosas ? <Gipsofila key={i} {...m} r={m.r * 0.7} /> : <Margarita key={i} {...m} />))}
-      </svg>
+      </svg>}
       {/* pergamino */}
-      <div style={{position: 'absolute', left: 90, top: 330, width: W2, height: H2, transform: 'rotate(-3deg)'}}>
+      <div style={{position: 'absolute', left: 90, top: 330, width: W2, height: H2, transform: real ? 'rotate(-2deg) scale(0.8)' : 'rotate(-3deg)'}}>
         <svg width={W2 + 60} height={H2 + 60} viewBox={`-30 -30 ${W2 + 60} ${H2 + 60}`} style={{position: 'absolute', left: -30, top: -30, overflow: 'visible'}}>
           <defs>
             <radialGradient id="perg" cx="45%" cy="40%" r="75%">
@@ -249,15 +250,15 @@ const Pergamino: React.FC<{children: React.ReactNode; f: number; rosas?: boolean
         <div style={{position: 'absolute', inset: 0}}>{children}</div>
       </div>
       {/* luz de sol entre hojas, en diagonal */}
-      <AbsoluteFill
+      {!real && <AbsoluteFill
         style={{
           background: `repeating-linear-gradient(${-35 + sol * 0.05}deg, rgba(255,190,90,0) 0px, rgba(255,190,90,0) 90px, rgba(255,200,110,0.22) 150px, rgba(255,190,90,0) 230px)`,
           mixBlendMode: 'screen',
           transform: `translateX(${sol}px)`,
         }}
-      />
+      />}
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 75% 15%, rgba(255,200,120,0.28) 0%, rgba(0,0,0,0) 50%)', mixBlendMode: 'screen'}} />
-      {rosas && (
+      {rosas && !real && (
         <svg width="1080" height="1920" style={{position: 'absolute', inset: 0}}>
           {[[70, 1720, 20, 0], [210, 1840, 15, 40], [80, 1560, 14, 70], [400, 1880, 10, 20]].map(([x, y, g, h], i) => (
             <Petalo key={'p' + i} x={x + 230} y={y} r={g * 1.6} g={h} />
@@ -373,7 +374,7 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fon
   const fr = useCurrentFrame();
   const {pal: tPal, escrito, total} = tiemposCarta(lineas, tiempos, finVoz);
   const f = portada ? escrito + FPS : fr;
-  const esPerg = fondo === 'pergamino' || fondo === 'rosas';
+  const esPerg = fondo === 'pergamino' || fondo === 'rosas' || fondo === 'rosasreales';
   const zoom = interpolate(f, [0, total], [1.0, 1.07], {easing: Easing.inOut(Easing.sin)});
   const fin = portada ? 0 : interpolate(f, [total - 2.2 * FPS, total - 1.4 * FPS], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const k = (fondo === 'cuaderno' ? 1.16 : esPerg ? 1.08 : 1) * escala; // en el cuaderno la hoja es más grande
@@ -433,9 +434,9 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fon
     return (
       <AbsoluteFill style={{background: '#4a231c'}}>
         <AbsoluteFill style={{transform: `scale(${zoom})`, transformOrigin: '50% 45%'}}>
-          <Pergamino f={f} rosas={fondo === 'rosas'}>{texto}</Pergamino>
+          <Pergamino f={f} rosas={fondo === 'rosas'} real={fondo === 'rosasreales'}>{texto}</Pergamino>
           <Brillos f={fr} />
-          {fondo === 'rosas' ? null : <Petalos f={fr} />}
+          {fondo === 'rosas' || fondo === 'rosasreales' ? null : <Petalos f={fr} />}
         </AbsoluteFill>
         {cierreEl}
       </AbsoluteFill>

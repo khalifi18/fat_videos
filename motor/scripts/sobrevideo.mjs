@@ -88,8 +88,8 @@ if (args.includes('--hoja')) {
       ent.push('-stream_loop', '-1', '-i', musica);
       filtro = [
         `[1:a]atempo=${TEMPO},adelay=${Math.round(RETRASO * 1000)}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,apad,asplit=2[v1][v2]`,
-        `[2:a]volume=0.55,afade=t=in:d=1.2,afade=t=out:st=${(duracion - 2.2).toFixed(2)}:d=2.2[m0]`,
-        `[m0][v2]sidechaincompress=threshold=0.03:ratio=10:attack=25:release=700:makeup=1[m]`,
+        `[2:a]highpass=f=170,lowpass=f=9000,acompressor=threshold=-28dB:ratio=2:attack=40:release=500,volume=0.6,afade=t=in:d=2,afade=t=out:st=${(duracion - 2.2).toFixed(2)}:d=2.2[m0]`,
+        `[m0][v2]sidechaincompress=threshold=0.04:ratio=5:attack=60:release=900:makeup=1[m]`,
         `[v1][m]amix=inputs=2:normalize=0:duration=longest,apad,loudnorm=I=-14:TP=-1.5:LRA=7[a]`,
       ].join(';');
     }

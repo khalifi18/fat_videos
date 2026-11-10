@@ -1,5 +1,5 @@
 {
- "fondo": "rosas",
+ "fondo": "rosasreales",
  "escala": 1.2,
  "tempo": 1.1,
  "lineas": [
@@ -19,5 +19,8 @@
    "ar": "كَذَلِكَ هُمُ الْبَشَرُ…",
    "es": "Así son las personas…"
   }
- ]
+ ],
+ "marco": {
+  "x0": 200
+ }
 }
