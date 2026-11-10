@@ -13,7 +13,7 @@ export type CartaProps = {
   cierre: string;
   lineas: {ar: string; es: string}[];
   portada?: boolean;
-  fondo?: 'mesa' | 'cuaderno' | 'pergamino';
+  fondo?: 'mesa' | 'cuaderno' | 'pergamino' | 'rosas';
   tiempos?: number[][]; // segundo en que se dice cada palabra, por línea
   finVoz?: number;
   escala?: number; // texto más pequeño si es largo
@@ -143,6 +143,38 @@ const Margarita: React.FC<{x: number; y: number; r: number; g: number}> = ({x, y
   </g>
 );
 
+const Rosa: React.FC<{x: number; y: number; r: number; g: number}> = ({x, y, r, g}) => (
+  <g transform={`translate(${x} ${y}) rotate(${g})`}>
+    <circle r={r * 1.02} fill="rgba(0,0,0,0.35)" transform={`translate(${r * 0.08} ${r * 0.12})`} />
+    {Array.from({length: 8}, (_, i) => (
+      <ellipse key={'o' + i} cx="0" cy={-r * 0.52} rx={r * 0.46} ry={r * 0.5} fill={i % 2 ? '#8e0f1d' : '#a3121f'} stroke="#5a0710" strokeWidth="1.5" transform={`rotate(${i * 45})`} />
+    ))}
+    {Array.from({length: 6}, (_, i) => (
+      <ellipse key={'m' + i} cx="0" cy={-r * 0.36} rx={r * 0.34} ry={r * 0.38} fill={i % 2 ? '#b8182a' : '#c71e32'} stroke="#7a0d19" strokeWidth="1.2" transform={`rotate(${i * 60 + 20})`} />
+    ))}
+    {Array.from({length: 4}, (_, i) => (
+      <ellipse key={'i' + i} cx="0" cy={-r * 0.2} rx={r * 0.22} ry={r * 0.26} fill={i % 2 ? '#d42a40' : '#e0384e'} stroke="#8a0f1c" strokeWidth="1" transform={`rotate(${i * 90 + 45})`} />
+    ))}
+    <path d={`M0,0 m${-r * 0.1},0 a${r * 0.1},${r * 0.1} 0 1,1 ${r * 0.2},0 a${r * 0.16},${r * 0.16} 0 1,1 ${-r * 0.3},0`} fill="none" stroke="#7a0d19" strokeWidth="2" />
+    <ellipse cx={-r * 0.25} cy={-r * 0.35} rx={r * 0.18} ry={r * 0.08} fill="rgba(255,255,255,0.18)" transform="rotate(-30)" />
+  </g>
+);
+
+const Petalo: React.FC<{x: number; y: number; r: number; g: number}> = ({x, y, r, g}) => (
+  <ellipse cx={x} cy={y} rx={r * 0.55} ry={r} fill="#b0182a" stroke="#6a0a16" strokeWidth="1.5" transform={`rotate(${g} ${x} ${y})`} opacity="0.95" />
+);
+
+/** Nube de flores pequeñas blancas (gipsófila) */
+const Gipsofila: React.FC<{x: number; y: number; r: number; g: number}> = ({x, y, r, g}) => (
+  <g transform={`translate(${x} ${y}) rotate(${g})`}>
+    {Array.from({length: 7}, (_, i) => {
+      const a = (i / 7) * Math.PI * 2;
+      return <circle key={i} cx={Math.cos(a) * r * 0.5} cy={Math.sin(a) * r * 0.5} r={r * 0.22} fill="#fbf0dc" />;
+    })}
+    <circle r={r * 0.16} fill="#e6b04a" />
+  </g>
+);
+
 const FLORES = (() => {
   let x = 11;
   const r = () => (x = (x * 9301 + 49297) % 233280) / 233280;
@@ -153,7 +185,7 @@ const FLORES = (() => {
   });
 })();
 
-const Pergamino: React.FC<{children: React.ReactNode; f: number}> = ({children, f}) => {
+const Pergamino: React.FC<{children: React.ReactNode; f: number; rosas?: boolean}> = ({children, f, rosas}) => {
   const W2 = 900, H2 = 1290;
   const sol = Math.sin(f / 70) * 25;
   return (
@@ -175,9 +207,7 @@ const Pergamino: React.FC<{children: React.ReactNode; f: number}> = ({children, 
         ))}
         {/* margaritas arriba */}
         <rect x="-20" y="-20" width="1120" height="330" fill="#2a1a12" opacity="0.65" filter="blur(20px)" />
-        {FLORES.map((m, i) => (
-          <Margarita key={i} {...m} />
-        ))}
+        {FLORES.map((m, i) => (rosas ? <Gipsofila key={i} {...m} r={m.r * 0.7} /> : <Margarita key={i} {...m} />))}
       </svg>
       {/* pergamino */}
       <div style={{position: 'absolute', left: 90, top: 330, width: W2, height: H2, transform: 'rotate(-3deg)'}}>
@@ -227,6 +257,22 @@ const Pergamino: React.FC<{children: React.ReactNode; f: number}> = ({children, 
         }}
       />
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 75% 15%, rgba(255,200,120,0.28) 0%, rgba(0,0,0,0) 50%)', mixBlendMode: 'screen'}} />
+      {rosas && (
+        <svg width="1080" height="1920" style={{position: 'absolute', inset: 0}}>
+          {[[70, 1720, 20, 0], [210, 1840, 15, 40], [80, 1560, 14, 70], [400, 1880, 10, 20]].map(([x, y, g, h], i) => (
+            <Petalo key={'p' + i} x={x + 230} y={y} r={g * 1.6} g={h} />
+          ))}
+          {[[880, 1780, 18, 30], [980, 1620, 12, 100], [330, 1700, 12, 150]].map(([x, y, g, h], i) => (
+            <Petalo key={'q' + i} x={x} y={y} r={g * 1.5} g={h} />
+          ))}
+          <Rosa x={150} y={1670} r={170} g={-10} />
+          <Rosa x={330} y={1830} r={120} g={25} />
+          <Rosa x={60} y={1480} r={100} g={50} />
+          {Array.from({length: 7}, (_, i) => (
+            <Gipsofila key={'g' + i} x={20 + i * 70} y={1560 + (i % 3) * 90} r={30 + (i % 2) * 8} g={i * 40} />
+          ))}
+        </svg>
+      )}
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.45) 100%)'}} />
     </AbsoluteFill>
   );
@@ -327,9 +373,10 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fon
   const fr = useCurrentFrame();
   const {pal: tPal, escrito, total} = tiemposCarta(lineas, tiempos, finVoz);
   const f = portada ? escrito + FPS : fr;
+  const esPerg = fondo === 'pergamino' || fondo === 'rosas';
   const zoom = interpolate(f, [0, total], [1.0, 1.07], {easing: Easing.inOut(Easing.sin)});
   const fin = portada ? 0 : interpolate(f, [total - 2.2 * FPS, total - 1.4 * FPS], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-  const k = (fondo === 'cuaderno' ? 1.16 : fondo === 'pergamino' ? 1.08 : 1) * escala; // en el cuaderno la hoja es más grande
+  const k = (fondo === 'cuaderno' ? 1.16 : esPerg ? 1.08 : 1) * escala; // en el cuaderno la hoja es más grande
   const llama = 0.85 + 0.15 * Math.sin(f / 7) * Math.sin(f / 11);
 
   const texto = (
@@ -339,13 +386,13 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fon
             <div style={{fontFamily: serif, fontSize: 34, color: '#6b4a2c'}}>{firma}</div>
             <div style={{width: 150, height: 2, background: '#8a6a45'}} />
           </div>
-          <div style={{position: 'absolute', top: 140, bottom: fondo === 'pergamino' ? 210 : 70, left: 55, right: 55, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 22 * k}}>
+          <div style={{position: 'absolute', top: 140, bottom: esPerg ? 210 : 70, left: 55, right: 55, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 22 * k}}>
             {lineas.map((l, i) => {
               const pal = l.ar.split(/\s+/);
               const tEs = tPal[i][pal.length - 1] + 0.3 * FPS;
               return (
                 <div key={i}>
-                  <div dir="rtl" style={{fontFamily: fondo === 'pergamino' ? amiri : ruqaa, fontWeight: fondo === 'pergamino' ? 700 : i === 0 ? 400 : 700, fontSize: (i === 0 ? 46 : 60) * k, lineHeight: 1.35, color: fondo === 'pergamino' ? (i === 0 ? '#5a3418' : '#2a170b') : i === 0 ? '#7a5634' : '#2b1a10', textAlign: 'center'}}>
+                  <div dir="rtl" style={{fontFamily: esPerg ? amiri : ruqaa, fontWeight: esPerg ? 700 : i === 0 ? 400 : 700, fontSize: (i === 0 ? 46 : 60) * k, lineHeight: 1.35, color: esPerg ? (i === 0 ? '#5a3418' : '#2a170b') : i === 0 ? '#7a5634' : '#2b1a10', textAlign: 'center'}}>
                     {pal.map((w, j) => {
                       const a = tPal[i][j] ?? tPal[i][tPal[i].length - 1];
                       const o = interpolate(f, [a, a + 0.35 * FPS], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
@@ -362,7 +409,7 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fon
                       fontFamily: serif,
                       fontSize: 28 * k,
                       lineHeight: 1.3,
-                      color: fondo === 'pergamino' ? '#6a4224' : '#8a6a4a',
+                      color: esPerg ? '#6a4224' : '#8a6a4a',
                       textAlign: 'center',
                       marginTop: 4,
                       opacity: interpolate(f, [tEs, tEs + 0.5 * FPS], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}),
@@ -382,13 +429,13 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fon
       <div style={{opacity: fin, fontFamily: sans, fontWeight: 700, fontSize: 34, color: '#f2c165'}}>{cierre}</div>
     </AbsoluteFill>
   );
-  if (fondo === 'pergamino')
+  if (esPerg)
     return (
       <AbsoluteFill style={{background: '#4a231c'}}>
         <AbsoluteFill style={{transform: `scale(${zoom})`, transformOrigin: '50% 45%'}}>
-          <Pergamino f={f}>{texto}</Pergamino>
+          <Pergamino f={f} rosas={fondo === 'rosas'}>{texto}</Pergamino>
           <Brillos f={fr} />
-          <Petalos f={fr} />
+          {fondo === 'rosas' ? null : <Petalos f={fr} />}
         </AbsoluteFill>
         {cierreEl}
       </AbsoluteFill>

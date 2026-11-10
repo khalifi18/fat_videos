@@ -18,16 +18,17 @@ const carta = JSON.parse(fs.readFileSync(path.join(dir, 'carta.json'), 'utf8'));
 const props = {firma: cfg.firma, cierre: cfg.cierre, lineas: carta.lineas, fondo: carta.fondo || 'mesa', escala: carta.escala || 1};
 // Con voz (voz.mjs → audio.mp3 + words.json): cada palabra aparece cuando se dice.
 const RETRASO = 0.5; // la voz empieza medio segundo después
+const TEMPO = carta.tempo || 1; // «tempo»: voz más rápida sin cambiar el tono (atempo)
 const vozF = path.join(dir, 'audio.mp3');
 const conVoz = fs.existsSync(vozF) && fs.existsSync(path.join(dir, 'words.json'));
 if (conVoz) {
   const w = JSON.parse(fs.readFileSync(path.join(dir, 'words.json'), 'utf8'));
-  props.tiempos = carta.lineas.map((_, i) => w.filter((x) => x.l === i).map((x) => x.s + RETRASO));
+  props.tiempos = carta.lineas.map((_, i) => w.filter((x) => x.l === i).map((x) => x.s / TEMPO + RETRASO));
   props.tiempos.forEach((t, i) => {
     const n = carta.lineas[i].ar.split(/\s+/).length;
     if (t.length !== n) throw new Error(`línea ${i + 1}: ${n} palabras en carta.json y ${t.length} en la voz`);
   });
-  props.finVoz = w[w.length - 1].e + RETRASO;
+  props.finVoz = w[w.length - 1].e / TEMPO + RETRASO;
 }
 // Música de fondo opcional: la primera .mp3 de videos/<slug>/musica/
 const mdir = path.join(dir, 'musica');
@@ -62,13 +63,13 @@ if (args.includes('--fotos')) {
       if (musica) {
         ent.push('-i', musica);
         filtro = [
-          `[1:a]adelay=${RETRASO * 1000}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,volume=1.0,apad,asplit=2[v1][v2]`,
+          `[1:a]atempo=${TEMPO},adelay=${RETRASO * 1000}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,volume=1.0,apad,asplit=2[v1][v2]`,
           `[2:a]volume=0.30,afade=t=in:d=1.2,afade=t=out:st=${(dur - 2.2).toFixed(2)}:d=2.2[m0]`,
           `[m0][v2]sidechaincompress=threshold=0.03:ratio=9:attack=25:release=450:makeup=1[m]`,
           `[v1][m]amix=inputs=2:normalize=0:duration=longest,apad,loudnorm=I=-14:TP=-1.5:LRA=7[a]`,
         ].join(';');
       } else {
-        filtro = `[1:a]adelay=${RETRASO * 1000}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,apad,loudnorm=I=-14:TP=-1.5:LRA=7[a]`;
+        filtro = `[1:a]atempo=${TEMPO},adelay=${RETRASO * 1000}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,apad,loudnorm=I=-14:TP=-1.5:LRA=7[a]`;
       }
     } else if (musica) {
       ent.push('-i', musica);

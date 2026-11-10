@@ -1,0 +1,13 @@
+{
+  "corte": 21.28,
+  "sync": true,
+  "tempo": 1.1,
+  "cola": 3,
+  "portada": 5.5,
+  "nombre": {"ar": "فِي هَذَا الزَّمَنِ،", "es": "En estos tiempos,", "t": 0.6},
+  "bloques": [
+    {"ar": ["تَعَلَّمْ أَنْ تَكُونَ وَحِيدًا،"], "es": "aprende a estar solo,", "t": 0},
+    {"ar": ["لِأَنَّهُ لَيْسَ كُلُّ مَنْ تُحِبُّهُ سَيَبْقَى،"], "es": "porque no todo el que amas se quedará,", "t": 0},
+    {"ar": ["وَلَيْسَ كُلُّ مَنْ تَثِقُ بِهِ سَيَكُونُ وَفِيًّا."], "es": "y no todo en quien confías será leal.", "t": 0}
+  ]
+}
