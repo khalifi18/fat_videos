@@ -1,0 +1,18 @@
+{
+ "fondo": "mesa",
+ "escala": 1.75,
+ "lineas": [
+  {
+   "ar": "رِسَالَةُ الْيَوْمِ تَقُولُ…",
+   "es": "El mensaje de hoy dice…"
+  },
+  {
+   "ar": "أَخْبِرْ قَلْبَكَ…",
+   "es": "Dile a tu corazón…"
+  },
+  {
+   "ar": "أَنَّهُ يَسْتَحِقُّ السَّعَادَةَ.",
+   "es": "que merece ser feliz."
+  }
+ ]
+}

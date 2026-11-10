@@ -419,6 +419,15 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fon
           ))}
         </svg>
         <Hierbabuena />
+        {/* margaritas: un ramillete en la esquina y unas pocas junto al té */}
+        <svg width="1080" height="1920" style={{position: 'absolute', inset: 0}}>
+          {FLORES.slice(0, 16).map((m, i) => (
+            <Margarita key={'a' + i} x={m.x * 0.55 - 20} y={m.y * 0.9 + 40} r={m.r * 0.9} g={m.g} />
+          ))}
+          {FLORES.slice(20, 30).map((m, i) => (
+            <Margarita key={'b' + i} x={640 + (m.x % 440)} y={1450 + (m.y % 380) + 120} r={m.r * 0.8} g={m.g} />
+          ))}
+        </svg>
         <Hoja>{texto}</Hoja>
         <Atay f={f} />
         {/* luz cálida de vela desde arriba a la izquierda */}
