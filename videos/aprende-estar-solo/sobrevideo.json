@@ -34,5 +34,10 @@
   ],
   "marco": {
     "x0": 345
+  },
+  "diseno": {
+    "nombreTop": 200,
+    "bloquesTop": 350,
+    "tam": 74
   }
 }

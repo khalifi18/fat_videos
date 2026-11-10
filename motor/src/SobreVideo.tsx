@@ -10,9 +10,10 @@ export type SobreVideoProps = {
   nombre: {ar: string; es: string; t: number};
   bloques: Bloque[];
   firma: string;
+  diseno?: {nombreTop?: number; bloquesTop?: number; tam?: number}; // posición y tamaño del texto
 };
 
-export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, bloques, firma}) => {
+export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, bloques, firma, diseno}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const s = frame / fps;
@@ -31,7 +32,7 @@ export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, 
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, rgba(8,10,20,0.55) 0%, rgba(8,10,20,0.38) 55%, rgba(8,10,20,0.12) 100%)', opacity: Math.min(1, entra(nombre.t - 0.3, 0.8)) * sale}} />
       <AbsoluteFill style={{opacity: sale}}>
         {/* nombre */}
-        <div dir="rtl" style={{position: 'absolute', top: 440, left: 50, right: 50, textAlign: 'center', fontFamily: cairo, fontWeight: 900, color: C.oro, opacity: nombreE, transform: `translateY(${(1 - nombreE) * 24}px)`, textShadow: '0 4px 26px rgba(0,0,0,0.75)'}}>
+        <div dir="rtl" style={{position: 'absolute', top: diseno?.nombreTop ?? 440, left: 50, right: 50, textAlign: 'center', fontFamily: cairo, fontWeight: 900, color: C.oro, opacity: nombreE, transform: `translateY(${(1 - nombreE) * 24}px)`, textShadow: '0 4px 26px rgba(0,0,0,0.75)'}}>
           {nombre.ar.split('\n').map((l, i) => (
             <div key={i} style={{fontSize: i === 0 ? 84 : 64, lineHeight: 1.4}}>
               {l}
@@ -40,11 +41,11 @@ export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, 
           <div style={{margin: '14px auto 0', width: 560 * nombreE, height: 7, borderRadius: 4, background: '#c8382c'}} />
         </div>
         {/* frases (en columna, para que nunca se pisen) */}
-        <div style={{position: 'absolute', top: 650, left: 40, right: 40, display: 'flex', flexDirection: 'column', gap: 6}}>
+        <div style={{position: 'absolute', top: diseno?.bloquesTop ?? 650, left: 40, right: 40, display: 'flex', flexDirection: 'column', gap: 4}}>
           {bloques.map((b, bi) => {
             const e = entra(b.t, 0.7);
             return (
-              <div key={bi} dir="rtl" style={{textAlign: 'center', fontFamily: cairo, fontWeight: 900, fontSize: 80, lineHeight: 1.5, color: '#ffffff', opacity: e, transform: `translateY(${(1 - e) * 46}px) scale(${1 + (1 - e) * 0.14})`, filter: `blur(${(1 - e) * 7}px)`, textShadow: '0 5px 30px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.8), 0 2px 2px rgba(0,0,0,0.9)'}}>
+              <div key={bi} dir="rtl" style={{textAlign: 'center', fontFamily: cairo, fontWeight: 900, fontSize: diseno?.tam ?? 80, lineHeight: 1.45, color: '#ffffff', opacity: e, transform: `translateY(${(1 - e) * 46}px) scale(${1 + (1 - e) * 0.14})`, filter: `blur(${(1 - e) * 7}px)`, textShadow: '0 5px 30px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.8), 0 2px 2px rgba(0,0,0,0.9)'}}>
                 {b.ar.map((l, i) => (
                   <div key={i}>{l.split('*').map((tr, j) => (j % 2 ? <span key={j} style={{color: C.oro}}>{tr}</span> : <span key={j}>{tr}</span>))}</div>
                 ))}
