@@ -1,0 +1,15 @@
+{
+  "corte": 14.1,
+  "sync": true,
+  "tempo": 1.1,
+  "cola": 2,
+  "portada": 9,
+  "nombre": {"ar": "لَا يُوجَدُ فَرْقٌ بَيْنَ لَوْنِ الْمِلْحِ وَلَوْنِ السُّكَّرِ،", "es": "No hay diferencia entre el color de la sal y el del azúcar,", "t": 0},
+  "bloques": [
+    {"ar": ["فَكِلَاهُمَا *نَفْسُ اللَّوْنِ*."], "es": "los dos tienen el mismo color.", "t": 0},
+    {"ar": ["وَلَكِنْ سَتَعْرِفُ *الْفَرْقَ* بَعْدَ التَّجْرِبَةِ!"], "es": "Pero notarás la diferencia después de probar.", "t": 0},
+    {"ar": ["كَذَلِكَ هُمُ *الْبَشَرُ*…"], "es": "Así son las personas…", "t": 0}
+  ],
+  "marco": {"x0": 200},
+  "diseno": {"nombreTop": 160, "bloquesTop": 470, "tam": 68}
+}
