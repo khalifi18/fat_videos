@@ -211,7 +211,7 @@ const Pergamino: React.FC<{children: React.ReactNode; f: number; rosas?: boolean
         {FLORES.map((m, i) => (rosas ? <Gipsofila key={i} {...m} r={m.r * 0.7} /> : <Margarita key={i} {...m} />))}
       </svg>}
       {/* pergamino */}
-      <div style={{position: 'absolute', left: 90, top: 330, width: W2, height: H2, transform: real ? 'rotate(-2deg) scale(0.8)' : 'rotate(-3deg)'}}>
+      <div style={{position: 'absolute', left: 90, top: real ? 480 : 330, width: W2, height: H2, transform: real ? 'rotate(-2deg) scale(0.8)' : 'rotate(-3deg)'}}>
         <svg width={W2 + 60} height={H2 + 60} viewBox={`-30 -30 ${W2 + 60} ${H2 + 60}`} style={{position: 'absolute', left: -30, top: -30, overflow: 'visible'}}>
           <defs>
             <radialGradient id="perg" cx="45%" cy="40%" r="75%">

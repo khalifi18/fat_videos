@@ -44,10 +44,10 @@ if (props.fondo === 'rosasreales') {
   const fc = [
     `[0:v]split=2[a][b]`,
     `[a]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=40:4,eq=brightness=-0.15:saturation=0.85[bg]`,
-    `[b]crop=540:720:${x0}:0,scale=1080:1440:flags=lanczos,unsharp=5:5:0.8[fg]`,
-    `[bg][fg]overlay=0:(H-h)/2,fps=30,setsar=1,tpad=stop_mode=clone:stop_duration=12[v]`,
+    `[b]crop=960:720:${x0}:0,scale=1080:810:flags=lanczos,unsharp=5:5:0.6[fg]`,
+    `[bg][fg]overlay=0:230,setpts=${carta.marco?.lento ?? 1}*PTS,fps=30,setsar=1,tpad=stop_mode=clone:stop_duration=12[v]`,
   ].join(';');
-  execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', clip, '-filter_complex', fc, '-map', '[v]', '-an', '-c:v', 'libx264', '-preset', 'medium', '-crf', '16', '-pix_fmt', 'yuv420p', path.join(motor, 'public', 'carta', 'fondo.mp4')]);
+  execFileSync('ffmpeg', ['-v', 'error', '-y', '-t', String(carta.marco?.t ?? 14.2), '-i', clip, '-filter_complex', fc, '-map', '[v]', '-an', '-c:v', 'libx264', '-preset', 'medium', '-crf', '16', '-pix_fmt', 'yuv420p', path.join(motor, 'public', 'carta', 'fondo.mp4')]);
 }
 const serveUrl = await bundle({entryPoint: path.join(motor, 'src', 'index.ts'), publicDir: path.join(motor, 'public')});
 const composition = await selectComposition({serveUrl, id: 'Carta', inputProps: props, chromiumOptions, browserExecutable});
@@ -77,7 +77,7 @@ if (args.includes('--fotos')) {
         ent.push('-i', musica);
         filtro = [
           `[1:a]atempo=${TEMPO},adelay=${RETRASO * 1000}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,volume=1.0,apad,asplit=2[v1][v2]`,
-          `[2:a]highpass=f=170,lowpass=f=9000,acompressor=threshold=-28dB:ratio=2:attack=40:release=500,volume=0.40,afade=t=in:d=2,afade=t=out:st=${(dur - 2.2).toFixed(2)}:d=2.2[m0]`,
+          `[2:a]highpass=f=170,lowpass=f=9000,acompressor=threshold=-28dB:ratio=2:attack=40:release=500,volume=0.55,afade=t=in:d=2,afade=t=out:st=${(dur - 2.2).toFixed(2)}:d=2.2[m0]`,
           `[m0][v2]sidechaincompress=threshold=0.04:ratio=5:attack=60:release=900:makeup=1[m]`,
           `[v1][m]amix=inputs=2:normalize=0:duration=longest,apad,loudnorm=I=-14:TP=-1.5:LRA=7[a]`,
         ].join(';');
