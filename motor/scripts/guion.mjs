@@ -88,6 +88,8 @@ export function leerGuion(dir) {
   lineas.elemento = (cab('elemento') || '').toLowerCase() || null;
   lineas.voz = cab('voz');
   lineas.idioma = cab('idioma');
+  lineas.velocidad = cab('velocidad') ? Number(cab('velocidad')) : null; // «# velocidad: 1.15» voz más rápida (0,7–1,2)
+  lineas.estabilidad = cab('estabilidad') ? Number(cab('estabilidad')) : null; // «# estabilidad: 0.35» voz más expresiva (0–1)
   lineas.cola = Number(cab('cola') || 0); // segundos extra con la última frase en pantalla (para escenas lentas)
   lineas.mundo = (cab('mundo') || '').toLowerCase() || null;
   return lineas;

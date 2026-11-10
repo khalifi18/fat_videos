@@ -25,6 +25,7 @@ const out = path.join(dir, 'out');
 fs.mkdirSync(out, {recursive: true});
 fs.mkdirSync(path.join(pub, 'sobrevideo'), {recursive: true});
 const RETRASO = 0.6; // la voz empieza un poco después
+const TEMPO = cfg.tempo || 1; // voz más rápida sin cambiar el tono (atempo): 1.2 = un 20 % más rápida
 const vozF = path.join(dir, 'audio.mp3');
 const wordsF = path.join(dir, 'words.json');
 const conVoz = !!cfg.sync && fs.existsSync(vozF) && fs.existsSync(wordsF);
@@ -35,10 +36,10 @@ let nombre = cfg.nombre;
 let bloques = cfg.bloques;
 if (conVoz) {
   const w = JSON.parse(fs.readFileSync(wordsF, 'utf8'));
-  const ini = (l) => w.find((x) => x.l === l).s + RETRASO;
+  const ini = (l) => w.find((x) => x.l === l).s / TEMPO + RETRASO;
   nombre = {...cfg.nombre, t: ini(0)};
   bloques = cfg.bloques.map((b, i) => ({...b, t: ini(i + 1)}));
-  duracion = w[w.length - 1].e + RETRASO + 1.8;
+  duracion = w[w.length - 1].e / TEMPO + RETRASO + 1.8 + (cfg.cola || 0); // «cola»: segundos extra de imagen y música tras la voz
 }
 const lento = Math.max(1, duracion / cfg.corte); // ralentiza el vídeo si la voz dura más que el vídeo
 const fondo = path.join(pub, 'sobrevideo', 'fondo.mp4');
@@ -69,11 +70,11 @@ if (args.includes('--hoja')) {
     const mudo = path.join(out, 'mudo.mp4');
     await renderMedia({chromiumOptions, browserExecutable, composition, serveUrl, codec: 'h264', crf: 18, outputLocation: mudo, inputProps: props, muted: true});
     const ent = ['-i', mudo, '-i', vozF];
-    let filtro = `[1:a]adelay=${Math.round(RETRASO * 1000)}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,apad,loudnorm=I=-14:TP=-1.5:LRA=7[a]`;
+    let filtro = `[1:a]atempo=${TEMPO},adelay=${Math.round(RETRASO * 1000)}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,apad,loudnorm=I=-14:TP=-1.5:LRA=7[a]`;
     if (musica) {
       ent.push('-stream_loop', '-1', '-i', musica);
       filtro = [
-        `[1:a]adelay=${Math.round(RETRASO * 1000)}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,apad,asplit=2[v1][v2]`,
+        `[1:a]atempo=${TEMPO},adelay=${Math.round(RETRASO * 1000)}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,apad,asplit=2[v1][v2]`,
         `[2:a]volume=0.55,afade=t=in:d=1.2,afade=t=out:st=${(duracion - 2.2).toFixed(2)}:d=2.2[m0]`,
         `[m0][v2]sidechaincompress=threshold=0.03:ratio=10:attack=25:release=700:makeup=1[m]`,
         `[v1][m]amix=inputs=2:normalize=0:duration=longest,apad,loudnorm=I=-14:TP=-1.5:LRA=7[a]`,

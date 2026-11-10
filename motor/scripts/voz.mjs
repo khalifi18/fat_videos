@@ -17,7 +17,7 @@ if (!process.argv[2] || !fs.existsSync(path.join(dir, 'guion.txt'))) {
 const cfg = config();
 const lineas = leerGuion(dir);
 // «# voz: <id>» y «# idioma: es» en la cabecera del guion cambian la voz solo para ese vídeo
-const v = {...cfg.voz, ...(lineas.voz ? {voice_id: lineas.voz} : {}), ...(lineas.idioma ? {language_code: lineas.idioma} : {})};
+const v = {...cfg.voz, ...(lineas.voz ? {voice_id: lineas.voz} : {}), ...(lineas.idioma ? {language_code: lineas.idioma} : {}), ...(lineas.velocidad ? {speed: lineas.velocidad} : {}), ...(lineas.estabilidad !== null && lineas.estabilidad !== undefined ? {stability: lineas.estabilidad} : {})};
 const texto = lineas.map((l) => l.tts).join('\n'); // con etiquetas de emoción [softly]…
 const hash = crypto.createHash('sha1').update(JSON.stringify([texto, v])).digest('hex').slice(0, 12);
 const metaF = path.join(dir, 'voz.json');
