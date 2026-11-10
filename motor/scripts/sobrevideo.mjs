@@ -69,13 +69,17 @@ if (args.includes('--hoja')) {
     const mudo = path.join(out, 'mudo.mp4');
     await renderMedia({chromiumOptions, browserExecutable, composition, serveUrl, codec: 'h264', crf: 18, outputLocation: mudo, inputProps: props, muted: true});
     const ent = ['-i', mudo, '-i', vozF];
-    const pistas = [`[1:a]adelay=${Math.round(RETRASO * 1000)}:all=1,volume=1.0[v]`];
+    let filtro = `[1:a]adelay=${Math.round(RETRASO * 1000)}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,apad,loudnorm=I=-14:TP=-1.5:LRA=7[a]`;
     if (musica) {
       ent.push('-stream_loop', '-1', '-i', musica);
-      pistas.push(`[2:a]volume=0.2,afade=t=in:d=1.2,afade=t=out:st=${(duracion - 2).toFixed(2)}:d=2[m]`);
+      filtro = [
+        `[1:a]adelay=${Math.round(RETRASO * 1000)}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,apad,asplit=2[v1][v2]`,
+        `[2:a]volume=0.55,afade=t=in:d=1.2,afade=t=out:st=${(duracion - 2.2).toFixed(2)}:d=2.2[m0]`,
+        `[m0][v2]sidechaincompress=threshold=0.03:ratio=10:attack=25:release=700:makeup=1[m]`,
+        `[v1][m]amix=inputs=2:normalize=0:duration=longest,apad,loudnorm=I=-14:TP=-1.5:LRA=7[a]`,
+      ].join(';');
     }
-    const mezcla = pistas.map((q) => q.slice(q.lastIndexOf('['))).join('');
-    execFileSync('ffmpeg', ['-v', 'error', '-y', ...ent, '-filter_complex', `${pistas.join(';')};${mezcla}amix=inputs=${pistas.length}:normalize=0:duration=longest[a]`, '-map', '0:v', '-map', '[a]', '-t', String(duracion), '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', path.join(out, 'video.mp4')]);
+    execFileSync('ffmpeg', ['-v', 'error', '-y', ...ent, '-filter_complex', filtro, '-map', '0:v', '-map', '[a]', '-t', String(duracion), '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k', path.join(out, 'video.mp4')]);
     fs.unlinkSync(mudo);
   }
   console.log(`OK · ${duracion.toFixed(1)} s → ${path.join(out, 'video.mp4')} + portada.jpg`);
