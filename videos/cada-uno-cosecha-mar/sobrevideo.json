@@ -1,9 +1,9 @@
 {
- "corte": 23.6,
+ "corte": 25.43,
  "sync": true,
  "tempo": 1.0,
- "cola": 2,
- "portada": 8,
+ "cola": 0.4,
+ "portada": 6,
  "nombre": {
   "ar": "كُلُّ سَاقٍ سَيُسْقَى بِمَا سَقَى.",
   "es": "Todo el que da de beber, recibirá de lo que dio.",
@@ -39,9 +39,6 @@
    "t": 0
   }
  ],
- "marco": {
-  "x0": 300
- },
  "diseno": {
   "nombreTop": 170,
   "bloquesTop": 480,
