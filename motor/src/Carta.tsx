@@ -13,6 +13,7 @@ export type CartaProps = {
   cierre: string;
   lineas: {ar: string; es: string}[];
   portada?: boolean;
+  papel?: {dx?: number; dy?: number; s?: number};
   fondo?: 'mesa' | 'cuaderno' | 'pergamino' | 'rosas' | 'rosasreales';
   tiempos?: number[][]; // segundo en que se dice cada palabra, por línea
   finVoz?: number;
@@ -185,7 +186,7 @@ const FLORES = (() => {
   });
 })();
 
-const Pergamino: React.FC<{children: React.ReactNode; f: number; rosas?: boolean; real?: boolean}> = ({children, f, rosas, real}) => {
+const Pergamino: React.FC<{children: React.ReactNode; f: number; rosas?: boolean; real?: boolean; papel?: {dx?: number; dy?: number; s?: number}}> = ({children, f, rosas, real, papel}) => {
   const W2 = 900, H2 = 1290;
   const sol = Math.sin(f / 70) * 25;
   return (
@@ -211,7 +212,7 @@ const Pergamino: React.FC<{children: React.ReactNode; f: number; rosas?: boolean
         {FLORES.map((m, i) => (rosas ? <Gipsofila key={i} {...m} r={m.r * 0.7} /> : <Margarita key={i} {...m} />))}
       </svg>}
       {/* pergamino */}
-      <div style={{position: 'absolute', left: 90, top: real ? 480 : 330, width: W2, height: H2, transform: real ? 'rotate(-2deg) scale(0.8)' : 'rotate(-3deg)'}}>
+      <div style={{position: 'absolute', left: 90, top: real ? 480 : 330, width: W2, height: H2, transform: real ? `translate(${papel?.dx ?? 0}px, ${papel?.dy ?? 0}px) rotate(-2deg) scale(${papel?.s ?? 0.8})` : 'rotate(-3deg)'}}>
         <svg width={W2 + 60} height={H2 + 60} viewBox={`-30 -30 ${W2 + 60} ${H2 + 60}`} style={{position: 'absolute', left: -30, top: -30, overflow: 'visible'}}>
           <defs>
             <radialGradient id="perg" cx="45%" cy="40%" r="75%">
@@ -370,7 +371,7 @@ const Petalos: React.FC<{f: number}> = ({f}) => {
   );
 };
 
-export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fondo = 'mesa', tiempos, finVoz, escala = 1}) => {
+export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fondo = 'mesa', tiempos, finVoz, escala = 1, papel}) => {
   const fr = useCurrentFrame();
   const {pal: tPal, escrito, total} = tiemposCarta(lineas, tiempos, finVoz);
   const f = portada ? escrito + FPS : fr;
@@ -434,7 +435,7 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fon
     return (
       <AbsoluteFill style={{background: '#4a231c'}}>
         <AbsoluteFill style={{transform: `scale(${zoom})`, transformOrigin: '50% 45%'}}>
-          <Pergamino f={f} rosas={fondo === 'rosas'} real={fondo === 'rosasreales'}>{texto}</Pergamino>
+          <Pergamino f={f} rosas={fondo === 'rosas'} real={fondo === 'rosasreales'} papel={papel}>{texto}</Pergamino>
           <Brillos f={fr} />
           {fondo === 'rosas' || fondo === 'rosasreales' ? null : <Petalos f={fr} />}
         </AbsoluteFill>

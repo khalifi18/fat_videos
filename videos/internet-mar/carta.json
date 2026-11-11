@@ -6,9 +6,9 @@
  "duck": 0.02,
  "duckRatio": 9,
  "marco": {
-  "x0": 120,
-  "t": 6,
-  "lento": 3.0
+  "x0": 0,
+  "t": 34,
+  "lento": 1
  },
  "lineas": [
   {
@@ -35,5 +35,10 @@
    "ar": "يَا بُنَيَّ، لَيْسَ كُلُّ مَا يُضْحِكُكَ يُسْعِدُكَ.",
    "es": "Hijo, no todo lo que te hace reír te hace feliz."
   }
- ]
+ ],
+ "papel": {
+  "dx": 95,
+  "dy": 10,
+  "s": 0.8
+ }
 }
