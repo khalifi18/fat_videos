@@ -36,7 +36,11 @@ const musica = fs.existsSync(mdir) ? fs.readdirSync(mdir).filter((x) => x.endsWi
 const motor = path.join(raiz, 'motor');
 const chromiumOptions = {gl: process.env.REMOTION_GL || 'angle'};
 const browserExecutable = process.env.REMOTION_BROWSER || null;
-if (props.fondo === 'rosasreales') {
+if (props.fondo === 'rosasreales' && carta.fondoImg) {
+  // fondo de foto fija (mesa real): se convierte en un vídeo largo
+  fs.mkdirSync(path.join(motor, 'public', 'carta'), {recursive: true});
+  execFileSync('ffmpeg', ['-v', 'error', '-y', '-loop', '1', '-framerate', '30', '-t', '60', '-i', path.join(dir, carta.fondoImg), '-vf', 'format=yuv420p', '-c:v', 'libx264', '-crf', '14', '-preset', 'veryfast', path.join(motor, 'public', 'carta', 'fondo.mp4')]);
+} else if (props.fondo === 'rosasreales') {
   // flores reales: clip libre (Mixkit) en un panel nítido sobre el mismo clip desenfocado; la hoja se pone encima
   const clip = path.join(dir, 'original.mp4');
   fs.mkdirSync(path.join(motor, 'public', 'carta'), {recursive: true});

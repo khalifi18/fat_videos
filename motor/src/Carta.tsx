@@ -13,7 +13,7 @@ export type CartaProps = {
   cierre: string;
   lineas: {ar: string; es: string}[];
   portada?: boolean;
-  papel?: {dx?: number; dy?: number; s?: number};
+  papel?: {dx?: number; dy?: number; s?: number; boli?: {x: number; y: number; g: number}};
   fondo?: 'mesa' | 'cuaderno' | 'pergamino' | 'rosas' | 'rosasreales';
   tiempos?: number[][]; // segundo en que se dice cada palabra, por línea
   finVoz?: number;
@@ -186,7 +186,28 @@ const FLORES = (() => {
   });
 })();
 
-const Pergamino: React.FC<{children: React.ReactNode; f: number; rosas?: boolean; real?: boolean; papel?: {dx?: number; dy?: number; s?: number}}> = ({children, f, rosas, real, papel}) => {
+
+const BoliReal: React.FC<{x: number; y: number; g: number}> = ({x, y, g}) => (
+  <svg width="640" height="120" viewBox="0 0 640 120" style={{position: 'absolute', left: x, top: y, transform: `rotate(${g}deg)`, transformOrigin: '50% 50%', overflow: 'visible'}}>
+    <defs>
+      <linearGradient id="boliC" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#6f8fd6" /><stop offset="0.3" stopColor="#23408f" /><stop offset="0.75" stopColor="#101f55" /><stop offset="1" stopColor="#070d2b" />
+      </linearGradient>
+      <linearGradient id="boliM" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#fff6d8" /><stop offset="0.4" stopColor="#d9b55c" /><stop offset="1" stopColor="#6e5420" />
+      </linearGradient>
+    </defs>
+    <ellipse cx="330" cy="84" rx="300" ry="14" fill="rgba(0,0,0,0.42)" filter="blur(9px)" />
+    <path d="M40,60 L120,50 L560,44 Q612,44 612,60 Q612,76 560,76 L120,70 Z" fill="url(#boliC)" />
+    <rect x="120" y="50" width="26" height="20" fill="url(#boliM)" />
+    <rect x="430" y="45" width="130" height="8" rx="4" fill="url(#boliM)" />
+    <path d="M40,60 L120,50 L120,70 Z" fill="#cfd3dc" />
+    <path d="M40,60 L18,60 L40,58 Z" fill="#222" />
+    <rect x="150" y="53" width="380" height="4" rx="2" fill="rgba(255,255,255,0.35)" />
+  </svg>
+);
+
+const Pergamino: React.FC<{children: React.ReactNode; f: number; rosas?: boolean; real?: boolean; papel?: {dx?: number; dy?: number; s?: number; boli?: {x: number; y: number; g: number}}}> = ({children, f, rosas, real, papel}) => {
   const W2 = 900, H2 = 1290;
   const sol = Math.sin(f / 70) * 25;
   return (
@@ -272,6 +293,7 @@ const Pergamino: React.FC<{children: React.ReactNode; f: number; rosas?: boolean
         </svg>
         <div style={{position: 'absolute', inset: 0}}>{children}</div>
       </div>
+      {real && papel?.boli && <BoliReal x={papel.boli.x} y={papel.boli.y} g={papel.boli.g} />}
       {/* luz de sol entre hojas, en diagonal */}
       {!real && <AbsoluteFill
         style={{
