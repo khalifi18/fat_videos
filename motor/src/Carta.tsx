@@ -225,6 +225,11 @@ const Pergamino: React.FC<{children: React.ReactNode; f: number; rosas?: boolean
               <feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.28  0 0 0 0 0.12  0 0 0 0.35 0" />
               <feComposite in2="SourceGraphic" operator="in" />
             </filter>
+            <filter id="pergViejo">
+              <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="9" />
+              <feColorMatrix values="0 0 0 0 0.35  0 0 0 0 0.18  0 0 0 0 0.06  0 0 0 0.6 -0.12" />
+              <feComposite in2="SourceGraphic" operator="in" />
+            </filter>
             <clipPath id="pergC">
               <polygon points={bordeRoto(W2, H2)} />
             </clipPath>
@@ -234,6 +239,23 @@ const Pergamino: React.FC<{children: React.ReactNode; f: number; rosas?: boolean
             <rect x="-20" y="-20" width={W2 + 40} height={H2 + 40} fill="url(#perg)" />
             <rect x="-20" y="-20" width={W2 + 40} height={H2 + 40} fill="#000" filter="url(#pergT)" />
             <polygon points={bordeRoto(W2, H2)} fill="none" stroke="#7a4a22" strokeWidth="16" opacity="0.45" filter="blur(6px)" />
+            {real && (
+              <>
+                <rect x="-20" y="-20" width={W2 + 40} height={H2 + 40} fill="#8a5a24" opacity="0.22" style={{mixBlendMode: 'multiply'}} />
+                <rect x="-20" y="-20" width={W2 + 40} height={H2 + 40} fill="#000" filter="url(#pergViejo)" />
+                <polygon points={bordeRoto(W2, H2)} fill="none" stroke="#2e1606" strokeWidth="70" opacity="0.6" filter="blur(22px)" />
+                {[[180, 260, 120, 90], [700, 520, 150, 110], [300, 980, 130, 100], [760, 1150, 110, 80], [120, 640, 70, 60]].map(([x, y, rx, ry], i) => (
+                  <ellipse key={'m' + i} cx={x} cy={y} rx={rx} ry={ry} fill="none" stroke="#6b3a14" strokeWidth="10" opacity="0.28" filter="blur(7px)" />
+                ))}
+                {Array.from({length: 46}, (_, i) => (
+                  <circle key={'f' + i} cx={(i * 197) % W2} cy={(i * 331) % H2} r={2 + (i % 4)} fill="#6b3a14" opacity={0.18 + (i % 3) * 0.08} />
+                ))}
+                <line x1={W2 / 2} y1="0" x2={W2 / 2 + 8} y2={H2} stroke="#5a3010" strokeWidth="3" opacity="0.35" filter="blur(1.5px)" />
+                <line x1={W2 / 2 + 4} y1="0" x2={W2 / 2 + 12} y2={H2} stroke="#fff3d6" strokeWidth="3" opacity="0.28" filter="blur(1.5px)" />
+                <line x1="0" y1={H2 * 0.36} x2={W2} y2={H2 * 0.36 + 10} stroke="#5a3010" strokeWidth="3" opacity="0.3" filter="blur(1.5px)" />
+                <line x1="0" y1={H2 * 0.36 + 4} x2={W2} y2={H2 * 0.36 + 14} stroke="#fff3d6" strokeWidth="3" opacity="0.25" filter="blur(1.5px)" />
+              </>
+            )}
           </g>
         </svg>
         {/* adornos: ♥ arriba, rama abajo */}
