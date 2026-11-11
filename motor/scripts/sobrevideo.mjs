@@ -56,13 +56,13 @@ if (cfg.marco) {
     `[b]crop=640:720:${x0}:0,scale=${MW}:${MH}:flags=lanczos,unsharp=5:5:0.8[fg]`,
     `[bg][fg]overlay=(W-w)/2:${MY},setpts=${lento.toFixed(4)}*PTS,fps=30,setsar=1[v]`,
   ].join(';');
-  execFileSync('ffmpeg', [...base, '-filter_complex', fc, '-map', '[v]', '-t', String(duracion), '-an', '-c:v', 'libx264', '-preset', 'medium', '-crf', '16', '-pix_fmt', 'yuv420p', fondo]);
+  execFileSync('ffmpeg', [...base, '-filter_complex', fc, '-map', '[v]', '-t', String(duracion), '-an', '-c:v', 'libx264', '-preset', 'medium', '-crf', '10', '-pix_fmt', 'yuv420p', fondo]);
 } else {
   execFileSync('ffmpeg', [
     ...base, '-t', String(cfg.corte),
     '-vf', `scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,unsharp=5:5:0.7,setpts=${lento.toFixed(4)}*PTS,fps=30,setsar=1`,
     '-t', String(duracion),
-    '-c:v', 'libx264', '-preset', 'medium', '-crf', '17', '-pix_fmt', 'yuv420p', ...(conVoz ? ['-an'] : ['-c:a', 'aac', '-b:a', '192k']), fondo,
+    '-c:v', 'libx264', '-preset', 'medium', '-crf', '10', '-pix_fmt', 'yuv420p', ...(conVoz ? ['-an'] : ['-c:a', 'aac', '-b:a', '192k']), fondo,
   ]);
 }
 const props = {video: 'sobrevideo/fondo.mp4', duracion, nombre, bloques, firma: cfg.firma || 'Fatima Andalussi', diseno: cfg.diseno};
@@ -81,10 +81,10 @@ if (args.includes('--hoja')) {
 } else {
   await still(cfg.portada ?? duracion - 1.5, path.join(out, 'portada.jpg'));
   if (!conVoz) {
-    await renderMedia({chromiumOptions, browserExecutable, composition, serveUrl, codec: 'h264', crf: 18, audioCodec: 'aac', outputLocation: path.join(out, 'video.mp4'), inputProps: props});
+    await renderMedia({chromiumOptions, browserExecutable, composition, serveUrl, codec: 'h264', crf: 10, audioCodec: 'aac', outputLocation: path.join(out, 'video.mp4'), inputProps: props});
   } else {
     const mudo = path.join(out, 'mudo.mp4');
-    await renderMedia({chromiumOptions, browserExecutable, composition, serveUrl, codec: 'h264', crf: 18, outputLocation: mudo, inputProps: props, muted: true});
+    await renderMedia({chromiumOptions, browserExecutable, composition, serveUrl, codec: 'h264', crf: 10, outputLocation: mudo, inputProps: props, muted: true});
     const ent = ['-i', mudo, '-i', vozF];
     let filtro = `[1:a]atempo=${TEMPO},adelay=${Math.round(RETRASO * 1000)}:all=1,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,apad,loudnorm=I=-14:TP=-1.5:LRA=7[a]`;
     if (musica) {
