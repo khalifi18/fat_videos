@@ -1,0 +1,6 @@
+# tema: prueba de pronunciación
+# formato: historia
+# idioma: ar
+# velocidad: 1.1
+# estabilidad: 0.4
+وَمَنْ قَهَر سَيُقْهَر، وَمَنْ ضَرّ سَيُضَرّ، | Quien oprime será oprimido, quien daña será dañado.
