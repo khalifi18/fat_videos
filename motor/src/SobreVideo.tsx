@@ -10,7 +10,7 @@ export type SobreVideoProps = {
   nombre: {ar: string; es: string; t: number};
   bloques: Bloque[];
   firma: string;
-  diseno?: {nombreTop?: number; bloquesTop?: number; tam?: number}; // posición y tamaño del texto
+  diseno?: {nombreTop?: number; bloquesTop?: number; tam?: number; uno?: boolean}; // posición y tamaño del texto
 };
 
 export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, bloques, firma, diseno}) => {
@@ -19,7 +19,9 @@ export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, 
   const s = frame / fps;
   const entra = (t: number, d = 0.7) => interpolate(s, [t, t + d], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const sale = interpolate(s, [duracion - 0.8, duracion], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-  const nombreE = entra(nombre.t, 0.9);
+  const uno = !!diseno?.uno; // un solo bloque a la vez (historias largas)
+  const nombreFin = uno ? interpolate(s, [(bloques[0]?.t ?? duracion) - 0.3, bloques[0]?.t ?? duracion], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}) : 1;
+  const nombreE = entra(nombre.t, 0.9) * nombreFin;
   // línea de árabe: todas las líneas de todos los bloques, apiladas
   let fila = 0;
   const actual = [...bloques].reverse().find((b) => s >= b.t) ?? null;
@@ -43,7 +45,9 @@ export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, 
         {/* frases (en columna, para que nunca se pisen) */}
         <div style={{position: 'absolute', top: diseno?.bloquesTop ?? 650, left: 40, right: 40, display: 'flex', flexDirection: 'column', gap: 4}}>
           {bloques.map((b, bi) => {
-            const e = entra(b.t, 0.7);
+            if (uno && b !== actual) return null;
+            const sigT = bloques[bi + 1]?.t ?? duracion;
+            const e = entra(b.t, 0.7) * (uno ? interpolate(s, [sigT - 0.3, sigT], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}) : 1);
             return (
               <div key={bi} dir="rtl" style={{textAlign: 'center', fontFamily: cairo, fontWeight: 900, fontSize: diseno?.tam ?? 80, lineHeight: 1.45, color: '#ffffff', opacity: e, transform: `translateY(${(1 - e) * 46}px) scale(${1 + (1 - e) * 0.14})`, filter: `blur(${(1 - e) * 7}px)`, textShadow: '0 5px 30px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.8), 0 2px 2px rgba(0,0,0,0.9)'}}>
                 {b.ar.map((l, i) => (
