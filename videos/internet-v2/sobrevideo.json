@@ -50,8 +50,13 @@
   }
  ],
  "diseno": {
-  "nombreTop": 150,
-  "bloquesTop": 420,
-  "tam": 56
+  "nombreTop": 110,
+  "bloquesTop": 330,
+  "tam": 50
+ },
+ "marco": {
+  "x0": 340,
+  "w": 1000,
+  "y": 820
  }
 }
