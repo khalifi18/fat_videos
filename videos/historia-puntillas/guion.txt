@@ -1,14 +1,17 @@
-# tema: historia del hombre que caminaba de puntillas (versión propia, inspirada en un vídeo de @ayoub_fathi04) · darija · bosque real
+# tema: historia del hombre que caminaba de puntillas (texto de @ayoub_fathi04, crédito en el post) · darija · bosque real
 # formato: historia
 # idioma: ar
 # estabilidad: 0.5
-واحد الراجل دخل لدارو، لقا مراتو كتبكي. | Un hombre llegó a su casa y encontró a su mujer llorando.
-سولها: مالك؟ قالت ليه: من نهار تكسرات الشرجم وأنا ما بقيتش قادرة نبدل حوايجي، كنحشم يشوفوني من الزنقة. | Le preguntó qué le pasaba. Ella dijo: desde que se rompió la ventana ni puedo cambiarme; me da vergüenza que me vean desde la calle.
-عنقها ومشى يشري ليها الشرجم. | La abrazó y fue a comprarle la ventana.
-من بعد أيام، رجع للدار فجأة… ولقا مراتو كتخونو فالبيت. حمل حوايجو ومشى فحالو بلا ما يقول كلمة. | Días después volvió de repente… y encontró a su mujer traicionándolo en casa. Cogió sus cosas y se fue sin decir una palabra.
-يوم من الأيام، من بعد الصلاة فالجامع، سمع الناس كيهضرو: صندوق التبرعات تسرق! | Un día, tras rezar en la mezquita, oyó a la gente: ¡han robado la caja de donativos!
-بقا كيشوف فالناس كاملين، حتى شاف واحد كيمشي على أطراف رجليه. | Miró a todos, hasta que vio a un hombre caminando de puntillas.
-سول: علاش كيمشي هاكا؟ قالو ليه: خايف يدوس على نملة ويقتلها. | Preguntó por qué. Le dijeron: teme pisar una hormiga y matarla.
-مشى عند الإمام وقال ليه: هادا هو اللي سرق الصندوق. قلبوه… ولقاوه هو. | Fue al imán y le dijo: «Ese es el ladrón». Lo registraron… y era él.
-سولو الإمام: كيفاش عرفتيه؟ قال ليه: اللي كيبالغ فشي حاجة، عرف أن وراها شي سر. | El imán le preguntó: ¿cómo lo supiste? Dijo: «Quien exagera en algo, sabe que detrás hay un secreto».
-الكمال ما كاينش. اللي كيبان ليك مثالي بزاف، عرف راه مخبي شي حاجة. | La perfección no existe. Quien parece demasiado perfecto, oculta algo.
+واحد الراجل دخل لدارو، لقا مراتو كتبكي. | Un hombre entró en su casa y encontró a su mujer llorando.
+سولها: مالك؟ قالت ليه: من نهار تكسر الشرجم ديال البيت، ما بقيتش كنقدر نبدل حوايجي فخاطري. | Ella dijo: desde que se rompió la ventana, no puedo ni cambiarme tranquila.
+وخا قدامنا ما كاين لا ديور لا والو، كنحشم من الفراخ اللي كيطيرو فالزنقة يشوفوني وأنا ما لابساش. | Aunque no hay casas enfrente, me da vergüenza que me vean sin ropa.
+ناض الراجل عنقها، ومشى يشري ليها الشرجم ديال البيت. | Él la abrazó y fue a comprarle la ventana.
+من بعد أيام قليلة، جا للدار على غفلة، لقا مراتو كتخونو فالبيت. | Días después llegó de golpe y encontró a su mujer traicionándolo en casa.
+ما قال ليها حتى حاجة. هز حوايجو ومشى فحالتو. | No le dijo nada. Cogió sus cosas y se fue.
+واحد النهار، من بعد ما صلى فالجامع، سمع صداع وروينة، ومشى يسولهم: اشنو واقع؟ | Un día, tras rezar en la mezquita, oyó jaleo y preguntó qué pasaba.
+قالو ليه: الصندوق اللي كيتبرعو فيه الناس بالفلوس تشفر، وما عرفوش شكون اللي داه. | Le dijeron: han robado la caja de donativos y no saben quién fue.
+دار عينيه فالناس كاملين، حتى رد البال لواحد السيد كيتمشى على الأطراف ديال رجليه. | Miró a todos hasta fijarse en un señor que caminaba de puntillas.
+سولهم: هادا علاش كيتمشى هكا؟ جاوبوه: هداك الراجل مدين بزاف، كيخاف يدوس على نملة بالغلط ويقتلها. | «¿Por qué camina así?» «Es muy devoto: teme pisar una hormiga y matarla.»
+مشى عند الإمام وقال ليه: هداك هو اللي شفر الصندوق. قلبوه… ولقاوه هو بصح. | Fue al imán: «Ese robó la caja». Lo registraron… y era él.
+سولو الإمام: كيفاش عرفتيه؟ قال ليه: أي واحد كيبان ليك كيبالغ فشي حاجة، عرف أن من ورا كاين شي سر. | «¿Cómo lo supiste?» «Quien exagera en algo, esconde un secreto.»
+المغزى: المثالية ما كايناش. أي واحد باين عليك مثالي بزاف، عرف راه مخبي شي حاجة غادي تصدمك بيها مع الوقت. | La perfección no existe: quien parece demasiado perfecto esconde algo que te sorprenderá.
