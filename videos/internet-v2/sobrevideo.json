@@ -1,5 +1,5 @@
 {
- "corte": 26.0,
+ "corte": 30.7,
  "sync": true,
  "tempo": 1.0,
  "cola": 1.0,
@@ -50,13 +50,8 @@
   }
  ],
  "diseno": {
-  "nombreTop": 110,
-  "bloquesTop": 330,
-  "tam": 50
- },
- "marco": {
-  "x0": 340,
-  "w": 1000,
-  "y": 820
+  "nombreTop": 150,
+  "bloquesTop": 430,
+  "tam": 58
  }
 }
