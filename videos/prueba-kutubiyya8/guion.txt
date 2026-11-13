@@ -1,0 +1,6 @@
+# tema: prueba almorabitin (L en letras latinas, M con vocales largas)
+# formato: historia
+# idioma: ar
+# estabilidad: 0.5
+مَرَّاكُش بناوها Al Morabitin تقريبا فعام 1070. | L
+مَرَّاكُش بناوها الْمُورَابِيطِين تقريبا فعام 1070. | M
