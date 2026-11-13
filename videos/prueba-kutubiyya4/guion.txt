@@ -1,0 +1,7 @@
+# tema: prueba de nombres con vocales (alkotobiya, almorabitin)
+# formato: historia
+# idioma: ar
+# estabilidad: 0.5
+واش عارف علاش سْمِيتْهَا الْكُتُبِيَّة؟ | Frase 1
+مَرَّاكُش بناوها الْمُرَابِطِين تقريبا فعام 1070. | Frase 2
+وفعام 1147، الْمُوَحِّدِين دخلوها وبناو المسجد فوق القصر الْمُرَابِطِين. | Frase 3
