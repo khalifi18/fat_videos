@@ -1,0 +1,7 @@
+# tema: prueba almorabitin (3 formas) en la frase real
+# formato: historia
+# idioma: ar
+# estabilidad: 0.5
+مَرَّاكُش بناوها الْمُورَابِطِين تقريبا فعام 1070. | V1
+مَرَّاكُش بناوها الْمُرَابِطِينَ تقريبا فعام 1070. | V2
+مَرَّاكُش بناوها الْ مُورَا بِطِين تقريبا فعام 1070. | V3
