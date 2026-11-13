@@ -3,13 +3,13 @@
  "sync": true,
  "tempo": 1.1,
  "cola": 1.0,
- "portada": 9,
+ "portada": 1,
  "firma": "Fatima Andalusi",
  "vol": 0.28,
  "duck": 0.02,
  "duckRatio": 9,
  "nombre": {
-  "ar": "واش عارف علاش سْمِيتْهَا الْكُتُبِيَّة؟",
+  "ar": "واش عارف علاش سْمِيتْهَا إِلْكُتُبِيَّة؟",
   "es": "¿Sabes por qué se llama la Kutubiyya?",
   "t": 0
  },
@@ -23,7 +23,7 @@
   },
   {
    "ar": [
-    "وفعام *1147*، الموحدين دخلوها وبناو مسجد فوق قصر المرابطين."
+    "وفعام *1147*، الموحدين دخلوها وبناو المسجد فوق القصر المرابطين."
    ],
    "es": "En 1147 los almohades la conquistaron y levantaron una mezquita sobre su palacio.",
    "t": 0
@@ -37,7 +37,7 @@
   },
   {
    "ar": [
-    "هاد المسجد الثاني هو اللي *باقي واقف* حتى لليوم."
+    "هاد المسجد الثاني هو اللي باقي *واقف* حتى لليوم."
    ],
    "es": "Esa segunda es la que sigue en pie hoy.",
    "t": 0
@@ -58,7 +58,7 @@
   },
   {
    "ar": [
-    "وسْمِيتْهَا *الْكُتُبِيَّة* حيت كانو حداها بزاف ديال بياعين الكتب."
+    "وسْمِيتْهَا *إِلْكُتُبِيَّة* حيت كانو حداها بزاف ديال بياعين الكتب."
    ],
    "es": "Se llama así porque cerca había muchos vendedores de libros.",
    "t": 0
