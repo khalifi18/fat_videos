@@ -1,7 +1,7 @@
 // Render del vídeo.
 //   node motor/scripts/render.mjs videos/<slug>            → out/video.mp4 + out/portada.jpg
 //   node motor/scripts/render.mjs videos/<slug> --hoja     → out/hoja.jpg (un fotograma por frase, para revisar)
-//   node motor/scripts/render.mjs videos/<slug> --still 4.2 → out/still.png (un instante, en segundos)
+//   node motor/scripts/render.mjs videos/<slug> --still 4.2 → out/still.jpg (un instante, en segundos)
 //   node motor/scripts/render.mjs videos/<slug> --portada   → solo out/portada.jpg
 // Antes: voz.mjs (voz y tiempos) y stock.mjs (clips).
 import fs from 'node:fs';
@@ -39,12 +39,12 @@ const cjson = fs.existsSync(cj) ? JSON.parse(fs.readFileSync(cj, 'utf8')) : {};
 const modo = lineas.formato;
 const pov = modo === 'pov';
 
-const finVoz = palabras[palabras.length - 1].e;
+const finVoz = palabras[palabras.length - 1].e + (lineas.cola || 0); // «# cola: N» alarga la escena sin más voz
 const duracion = finVoz + 0.3 + 2.4; // voz + respiro + cierre
 const durF = Math.ceil(duracion * FPS);
 const tiempos = lineas.map((_, i) => {
   const ws = palabras.filter((w) => w.l === i);
-  return {ini: ws[0].s, fin: ws[ws.length - 1].e};
+  return {ini: ws[0].s, fin: ws[ws.length - 1].e + (i === lineas.length - 1 ? lineas.cola || 0 : 0)};
 });
 const desde = (i) => (i === 0 ? 0 : Math.round(tiempos[i].ini * FPS) - 4);
 const hasta = (i) => (i === lineas.length - 1 ? durF : desde(i + 1) + 8);
@@ -76,10 +76,16 @@ if (modo === 'hikma') {
   // un dibujo por línea; el momento clave cae al 40 % de la frase
   planos = lineas.map((l, i) => {
     const a = desde(i), b = hasta(i);
-    if (l.busqueda === 'texto') return {texto: l.texto, a, b};
+    if (l.busqueda === 'texto') return {texto: l.arabe || l.texto, a, b};
     const [escena, ...opts] = (l.busqueda || 'luna').split(/\s+/);
     const k = Math.round((tiempos[i].ini + 0.4 * (tiempos[i].fin - tiempos[i].ini)) * FPS) - a;
-    return {texto: '', escena, opts, k, a, b};
+    const pl = {texto: '', escena, opts, k, a, b};
+    if (l.fondo) {
+      const c = (cjson.lineas || [])[i];
+      if (!c?.clip || c.busqueda !== l.fondo) fallo(`línea ${i + 1} sin clip de fondo: ejecuta stock.mjs`);
+      pl.clip = preparar(c.clip.archivo, ((b - a) / FPS + 0.4).toFixed(2), `l${i}`);
+    }
+    return pl;
   });
 } else if (pov) {
   // Formato POV: 1–2 clips de fondo que cubren todo el vídeo
@@ -120,8 +126,8 @@ if (modo === 'historia' && lineas.mundo) {
   props.mundo = lineas.mundo;
   let previo = 'general';
   props.tramos = lineas.map((l, i) => {
-    const pl = (l.busqueda || 'general').split(/\s+/)[0];
-    if (pl !== 'texto') previo = pl; // en el refrán/aleya la cámara sigue donde estaba
+    const pl = (l.plano || l.busqueda || 'general').split(/\s+/)[0];
+    if (pl !== 'texto') previo = pl; // en el refrán/aleya sin plano la cámara sigue donde estaba
     return {plano: previo, t: i === 0 ? 0 : Math.max(0, tiempos[i].ini - 0.2)};
   });
 }
@@ -154,7 +160,7 @@ const still = async (frame, output, extra = {}, scale = 1) =>
     imageFormat: output.endsWith('.png') ? 'png' : 'jpeg',
     jpegQuality: 90,
   });
-const portada = () => still(Math.min(desde(1) - 2, FPS * 1.2), path.join(out, 'portada.jpg'), {portada: true});
+const portada = () => still(Math.min(lineas.length > 1 ? desde(1) - 2 : FPS * 1.5, FPS * 1.2), path.join(out, 'portada.jpg'), {portada: true});
 
 if (args.includes('--hoja')) {
   const hd = path.join(out, 'hoja');
@@ -177,8 +183,8 @@ if (args.includes('--hoja')) {
   console.log(`OK · fotogramas ${a}-${fin} de ${composition.durationInFrames}`);
 } else if (args.includes('--still')) {
   const s = parseFloat(args[args.indexOf('--still') + 1]);
-  await still(s * FPS, path.join(out, 'still.png'));
-  console.log(`OK · ${path.join(out, 'still.png')}`);
+  await still(s * FPS, path.join(out, 'still.jpg'));
+  console.log(`OK · ${path.join(out, 'still.jpg')}`);
 } else {
   let ult = -1;
   await renderMedia({

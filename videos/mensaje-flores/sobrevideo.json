@@ -1,0 +1,28 @@
+{
+  "corte": 13.76,
+  "sync": true,
+  "portada": 5.0,
+  "nombre": {
+    "ar": "رِسَالَةُ الْيَوْمِ تَقُولُ…",
+    "es": "El mensaje de hoy dice…",
+    "t": 0.6
+  },
+  "bloques": [
+    {
+      "ar": [
+        "أَخْبِرْ قَلْبَكَ…"
+      ],
+      "es": "Dile a tu corazón…",
+      "t": 2.9
+    },
+    {
+      "ar": [
+        "أَنَّهُ يَسْتَحِقُّ السَّعَادَةَ."
+      ],
+      "es": "que merece ser feliz.",
+      "t": 4.3
+    }
+  ],
+  "tempo": 1.25,
+  "cola": 4
+}

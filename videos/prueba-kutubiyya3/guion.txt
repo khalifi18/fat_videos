@@ -1,0 +1,7 @@
+# tema: prueba "el kutubiyya" separado (D) en las dos frases donde aparece
+# formato: historia
+# idioma: ar
+# estabilidad: 0.5
+واش عارف علاش سْمِيتْهَا إِلْ كُتُبِيَّة؟ | Frase 1
+وسْمِيتْهَا إِلْ كُتُبِيَّة حيث كانوا بزاف ديال بياعي الكتب حداها. | Frase 2
+وكيف ما كتعرفوا أن إِلْ كُتُبِيَّة هي أحسن حاجة دارت في مراكش. | Frase 3

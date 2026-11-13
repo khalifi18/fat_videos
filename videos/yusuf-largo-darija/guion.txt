@@ -1,0 +1,33 @@
+# tema: قصة النبي يوسف (versión larga en darija)  ·  serie: Historias de los profetas
+# formato: historia
+# narracion: es
+# fuentes: Corán, sura 12 (Yusuf). Aleyas en árabe: 12:4, 12:18, 12:55, 12:87, 12:92 y 12:100 (revisar en quran.com antes de publicar)
+# nota: columnas: [escena | búsqueda] darija | subtítulo en español. En [texto]: árabe | voz en darija | subtítulo. La voz no recita el Corán: lee su significado en darija. Los profetas no llevan cara.
+[suenyo | night stars] هادي قصة سيدنا يوسف، عليه السلام، ولد النبي يعقوب. الله سماها «أحسن القصص». [short pause] ملي كان صغير، يوسف شاف منام ما نساهش عمرو. | Esta es la historia de Yusuf, hijo del profeta Yaqub. Allah la llama «la mejor de las historias». De niño tuvo un sueño que nunca olvidó.
+[texto] يَا أَبَتِ إِنِّي رَأَيْتُ أَحَدَ عَشَرَ كَوْكَبًا وَالشَّمْسَ وَالْقَمَرَ رَأَيْتُهُمْ لِي سَاجِدِينَ | آ بابا، أنا شفت فالمنام أحد عشر كوكب، والشمس، والقمر، ساجدين ليا. | «Padre, he visto once estrellas, el sol y la luna: los vi *postrarse ante mí*.» (12:4)
+[hermanos | storm clouds] بوه كان كيحبو بزاف. وخوتو شافو هادشي… وغارو منو. | Su padre lo quería mucho. Y sus hermanos lo vieron… y sintieron *envidia*.
+[padre | candle] يعقوب قال ليه: ما تحكيش المنام ديالك لخوتك. ولكن الغيرة كانت كتكبر فقلوبهم. | Yaqub le advirtió: «No cuentes tu sueño a tus hermanos». Pero la envidia ya crecía en sus corazones.
+[pozo | desert] نهار من النهارات، طلبو من بوهم يخدّو يوسف معاهم للخلا. وتما، رماوه فالبير. | Un día pidieron a su padre llevarse a Yusuf al campo. Y allí, *lo arrojaron a un pozo*.
+[tunica | red fabric] ورجعو فالليل كيبكيو، بقميصو مصبوغ بدم كذب. وقالو: كلاه الذيب. | Volvieron de noche, llorando, con su túnica manchada de *sangre falsa*. «Se lo comió el lobo», dijeron.
+[padre | rain window] يعقوب عرف أنهم كيكذبو. ما صرخش، وما دعاش عليهم. قال: | Yaqub supo que mentían. No gritó, no los maldijo. Dijo:
+[texto] فَصَبْرٌ جَمِيلٌ وَاللَّهُ الْمُسْتَعَانُ عَلَىٰ مَا تَصِفُونَ | صبر زوين. والله هو اللي كنطلبو منو العون على اللي كتقولو. | «*Paciencia hermosa*; Allah es a quien se pide ayuda frente a lo que contáis.» (12:18)
+[camellos | camels desert] فهاد الوقت، دازت قافلة. خرجو يوسف من البير… وباعوه فمصر. | Mientras tanto, pasó una caravana. Sacaron a Yusuf del pozo… y *lo vendieron en Egipto*.
+[palacio | columns] شراه واحد الراجل كبير، وتربى يوسف فدارو. ونهار من النهارات جاتو محنة كبيرة: بغاو يخليوه يعصي الله. يوسف رفض، جرا للباب، وقال: معاذ الله! | Lo compró un hombre importante y Yusuf creció en su casa. Un día llegó una gran prueba: lo invitaron a desobedecer a Allah. Yusuf se negó, corrió hacia la puerta y dijo: «¡Que Allah me proteja!»
+[carcel | rain window] ورغم أنه بريء، دخلوه للحبس. دازو سنين. وهو تما كيعاون الحبسيين. وواحد منهم غادي يخرج، قال ليه: ذكرني عند الملك. ولكن نسا. | Y aunque era inocente, lo metieron en la cárcel. Pasaron los años. Allí ayudaba a los demás presos, y a uno que saldría libre le pidió: «Acuérdate de mí ante el rey». Pero se olvidó.
+[reysueno | wheat field] نهار، ملك مصر شاف فالمنام سبع بقرات سمان كياكلهم سبع بقرات عجاف. حتى واحد ما عرف يفسرو. وهنا ذكر ديك الحبسي يوسف. ويوسف قال: سبع سنين د الخير، وبعدها سبع سنين د الجوع. خبّيو الحبوب. | Un día, el rey de Egipto soñó con siete vacas gordas devoradas por siete vacas flacas. Nadie supo explicarlo. Entonces aquel preso se acordó de Yusuf. Y Yusuf dijo: *siete años de abundancia*, y después *siete años de hambre*. Guardad el grano.
+[almacen | farm] الملك شاف الحكمة ديالو والبراءة ديالو. ويوسف طلب منو مسؤولية: | El rey vio su sabiduría y su inocencia. Y Yusuf le pidió una responsabilidad:
+[texto] قَالَ اجْعَلْنِي عَلَىٰ خَزَائِنِ الْأَرْضِ ۖ إِنِّي حَفِيظٌ عَلِيمٌ | قال ليه: خليني مسؤول على خزائن الأرض، أنا كنحفظ وكنعرف شنو كندير. | «*Ponme al frente de los almacenes de la tierra*; soy buen guardián y sé lo que hago.» (12:55)
+[almacen | farm] وهكا، فسنين الخير، يوسف خبّا الحبوب. ولما جا الجوع، مصر كان عندها الماكلة للناس كاملين. | Así, durante los años buenos, Yusuf *guardó el grano*. Y cuando llegó el hambre, Egipto tenía comida para todos.
+[hambre | dry land] الجوع وصل حتى لأرض يعقوب. وولادو سافرو لمصر باش *يشريو القوت*. | El hambre llegó también a la tierra de Yaqub. Sus hijos viajaron a Egipto a *comprar alimento*.
+[reencuentro | desert road] يوسف عرفهم على طول. وهوما ما عرفوهش. ما بقاش هو الطفل د البير. | Yusuf los reconoció enseguida. Ellos a él, no. Ya no era el niño del pozo.
+[copa | gold] طلب منهم يجيبو خوهم الصغير، بنيامين. وجرّبهم باش يعرف واش *تبدلو*. | Les pidió que trajeran a su hermano pequeño, Binyamin. Y los puso a prueba para saber si *habían cambiado*.
+[padre | night sky] يعقوب، اللي بكى حتى عماو عينيه، عمرو ما ضيع الأمل. وقال لولادو: | Yaqub, que había llorado tanto que perdió la vista, nunca perdió la esperanza. Y dijo a sus hijos:
+[texto] يَا بَنِيَّ اذْهَبُوا فَتَحَسَّسُوا مِن يُوسُفَ وَأَخِيهِ وَلَا تَيْأَسُوا مِن رَّوْحِ اللَّهِ | آ ولادي، سيرو قلبو على يوسف وخوه، وما تيأسوش من رحمة الله. | «Hijos míos, id y averiguad sobre Yusuf y su hermano, y *no desesperéis de la misericordia de Allah*.» (12:87)
+[reencuentro | desert road] خوت يوسف رجعو عندو، مقلقين من راسهم. وهو، اللي كان قادر ينتقم، قال ليهم: | Los hermanos volvieron ante Yusuf, avergonzados. Él, que podía vengarse, les dijo:
+[texto] لَا تَثْرِيبَ عَلَيْكُمُ الْيَوْمَ ۖ يَغْفِرُ اللَّهُ لَكُمْ ۖ وَهُوَ أَرْحَمُ الرَّاحِمِينَ | اليوم ما كاين لا عتاب عليكم. الله يسمح ليكم، وهو أرحم الراحمين. | «*Hoy no hay reproche* contra vosotros. Que Allah os perdone; Él es el más misericordioso.» (12:92)
+[perdon | sunrise] وعطاهم القميص ديالو باش يحطوه على وجه بوهم. | Y les dio su túnica para que la pusieran sobre el rostro de su padre.
+[vista | light rays] يعقوب حطو على وجهو… ورجع كيشوف. العائلة كاملة سافرات لمصر، واجتمعات مع يوسف. من بعد هاد السنين كاملين. | Yaqub la puso sobre su rostro… y *volvió a ver*. Toda la familia viajó a Egipto, y se reunió con Yusuf. Después de tantos años.
+[texto] يَا أَبَتِ هَٰذَا تَأْوِيلُ رُؤْيَايَ مِن قَبْلُ قَدْ جَعَلَهَا رَبِّي حَقًّا | آ بابا، هادا هو تفسير المنام ديالي د قبل. ربي دارو حقيقة. | «Padre, esta es la interpretación de *mi sueño de antes*: mi Señor lo ha hecho realidad.» (12:100)
+[leccion | sunset] صبر يعقوب. صدق يوسف. وسماح *بدل عائلة كاملة*. | La paciencia de Yaqub. La honestidad de Yusuf. Y un perdón que *cambió a una familia entera*.
+[leccion | sunset] الله يعطينا الصبر فالمحن، وقلب كيعرف يسمح، وخاتمة زوينة بحال خاتمة يوسف. [warmly] آمين. | Que Allah nos dé paciencia en las pruebas, un corazón que sepa perdonar, y un final tan bueno como el de Yusuf. Amín.
+[ypregunta | night sky] شنو هي قصة النبي اللي بغيتي نحكي ليك دابا؟ كتبها فالكومونتير. | ¿Qué historia de profeta quieres escuchar ahora? Cuéntamelo en los comentarios.

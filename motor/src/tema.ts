@@ -1,10 +1,12 @@
 import {loadFont as loadMontserrat} from '@remotion/google-fonts/Montserrat';
 import {loadFont as loadAmiri} from '@remotion/google-fonts/Amiri';
 import {loadFont as loadPlayfair} from '@remotion/google-fonts/PlayfairDisplay';
+import {loadFont as loadCairo} from '@remotion/google-fonts/Cairo';
 
 // Letras: Montserrat para subtítulos, Playfair para portada y cierre, Amiri para refranes/aleyas en árabe.
 export const sans = loadMontserrat('normal', {weights: ['700', '800'], subsets: ['latin', 'latin-ext']}).fontFamily;
 export const serif = loadPlayfair('italic', {weights: ['700'], subsets: ['latin', 'latin-ext']}).fontFamily;
+export const cairo = loadCairo('normal', {weights: ['800', '900'], subsets: ['arabic']}).fontFamily;
 export const amiri = loadAmiri('normal', {weights: ['700'], subsets: ['arabic']}).fontFamily;
 
 // Paleta del texto. Cambia aquí y cambia todo.

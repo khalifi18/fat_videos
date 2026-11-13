@@ -1,0 +1,30 @@
+{
+ "fondo": "pergamino",
+ "escala": 1.0,
+ "lineas": [
+  {
+   "ar": "اليوم قرأت جملة بعمري ما رح أنساها..",
+   "es": "Hoy leí una frase que nunca en mi vida olvidaré…"
+  },
+  {
+   "ar": "اخْتَصَرَهَا مَحْمُودٌ الدِّرْوِيش عِنْدَمَا قَالَ:",
+   "es": "Lo resumió Mahmud Darwish cuando dijo:"
+  },
+  {
+   "ar": "لَا يَهْزِمُنِي غِيَاب،",
+   "es": "No me derrota una ausencia,"
+  },
+  {
+   "ar": "وَلَا يَكْسِرُنِي تَجَاهُل؛",
+   "es": "ni me rompe un desprecio;"
+  },
+  {
+   "ar": "فَأَنَا الَّذِي إِنْ أَغْلَقْتُ بَابًا،",
+   "es": "pues soy quien, si cierra una puerta,"
+  },
+  {
+   "ar": "لَا أَعُودُ أَنْظُرُ إِلَى مِفْتَاحِهِ.",
+   "es": "no vuelve a mirar su llave."
+  }
+ ]
+}

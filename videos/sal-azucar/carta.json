@@ -1,0 +1,28 @@
+{
+ "fondo": "rosasreales",
+ "escala": 1.2,
+ "tempo": 1.1,
+ "lineas": [
+  {
+   "ar": "لَا يُوجَدُ فَرْقٌ بَيْنَ لَوْنِ الْمِلْحِ وَلَوْنِ السُّكَّرِ،",
+   "es": "No hay diferencia entre el color de la sal y el del azúcar,"
+  },
+  {
+   "ar": "فَكِلَاهُمَا نَفْسُ اللَّوْنِ.",
+   "es": "los dos tienen el mismo color."
+  },
+  {
+   "ar": "وَلَكِنْ سَتَعْرِفُ الْفَرْقَ بَعْدَ التَّجْرِبَةِ!",
+   "es": "Pero notarás la diferencia después de probar."
+  },
+  {
+   "ar": "كَذَلِكَ هُمُ الْبَشَرُ…",
+   "es": "Así son las personas…"
+  }
+ ],
+ "marco": {
+  "x0": 120,
+  "t": 6,
+  "lento": 2.4
+ }
+}

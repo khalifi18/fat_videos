@@ -1,0 +1,57 @@
+{
+ "corte": 30.7,
+ "sync": true,
+ "tempo": 1.0,
+ "cola": 1.0,
+ "portada": 6,
+ "vol": 0.28,
+ "duck": 0.02,
+ "duckRatio": 9,
+ "nombre": {
+  "ar": "فِي لَيْلَةٍ مِنَ اللَّيَالِي، كَانَ أَبٌ يُرَاقِبُ ابْنَهُ بِصَمْتٍ.",
+  "es": "Una noche, un padre miraba a su hijo en silencio.",
+  "t": 0
+ },
+ "bloques": [
+  {
+   "ar": [
+    "الْوَلَدُ يَضْحَكُ مَعَ هَاتِفِهِ، *وَيَنْسَى* مَنْ حَوْلَهُ."
+   ],
+   "es": "El niño reía con su móvil y se olvidaba de quienes lo rodeaban.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "فَجَلَسَ الْأَبُ بِجَانِبِهِ وَقَالَ: يَا بُنَيَّ، الْإِنْتَرْنِتُ *كَالْبَحْرِ*،"
+   ],
+   "es": "El padre se sentó a su lado y dijo: hijo, internet es como el mar,",
+   "t": 0
+  },
+  {
+   "ar": [
+    "فِيهِ اللُّؤْلُؤُ، وَفِيهِ *الْغَرَقُ*."
+   ],
+   "es": "tiene perlas y tiene ahogados.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "هَذَا الْجِهَازُ لَا يَعْرِفُ الرَّحْمَةَ: إِنْ أَعْطَيْتَهُ وَقْتَكَ *أَخَذَ* عُمْرَكَ."
+   ],
+   "es": "Este aparato no tiene compasión: si le das tu tiempo, te quita la vida.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "يَا بُنَيَّ، لَيْسَ كُلُّ مَا يُضْحِكُكَ *يُسْعِدُكَ*."
+   ],
+   "es": "Hijo, no todo lo que te hace reír te hace feliz.",
+   "t": 0
+  }
+ ],
+ "diseno": {
+  "nombreTop": 150,
+  "bloquesTop": 430,
+  "tam": 58
+ }
+}

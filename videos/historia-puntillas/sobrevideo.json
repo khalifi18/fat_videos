@@ -1,0 +1,108 @@
+{
+ "corte": 77.7,
+ "sync": true,
+ "tempo": 1.1,
+ "cola": 1.0,
+ "portada": 30,
+ "firma": "Fatima Andalusi",
+ "vol": 0.28,
+ "duck": 0.02,
+ "duckRatio": 9,
+ "nombre": {
+  "ar": "واحد الراجل دخل لدارو، لقا مراتو كتبكي.",
+  "es": "Un hombre entró en su casa y encontró a su mujer llorando.",
+  "t": 0
+ },
+ "bloques": [
+  {
+   "ar": [
+    "سولها: مالك؟ قالت ليه: من نهار *تكسر* الشرجم ديال البيت، ما بقيتش كنقدر نبدل حوايجي فخاطري."
+   ],
+   "es": "Ella dijo: desde que se rompió la ventana, no puedo ni cambiarme tranquila.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "وخا قدامنا ما كاين لا ديور لا والو، *كنحشم* من الفراخ اللي كيطيرو فالزنقة يشوفوني وأنا ما لابساش."
+   ],
+   "es": "Aunque no hay casas enfrente, me da vergüenza que me vean sin ropa.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "ناض الراجل *عنقها*، ومشى يشري ليها الشرجم ديال البيت."
+   ],
+   "es": "Él la abrazó y fue a comprarle la ventana.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "من بعد أيام قليلة، جا للدار على غفلة، لقا مراتو *كتخونو* فالبيت."
+   ],
+   "es": "Días después llegó de golpe y encontró a su mujer traicionándolo en casa.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "ما قال ليها *حتى حاجة*. هز حوايجو ومشى فحالتو."
+   ],
+   "es": "No le dijo nada. Cogió sus cosas y se fue.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "واحد النهار، من بعد ما صلى فالجامع، سمع *صداع* وروينة، ومشى يسولهم: اشنو واقع؟"
+   ],
+   "es": "Un día, tras rezar en la mezquita, oyó jaleo y preguntó qué pasaba.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "قالو ليه: الصندوق اللي كيتبرعو فيه الناس بالفلوس *تشفر*، وما عرفوش شكون اللي داه."
+   ],
+   "es": "Le dijeron: han robado la caja de donativos y no saben quién fue.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "دار عينيه فالناس كاملين، حتى رد البال لواحد السيد كيتمشى على *الأطراف* ديال رجليه."
+   ],
+   "es": "Miró a todos hasta fijarse en un señor que caminaba de puntillas.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "سولهم: هادا علاش كيتمشى هكا؟ جاوبوه: هداك الراجل مدين بزاف، كيخاف يدوس على *نملة* بالغلط ويقتلها."
+   ],
+   "es": "«¿Por qué camina así?» «Es muy devoto: teme pisar una hormiga y matarla.»",
+   "t": 0
+  },
+  {
+   "ar": [
+    "مشى عند الإمام وقال ليه: هداك هو اللي *شفر* الصندوق. قلبوه… ولقاوه هو بصح."
+   ],
+   "es": "Fue al imán: «Ese robó la caja». Lo registraron… y era él.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "سولو الإمام: كيفاش عرفتيه؟ قال ليه: أي واحد كيبان ليك كيبالغ فشي حاجة، عرف أن من ورا كاين شي *سر*."
+   ],
+   "es": "«¿Cómo lo supiste?» «Quien exagera en algo, esconde un secreto.»",
+   "t": 0
+  },
+  {
+   "ar": [
+    "المغزى: *المثالية* ما كايناش. أي واحد باين عليك مثالي بزاف، عرف راه مخبي شي حاجة غادي تصدمك بيها مع الوقت."
+   ],
+   "es": "La perfección no existe: quien parece demasiado perfecto esconde algo que te sorprenderá.",
+   "t": 0
+  }
+ ],
+ "diseno": {
+  "nombreTop": 700,
+  "bloquesTop": 620,
+  "tam": 64,
+  "uno": true
+ }
+}

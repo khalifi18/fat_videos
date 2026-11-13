@@ -1,0 +1,5 @@
+# tema: prueba de la frase corregida
+# formato: historia
+# idioma: ar
+# estabilidad: 0.5
+وفعام 1147، الموحدين دخلوها وبناو المسجد فوق القصر المرابطين. | Prueba de la frase

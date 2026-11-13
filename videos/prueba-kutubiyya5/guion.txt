@@ -1,0 +1,6 @@
+# tema: prueba alkotobiya (dos formas)
+# formato: historia
+# idioma: ar
+# estabilidad: 0.5
+واش عارف علاش سْمِيتْهَا الْكُوتُوبِيَّة؟ | Versión X
+واش عارف علاش سْمِيتْهَا الْكُتُوبِيَّة؟ | Versión Y

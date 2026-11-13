@@ -1,0 +1,12 @@
+# tema: لا تشكي من الأيام (confía en Allah)  ·  serie: Recordatorios
+# formato: historia
+# mundo: mar
+# idioma: ar
+# fuentes: poema anónimo muy conocido («لا تشكي من الأيام فليس لها بديل…»); el último verso coincide con Corán 6:102 («وهو على كل شيء وكيل»)
+# mundo 3D (motor/src/mundos/MundoMar.tsx): una barca con farol cruza el mar de noche, deja el puerto, ve el faro y amanece. Planos: dias, puerto, faro, timon, amanecer, final
+[texto dias] لَا تَشْكِي مِنَ الْأَيَّامِ فَلَيْسَ لَهَا بَدِيلُ | «No te quejes de los días, pues *no tienen reemplazo*.»
+[texto puerto] وَلَا تَبْكِي عَلَى الدُّنْيَا مَا دَامَ آخِرُهَا الرَّحِيلُ | «No llores por la vida, pues *su final es la partida*.»
+[texto faro] وَاجْعَلْ ثِقَتَكَ بِاللَّهِ لَيْسَ لَهَا مَثِيلُ | «Pon tu confianza en Allah: *no tiene igual*.»
+[texto timon] وَتَوَكَّلْ عَلَى اللهِ حَقَّ التَّوَكُّلِ | «Y encomiéndate a Allah *con verdadera confianza*.»
+[texto amanecer] فَإِنَّهُ عَلَى كُلِّ شَيْءٍ وَكِيلُ | «Pues Él es *suficiente protector* de todas las cosas.»
+[final] صيفطها لواحد تعبان من الأيام. | Envíaselo a alguien *cansado de los días*.

@@ -1,0 +1,101 @@
+{
+ "corte": 57.7,
+ "sync": true,
+ "tempo": 1.1,
+ "cola": 1.0,
+ "portada": 1,
+ "firma": "Fatima Andalusi",
+ "vol": 0.28,
+ "duck": 0.02,
+ "duckRatio": 9,
+ "nombre": {
+  "ar": "واش عارف علاش سْمِيتْهَا الْكُوتُوبِيَّة؟",
+  "es": "¿Sabes por qué se llama la Kutubiyya?",
+  "t": 0
+ },
+ "bloques": [
+  {
+   "ar": [
+    "مَرَّاكُش بناوها الْمُرَابِطِين تقريبا فعام *1070*."
+   ],
+   "es": "Marrakech la fundaron los almorávides hacia 1070.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "وفعام *1147*، الْمُوَحِّدِين دخلوها وبناو المسجد فوق القصر الْمُرَابِطِين."
+   ],
+   "es": "En 1147 los almohades la conquistaron y levantaron una mezquita sobre su palacio.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "ولكن القبلة ما كانتش مزيانة، وبناو مسجد ثاني حداه تقريبا فعام *1158*."
+   ],
+   "es": "Pero la orientación no era exacta, y hacia 1158 construyeron otra al lado.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "وهادا المسجد الثاني هو اللي باقي *واقف* حتى لليوم."
+   ],
+   "es": "Esa segunda es la que sigue en pie hoy.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "وفيه كان المنبر المشهور، اللي تصاوب فقرطبة، وبقا حتى *1962*."
+   ],
+   "es": "Allí estuvo el célebre minbar, hecho en Córdoba, hasta 1962.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "الصومعة طولها تقريبا *77* متر، وسالات تقريبا فعام 1195 فعهد يعقوب المنصور."
+   ],
+   "es": "El minarete mide unos 77 metros y se terminó hacia 1195 con Yaqub al-Mansur.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "وسْمِيتْهَا *الْكُوتُوبِيَّة* حيث كانوا بزاف ديال بياعي الكتب حداها."
+   ],
+   "es": "Se llama así porque cerca había muchos vendedores de libros.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "ودابا هي جزء من المدينة العتيقة ديال مَرَّاكُش، و*تراث عالمي*."
+   ],
+   "es": "Hoy forma parte de la medina de Marrakech, Patrimonio Mundial.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "وكيف ما كتعرفوا أن الْكُوتُوبِيَّة هي أحسن حاجة دارت في مَرَّاكُش، كيف ما كتسمعوا بمَرَّاكُش المدينة *الحمراء*."
+   ],
+   "es": "Y como sabéis, la Kutubiyya es lo mejor que se hizo en Marrakech, la ciudad roja.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "أكتر من *800* عام وهي واقفة."
+   ],
+   "es": "Más de 800 años y sigue en pie.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "الغلط ماشي عيب… العيب هو ما *نصلحوش*."
+   ],
+   "es": "Equivocarse no es una vergüenza; lo es no corregirlo.",
+   "t": 0
+  }
+ ],
+ "diseno": {
+  "nombreTop": 330,
+  "bloquesTop": 300,
+  "tam": 62,
+  "uno": true
+ }
+}

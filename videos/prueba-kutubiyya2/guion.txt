@@ -1,0 +1,6 @@
+# tema: prueba de pronunciación "el-kutubiyya"
+# formato: historia
+# idioma: ar
+# estabilidad: 0.5
+واش عارف علاش سْمِيتْهَا إِلْكُتُبِيَّة؟ | Versión C
+واش عارف علاش سْمِيتْهَا إِلْ كُتُبِيَّة؟ | Versión D

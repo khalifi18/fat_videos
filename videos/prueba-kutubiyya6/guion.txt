@@ -1,0 +1,6 @@
+# tema: prueba almowahadin y almorabitin (A pegado, B separado)
+# formato: historia
+# idioma: ar
+# estabilidad: 0.5
+فعام 1147، الْمُوَحَدِين دخلوها، وقبلهم الْمُرَابِطِين. | A
+فعام 1147، الْ مُوَحَدِين دخلوها، وقبلهم الْ مُرَابِطِين. | B

@@ -1,0 +1,6 @@
+# tema: prueba de pronunciación (dos versiones seguidas)
+# formato: historia
+# idioma: ar
+# estabilidad: 0.5
+واش عارف علاش سْمِيتْهَا لْكُتُبِيَّة؟ | Versión A
+واش عارف علاش سْمِيتْهَا الْكُتُبِيَّة؟ | Versión B

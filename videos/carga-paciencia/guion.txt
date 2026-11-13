@@ -1,0 +1,14 @@
+# tema: ماشي كل صبر فضيلة (no toda paciencia es virtud)  ·  serie: Recordatorios
+# formato: historia
+# fuentes: hadiz «لا ينبغي للمؤمن أن يذل نفسه… يتحمل من البلاء ما لا يطيق» (Tirmidhi 2254, hasan gharib; Ibn Maja 4016; Ahmad Shakir y al-Albani lo consideran sahih). La frase «ليس كل صبر فضيلة» es una reflexión, no hadiz.
+# escenas (motor/src/historias/carga.tsx): un solo mundo 2D, camino de montaña; silueta sin cara con una carga que crece; la cámara la sigue
+[carga-camino] واش الصبر ديما حاجة زوينة؟ | ¿La paciencia es siempre algo bueno?
+[carga-espera] غير تسناو شوية… | Esperad un momento…
+[carga-carga1] النبي، صلى الله عليه وسلم، قال: | El Profeta, la paz sea con él, dijo:
+[carga-carga2] لَا يَنْبَغِي لِلْمُؤْمِنِ أَنْ يُذِلَّ نَفْسَهُ. | «No conviene al creyente *humillarse a sí mismo*.»
+[carga-carga3] قَالُوا: وَكَيْفَ يُذِلُّ نَفْسَهُ؟ | Le preguntaron: «¿Y cómo se humilla?»
+[carga-carga4] قَالَ: يَتَحَمَّلُ مِنَ الْبَلَاءِ مَا لَا يُطِيقُ. | Dijo: «*Carga con una prueba* que no puede soportar.»
+[carga-virtud] يعني، ماشي كل صبر فضيلة. | O sea: *no toda paciencia es virtud*.
+[carga-suelta] اللي كيأذيك وكتسكت ليه… ماشي صبر، هادا ظلم لنفسك. | Lo que te daña y callas… no es paciencia: *es injusticia contra ti*.
+[carga-amanece] اصبر على المحنة… ولكن ما تتحملش اللي ما كتطيقو. | Ten paciencia en la prueba… pero *no cargues con lo que no puedes llevar*.
+[carga-arbol] شنو الحاجة اللي صبرتي عليها بزاف؟ كتبها فالكومونتير. | ¿Qué has aguantado *demasiado*? Escríbelo en los comentarios.
