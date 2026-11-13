@@ -1,5 +1,5 @@
 {
- "corte": 32.8,
+ "corte": 48.4,
  "sync": true,
  "tempo": 1.1,
  "cola": 1.0,
@@ -9,44 +9,65 @@
  "duck": 0.02,
  "duckRatio": 9,
  "nombre": {
-  "ar": "واش عارف علاش سميتها الكتبية؟",
+  "ar": "واش عارف علاش سْمِيتْهَا الْكُتُبِيَّة؟",
   "es": "¿Sabes por qué se llama la Kutubiyya?",
   "t": 0
  },
  "bloques": [
   {
    "ar": [
-    "فعام *1147*، الموحدين دخلو مراكش وبنيو أول مسجد."
+    "مراكش تأسسات حوالي *1070* على يد المرابطين."
    ],
-   "es": "En 1147 los almohades entraron en Marrakech y construyeron la primera mezquita.",
+   "es": "Marrakech la fundaron los almorávides hacia 1070.",
    "t": 0
   },
   {
    "ar": [
-    "ولكن لقاو بلي *القبلة* ما كانتش مضبوطة."
+    "وفعام *1147*، الموحدين دخلوها وبناو مسجد فوق قصر المرابطين."
    ],
-   "es": "Pero vieron que la orientación no era exacta.",
+   "es": "En 1147 los almohades la conquistaron y levantaron una mezquita sobre su palacio.",
    "t": 0
   },
   {
    "ar": [
-    "شنو دارو؟ بنيو مسجد *جديد* حداه، وهو اللي كنشوفو اليوم."
+    "ولكن القبلة ما كانتش مضبوطة، وبناو مسجد ثاني حداه حوالي *1158*."
    ],
-   "es": "¿Qué hicieron? Levantaron otra mezquita al lado: la que vemos hoy.",
+   "es": "Pero la orientación no era exacta, y hacia 1158 construyeron otra al lado.",
    "t": 0
   },
   {
    "ar": [
-    "الصومعة طولها حوالي *77* متر، وتكملات حوالي 1195."
+    "هاد المسجد الثاني هو اللي *باقي واقف* حتى لليوم."
    ],
-   "es": "El minarete mide unos 77 metros y se terminó hacia 1195.",
+   "es": "Esa segunda es la que sigue en pie hoy.",
    "t": 0
   },
   {
    "ar": [
-    "وسميتها *الكتب*ية حيت كانو حداها بزاف ديال بياعين الكتب."
+    "وفيه كان المنبر الشهير، اللي تصاوب فقرطبة، وبقا حتى *1962*."
    ],
-   "es": "Se llama así porque a su alrededor había muchos vendedores de libros.",
+   "es": "Allí estuvo el célebre minbar, hecho en Córdoba, hasta 1962.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "الصومعة طولها حوالي *77* متر، وتكملات حوالي 1195 فعهد يعقوب المنصور."
+   ],
+   "es": "El minarete mide unos 77 metros y se terminó hacia 1195 con Yaqub al-Mansur.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "وسْمِيتْهَا *الْكُتُبِيَّة* حيت كانو حداها بزاف ديال بياعين الكتب."
+   ],
+   "es": "Se llama así porque cerca había muchos vendedores de libros.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "اليوم هي جزء من مدينة مراكش، *تراث عالمي*."
+   ],
+   "es": "Hoy forma parte de la medina de Marrakech, Patrimonio Mundial.",
    "t": 0
   },
   {
