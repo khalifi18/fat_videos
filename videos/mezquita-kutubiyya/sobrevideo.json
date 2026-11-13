@@ -1,5 +1,5 @@
 {
- "corte": 48.4,
+ "corte": 57.7,
  "sync": true,
  "tempo": 1.1,
  "cola": 1.0,
@@ -72,6 +72,13 @@
   },
   {
    "ar": [
+    "وكيف ما كتعرفوا أن الكتبية هي أحسن حاجة دارت في مراكش، كيف ما كتسمعوا بمراكش المدينة *الحمراء*."
+   ],
+   "es": "Y como sabéis, la Kutubiyya es lo mejor que se hizo en Marrakech, la ciudad roja.",
+   "t": 0
+  },
+  {
+   "ar": [
     "أكتر من *800* عام وهي واقفة."
    ],
    "es": "Más de 800 años y sigue en pie.",
@@ -88,7 +95,7 @@
  "diseno": {
   "nombreTop": 330,
   "bloquesTop": 300,
-  "tam": 66,
+  "tam": 62,
   "uno": true
  }
 }
