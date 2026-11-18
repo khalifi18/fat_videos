@@ -1,0 +1,66 @@
+{
+ "corte": 77.7,
+ "sync": true,
+ "tempo": 1.1,
+ "cola": 1.0,
+ "portada": 1,
+ "firma": "Fatima Andalusi",
+ "vol": 0.28,
+ "duck": 0.02,
+ "duckRatio": 9,
+ "nombre": {
+  "ar": "سمع ليا مزيان! ما تقول لحتى واحد فين غادي.",
+  "es": "¡Escúchame bien! No le digas a nadie hacia dónde vas.",
+  "t": 0
+ },
+ "bloques": [
+  {
+   "ar": [
+    "جَاءَ فِي الْحَدِيثِ: «اسْتَعِينُوا عَلَى قَضَاءِ حَوَائِجِكُمْ *بِالْكِتْمَانِ*، فَإِنَّ كُلَّ ذِي نِعْمَةٍ مَحْسُودٌ»."
+   ],
+   "es": "Hadiz: con discreción cumplid vuestras necesidades; todo bendecido es envidiado.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "يعني؟ ما تحكيش على *النعمة* اللي عندك قدام كلشي واحد."
+   ],
+   "es": "O sea: no cuentes la bendición que tienes delante de todo el mundo.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "حيت ماشي كل واحد كيسمع ليك *كيحبك*!"
+   ],
+   "es": "¡Porque no todo el que te escucha te quiere bien!",
+   "t": 0
+  },
+  {
+   "ar": [
+    "وقال *يعقوب* لولدو: «يَا بُنَيَّ لَا تَقْصُصْ رُؤْيَاكَ عَلَىٰ إِخْوَتِكَ فَيَكِيدُوا لَكَ كَيْدًا»."
+   ],
+   "es": "Yaqub a su hijo: «No cuentes tu sueño a tus hermanos; tramarían contra ti».",
+   "t": 0
+  },
+  {
+   "ar": [
+    "خبي أسرارك، وخدم ف*السكات*، وخلي النجاح يهضر عليك!"
+   ],
+   "es": "Guarda tus secretos, trabaja en silencio y deja que tu éxito hable por ti.",
+   "t": 0
+  },
+  {
+   "ar": [
+    "وبدا من *اليوم*!"
+   ],
+   "es": "¡Y empieza hoy!",
+   "t": 0
+  }
+ ],
+ "diseno": {
+  "nombreTop": 640,
+  "bloquesTop": 560,
+  "tam": 70,
+  "uno": true
+ }
+}
