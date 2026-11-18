@@ -5,9 +5,9 @@
  "cola": 1.0,
  "portada": 1,
  "firma": "Fatima Andalusi",
- "vol": 0.28,
- "duck": 0.02,
- "duckRatio": 9,
+ "vol": 0.12,
+ "duck": 0.015,
+ "duckRatio": 10,
  "nombre": {
   "ar": "سمع ليا مزيان! ما تقول لحتى واحد فين غادي.",
   "es": "¡Escúchame bien! No le digas a nadie hacia dónde vas.",
