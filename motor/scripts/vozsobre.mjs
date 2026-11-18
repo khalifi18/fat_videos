@@ -23,7 +23,7 @@ const partes = lineas.map((l, k) => {
 });
 const mezclaVoz = `${lineas.map((_, k) => `[l${k}]`).join('')}amix=inputs=${lineas.length}:normalize=0:duration=longest,highpass=f=70,acompressor=threshold=-21dB:ratio=3:attack=5:release=140,apad,asplit=2[v1][v2]`;
 const fil = [
-  `[0:v]scale=1080:1920:flags=lanczos,unsharp=5:5:0.6,drawbox=x=465:y=1782:w=150:h=5:color=0xf2c165:t=fill,drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='Fatima Andalussi':fontcolor=white@0.93:fontsize=50:x=(w-text_w)/2:y=1700:shadowcolor=black@0.7:shadowx=2:shadowy=2,fps=30,setsar=1[v]`,
+  `[0:v]scale=1080:1920:flags=lanczos,unsharp=5:5:0.6,drawbox=x=465:y=1782:w=150:h=5:color=0xf2c165:t=fill,drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='Fatima Andalusi':fontcolor=white@0.93:fontsize=50:x=(w-text_w)/2:y=1700:shadowcolor=black@0.7:shadowx=2:shadowy=2,fps=30,setsar=1[v]`,
   ...partes,
   mezclaVoz,
 ];

@@ -12,7 +12,7 @@ import {Carta, CartaProps, tiemposCarta} from './Carta';
 const ejemplo: VideoProps = {
   audio: null,
   modo: 'leccion',
-  firma: 'Fatima Andalussi',
+  firma: 'Fatima Andalusi',
   cierre: 'Envíaselo a alguien que lo necesite',
   finVoz: 5,
   duracion: 8,
@@ -62,7 +62,7 @@ export const Root: React.FC = () => (
       height={H}
       fps={FPS}
       durationInFrames={FPS * 8}
-      defaultProps={{video: 'sobrevideo/fondo.mp4', duracion: 8, nombre: {ar: '', es: '', t: 0.5}, bloques: [], firma: 'Fatima Andalussi'} as SobreVideoProps}
+      defaultProps={{video: 'sobrevideo/fondo.mp4', duracion: 8, nombre: {ar: '', es: '', t: 0.5}, bloques: [], firma: 'Fatima Andalusi'} as SobreVideoProps}
       calculateMetadata={({props}) => ({durationInFrames: Math.ceil(props.duracion * FPS)})}
     />
     <Composition
@@ -72,7 +72,7 @@ export const Root: React.FC = () => (
       height={H}
       fps={FPS}
       durationInFrames={FPS * 12}
-      defaultProps={{firma: 'Fatima Andalussi', cierre: '', lineas: [{ar: 'كلمة', es: 'palabra'}]} as CartaProps}
+      defaultProps={{firma: 'Fatima Andalusi', cierre: '', lineas: [{ar: 'كلمة', es: 'palabra'}]} as CartaProps}
       calculateMetadata={({props}) => ({durationInFrames: Math.ceil(tiemposCarta(props.lineas, props.tiempos, props.finVoz).total)})}
     />
     <Composition
@@ -82,7 +82,7 @@ export const Root: React.FC = () => (
       height={H}
       fps={FPS}
       durationInFrames={FPS * 8}
-      defaultProps={{video: 'sobrevideo/fondo.mp4', duracion: 8, lineas: [], firma: 'Fatima Andalussi', burbuja: {cx: 540, cy: 960, r: 380}, amanecer: 6} as ProteccionProps}
+      defaultProps={{video: 'sobrevideo/fondo.mp4', duracion: 8, lineas: [], firma: 'Fatima Andalusi', burbuja: {cx: 540, cy: 960, r: 380}, amanecer: 6} as ProteccionProps}
       calculateMetadata={({props}) => ({durationInFrames: Math.ceil(props.duracion * FPS)})}
     />
     <Composition

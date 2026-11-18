@@ -38,7 +38,7 @@ const fc = [
 ].join(';');
 execFileSync('ffmpeg', ['-v', 'error', '-y', ...(cfg.inicio ? ['-ss', String(cfg.inicio)] : []), '-i', path.join(dir, 'original.mp4'), '-filter_complex', fc, '-map', '[v]',
   '-t', String(duracion), '-an', '-c:v', 'libx264', '-preset', 'medium', '-crf', '16', '-pix_fmt', 'yuv420p', fondo]);
-const props = {video: 'sobrevideo/fondo.mp4', duracion, lineas: L, firma: 'Fatima Andalussi', burbuja: cfg.burbuja, amanecer: cfg.amanecer};
+const props = {video: 'sobrevideo/fondo.mp4', duracion, lineas: L, firma: 'Fatima Andalusi', burbuja: cfg.burbuja, amanecer: cfg.amanecer};
 const chromiumOptions = {gl: process.env.REMOTION_GL || 'angle'};
 const browserExecutable = process.env.REMOTION_BROWSER || null;
 const serveUrl = await bundle({entryPoint: path.join(motor, 'src', 'index.ts'), publicDir: pub});

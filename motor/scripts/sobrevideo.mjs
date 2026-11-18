@@ -65,7 +65,7 @@ if (cfg.marco) {
     '-c:v', 'libx264', '-preset', 'medium', '-crf', '10', '-pix_fmt', 'yuv420p', ...(conVoz ? ['-an'] : ['-c:a', 'aac', '-b:a', '192k']), fondo,
   ]);
 }
-const props = {video: 'sobrevideo/fondo.mp4', duracion, nombre, bloques, firma: cfg.firma || 'Fatima Andalussi', diseno: cfg.diseno};
+const props = {video: 'sobrevideo/fondo.mp4', duracion, nombre, bloques, firma: cfg.firma || 'Fatima Andalusi', diseno: cfg.diseno};
 const chromiumOptions = {gl: process.env.REMOTION_GL || 'angle'};
 const browserExecutable = process.env.REMOTION_BROWSER || null;
 const serveUrl = await bundle({entryPoint: path.join(motor, 'src', 'index.ts'), publicDir: pub});
