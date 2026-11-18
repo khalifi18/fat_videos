@@ -63,12 +63,14 @@
   "tam": 66,
   "uno": true,
   "polvo": true,
-  "velo": 0.72
+  "velo": 0.72,
+  "petalos": true,
+  "luz": true
  },
  "decor": {
   "src": "libro.png",
-  "x": 20,
-  "y": 720,
-  "w": 1040
+  "x": 70,
+  "y": 590,
+  "w": 940
  }
 }

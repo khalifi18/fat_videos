@@ -10,7 +10,7 @@ export type SobreVideoProps = {
   nombre: {ar: string; es: string; t: number};
   bloques: Bloque[];
   firma: string;
-  diseno?: {nombreTop?: number; bloquesTop?: number; tam?: number; uno?: boolean; polvo?: boolean; velo?: number}; // posición y tamaño del texto
+  diseno?: {nombreTop?: number; bloquesTop?: number; tam?: number; uno?: boolean; polvo?: boolean; velo?: number; petalos?: boolean; luz?: boolean}; // posición y tamaño del texto
   decor?: {src: string; x: number; y: number; w: number}; // imagen con fondo transparente (por ejemplo un libro con pluma)
 };
 
@@ -34,6 +34,22 @@ export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, 
       {/* velo suave para que se lea el texto */}
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, rgba(8,10,20,0.55) 0%, rgba(8,10,20,0.38) 55%, rgba(8,10,20,0.12) 100%)', opacity: Math.min(1, entra(nombre.t - 0.3, 0.8)) * sale}} />
       {diseno?.velo ? <AbsoluteFill style={{background: `linear-gradient(180deg, rgba(10,6,3,${diseno.velo}) 0%, rgba(10,6,3,${diseno.velo * 0.55}) 40%, rgba(10,6,3,0) 62%)`}} /> : null}
+      {diseno?.luz ? <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 62%, rgba(255,190,110,0.38) 0%, rgba(255,160,80,0.16) 30%, rgba(0,0,0,0) 62%)', mixBlendMode: 'screen', opacity: 0.8 + 0.2 * Math.sin(s * 2.1) * Math.sin(s * 3.3)}} /> : null}
+      {diseno?.petalos ? (
+        <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+          {Array.from({length: 16}, (_, i) => {
+            const sp = 55 + (i % 5) * 14, y = -80 + ((s * sp + i * 173) % 2100);
+            const x = (i * 137) % 1080 + Math.sin(s * 0.9 + i * 1.7) * 60;
+            const g = (s * 40 + i * 50) % 360;
+            return (
+              <g key={i} transform={`translate(${x} ${y}) rotate(${g})`}>
+                <ellipse rx={16 + (i % 3) * 5} ry={9 + (i % 2) * 3} fill={i % 2 ? '#e0405a' : '#f06a7a'} opacity={0.88} />
+                <ellipse rx={7} ry={4} cx={-3} cy={-2} fill="rgba(255,255,255,0.22)" />
+              </g>
+            );
+          })}
+        </svg>
+      ) : null}
       {diseno?.polvo ? (
         <svg width={1080} height={1920} style={{position: 'absolute', inset: 0, mixBlendMode: 'screen'}}>
           {Array.from({length: 46}, (_, i) => {
