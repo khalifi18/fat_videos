@@ -11,9 +11,10 @@ export type SobreVideoProps = {
   bloques: Bloque[];
   firma: string;
   diseno?: {nombreTop?: number; bloquesTop?: number; tam?: number; uno?: boolean}; // posición y tamaño del texto
+  decor?: {src: string; x: number; y: number; w: number}; // imagen con fondo transparente (por ejemplo un libro con pluma)
 };
 
-export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, bloques, firma, diseno}) => {
+export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, bloques, firma, diseno, decor}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const s = frame / fps;
@@ -32,6 +33,12 @@ export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, 
       </AbsoluteFill>
       {/* velo suave para que se lea el texto */}
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, rgba(8,10,20,0.55) 0%, rgba(8,10,20,0.38) 55%, rgba(8,10,20,0.12) 100%)', opacity: Math.min(1, entra(nombre.t - 0.3, 0.8)) * sale}} />
+      {decor && (
+        <img
+          src={staticFile(decor.src)}
+          style={{position: 'absolute', left: decor.x, top: decor.y + Math.sin(s * 1.1) * 10, width: decor.w, opacity: interpolate(s, [0.2, 1.4], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}) * sale, filter: 'drop-shadow(0 22px 26px rgba(0,0,0,0.55))', transform: `rotate(${Math.sin(s * 0.7) * 0.8}deg)`}}
+        />
+      )}
       <AbsoluteFill style={{opacity: sale}}>
         {/* nombre */}
         <div dir="rtl" style={{position: 'absolute', top: diseno?.nombreTop ?? 440, left: 50, right: 50, textAlign: 'center', fontFamily: cairo, fontWeight: 900, color: C.oro, opacity: nombreE, transform: `translateY(${(1 - nombreE) * 24}px)`, textShadow: '0 4px 26px rgba(0,0,0,0.75)'}}>
