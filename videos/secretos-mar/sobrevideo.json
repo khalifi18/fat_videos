@@ -58,10 +58,11 @@
   }
  ],
  "diseno": {
-  "nombreTop": 200,
+  "nombreTop": 820,
   "bloquesTop": 190,
   "tam": 66,
   "uno": true,
-  "velo": 0.42
+  "velo": 0.3,
+  "palabras": true
  }
 }

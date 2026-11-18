@@ -10,11 +10,12 @@ export type SobreVideoProps = {
   nombre: {ar: string; es: string; t: number};
   bloques: Bloque[];
   firma: string;
-  diseno?: {nombreTop?: number; bloquesTop?: number; tam?: number; uno?: boolean; polvo?: boolean; velo?: number; petalos?: boolean; luz?: boolean}; // posición y tamaño del texto
+  diseno?: {nombreTop?: number; bloquesTop?: number; tam?: number; uno?: boolean; polvo?: boolean; velo?: number; palabras?: boolean; petalos?: boolean; luz?: boolean}; // posición y tamaño del texto
+  palabras?: {w: string; t0: number; t1: number; l: number}[]; // modo «palabra a palabra» (como los reels de oradores)
   decor?: {src: string; x: number; y: number; w: number}; // imagen con fondo transparente (por ejemplo un libro con pluma)
 };
 
-export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, bloques, firma, diseno, decor}) => {
+export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, bloques, firma, diseno, decor, palabras}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const s = frame / fps;
@@ -66,9 +67,22 @@ export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, 
           style={{position: 'absolute', left: decor.x, top: decor.y + Math.sin(s * 1.1) * 10, width: decor.w, opacity: interpolate(s, [0.2, 1.4], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}) * sale, filter: 'drop-shadow(0 22px 26px rgba(0,0,0,0.55))', transform: `rotate(${Math.sin(s * 0.7) * 0.8}deg)`}}
         />
       )}
+      {palabras && palabras.length > 0 && (() => {
+        const idx = palabras.findIndex((p) => s >= p.t0 && s < p.t1 + 0.18);
+        const p = idx >= 0 ? palabras[idx] : null;
+        if (!p) return null;
+        const e = interpolate(s, [p.t0, p.t0 + 0.16], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+        const clave = p.w.includes('*');
+        const txt = p.w.replace(/\*/g, '');
+        return (
+          <div dir="rtl" style={{position: 'absolute', left: 30, right: 30, top: diseno?.nombreTop ?? 840, textAlign: 'center', fontFamily: cairo, fontWeight: 900, fontSize: txt.length > 7 ? 118 : 138, lineHeight: 1.25, color: clave ? C.oro : '#ffffff', transform: `scale(${0.72 + 0.28 * e})`, opacity: e * sale, textShadow: '0 6px 0 rgba(0,0,0,0.85), 0 10px 34px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.8)', WebkitTextStroke: '3px rgba(0,0,0,0.55)'}}>
+            {txt}
+          </div>
+        );
+      })()}
       <AbsoluteFill style={{opacity: sale}}>
         {/* nombre */}
-        <div dir="rtl" style={{position: 'absolute', top: diseno?.nombreTop ?? 440, left: 50, right: 50, textAlign: 'center', fontFamily: cairo, fontWeight: 900, color: C.oro, opacity: nombreE, transform: `translateY(${(1 - nombreE) * 24}px)`, textShadow: '0 4px 26px rgba(0,0,0,0.75)'}}>
+        <div dir="rtl" style={{display: palabras ? 'none' : undefined, position: 'absolute', top: diseno?.nombreTop ?? 440, left: 50, right: 50, textAlign: 'center', fontFamily: cairo, fontWeight: 900, color: C.oro, opacity: nombreE, transform: `translateY(${(1 - nombreE) * 24}px)`, textShadow: '0 4px 26px rgba(0,0,0,0.75)'}}>
           {nombre.ar.split('\n').map((l, i) => (
             <div key={i} style={{fontSize: i === 0 ? 84 : 64, lineHeight: 1.4}}>
               {l}
@@ -77,7 +91,7 @@ export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, 
           <div style={{margin: '14px auto 0', width: 560 * nombreE, height: 7, borderRadius: 4, background: '#c8382c'}} />
         </div>
         {/* frases (en columna, para que nunca se pisen) */}
-        <div style={{position: 'absolute', top: diseno?.bloquesTop ?? 650, left: 40, right: 40, display: 'flex', flexDirection: 'column', gap: 4}}>
+        <div style={{position: 'absolute', top: diseno?.bloquesTop ?? 650, left: 40, right: 40, display: palabras ? 'none' : 'flex', flexDirection: 'column', gap: 4}}>
           {bloques.map((b, bi) => {
             if (uno && b !== actual) return null;
             const sigT = bloques[bi + 1]?.t ?? duracion;

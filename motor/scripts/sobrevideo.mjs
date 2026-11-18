@@ -33,12 +33,14 @@ const mdir = path.join(dir, 'musica');
 const musica = fs.existsSync(mdir) ? fs.readdirSync(mdir).filter((x) => x.endsWith('.mp3')).map((x) => path.join(mdir, x))[0] : null;
 let duracion = cfg.corte;
 let nombre = cfg.nombre;
+let palabras;
 let bloques = cfg.bloques;
 if (conVoz) {
   const w = JSON.parse(fs.readFileSync(wordsF, 'utf8'));
   const ini = (l) => w.find((x) => x.l === l).s / TEMPO + RETRASO;
   nombre = {...cfg.nombre, t: ini(0)};
   bloques = cfg.bloques.map((b, i) => ({...b, t: ini(i + 1)}));
+  if (cfg.diseno?.palabras) palabras = w.map((x) => ({w: x.w, l: x.l, t0: x.s / TEMPO + RETRASO, t1: x.e / TEMPO + RETRASO}));
   duracion = w[w.length - 1].e / TEMPO + RETRASO + 1.8 + (cfg.cola || 0); // «cola»: segundos extra de imagen y música tras la voz
 }
 const lento = Math.max(1, duracion / cfg.corte); // ralentiza el vídeo si la voz dura más que el vídeo
@@ -70,7 +72,7 @@ if (cfg.decor) {
   fs.copyFileSync(path.join(dir, cfg.decor.src), path.join(pub, 'sobrevideo', 'decor.png'));
   decor = {...cfg.decor, src: 'sobrevideo/decor.png'};
 }
-const props = {video: 'sobrevideo/fondo.mp4', duracion, nombre, bloques, firma: cfg.firma || 'Fatima Andalusi', diseno: cfg.diseno, decor};
+const props = {video: 'sobrevideo/fondo.mp4', duracion, nombre, bloques, firma: cfg.firma || 'Fatima Andalusi', diseno: cfg.diseno, decor, palabras};
 const chromiumOptions = {gl: process.env.REMOTION_GL || 'angle'};
 const browserExecutable = process.env.REMOTION_BROWSER || null;
 const serveUrl = await bundle({entryPoint: path.join(motor, 'src', 'index.ts'), publicDir: pub});
