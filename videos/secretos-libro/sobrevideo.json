@@ -1,5 +1,5 @@
 {
- "corte": 77.7,
+ "corte": 34.0,
  "sync": true,
  "tempo": 1.1,
  "cola": 1.0,
@@ -58,15 +58,17 @@
   }
  ],
  "diseno": {
-  "nombreTop": 190,
-  "bloquesTop": 170,
-  "tam": 64,
-  "uno": true
+  "nombreTop": 200,
+  "bloquesTop": 190,
+  "tam": 66,
+  "uno": true,
+  "polvo": true,
+  "velo": 0.72
  },
  "decor": {
   "src": "libro.png",
-  "x": 60,
-  "y": 640,
-  "w": 960
+  "x": 20,
+  "y": 720,
+  "w": 1040
  }
 }

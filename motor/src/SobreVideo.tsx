@@ -10,7 +10,7 @@ export type SobreVideoProps = {
   nombre: {ar: string; es: string; t: number};
   bloques: Bloque[];
   firma: string;
-  diseno?: {nombreTop?: number; bloquesTop?: number; tam?: number; uno?: boolean}; // posición y tamaño del texto
+  diseno?: {nombreTop?: number; bloquesTop?: number; tam?: number; uno?: boolean; polvo?: boolean; velo?: number}; // posición y tamaño del texto
   decor?: {src: string; x: number; y: number; w: number}; // imagen con fondo transparente (por ejemplo un libro con pluma)
 };
 
@@ -33,6 +33,17 @@ export const SobreVideo: React.FC<SobreVideoProps> = ({video, duracion, nombre, 
       </AbsoluteFill>
       {/* velo suave para que se lea el texto */}
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, rgba(8,10,20,0.55) 0%, rgba(8,10,20,0.38) 55%, rgba(8,10,20,0.12) 100%)', opacity: Math.min(1, entra(nombre.t - 0.3, 0.8)) * sale}} />
+      {diseno?.velo ? <AbsoluteFill style={{background: `linear-gradient(180deg, rgba(10,6,3,${diseno.velo}) 0%, rgba(10,6,3,${diseno.velo * 0.55}) 40%, rgba(10,6,3,0) 62%)`}} /> : null}
+      {diseno?.polvo ? (
+        <svg width={1080} height={1920} style={{position: 'absolute', inset: 0, mixBlendMode: 'screen'}}>
+          {Array.from({length: 46}, (_, i) => {
+            const x0 = (i * 211) % 1080, sp = 18 + (i % 7) * 7, r = 2 + (i % 4) * 1.4;
+            const y = 1950 - ((s * sp + i * 97) % 2000);
+            const x = x0 + Math.sin(s * 0.6 + i) * 26;
+            return <circle key={i} cx={x} cy={y} r={r} fill="#ffd98a" opacity={0.25 + 0.55 * Math.abs(Math.sin(s * 1.3 + i))} />;
+          })}
+        </svg>
+      ) : null}
       {decor && (
         <img
           src={staticFile(decor.src)}
