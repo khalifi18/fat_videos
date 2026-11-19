@@ -1,0 +1,39 @@
+{
+ "fondo": "rosasreales",
+ "fondoImg": "mesa-madera.png",
+ "firma": "Fatima Andalusi",
+ "escala": 1.0,
+ "tempo": 1.05,
+ "vol": 0.12,
+ "duck": 0.015,
+ "duckRatio": 10,
+ "papel": {
+  "dx": 20,
+  "dy": -130,
+  "s": 0.9,
+  "negro": true,
+  "boli": {
+   "x": 560,
+   "y": 1500,
+   "g": -18
+  }
+ },
+ "lineas": [
+  {
+   "ar": "اللي خصك تعرف هو أنك في أعين الشخص الصحيح،",
+   "es": "Lo que tienes que saber es que, a los ojos de la persona correcta,"
+  },
+  {
+   "ar": "وخا تكون حالتك غادي تبقى تبان ليه كأحسن تابلو بدون ثمن معلق في أحسن متحف في العالم.",
+   "es": "pase lo que pase, te verá como el mejor cuadro, sin precio, colgado en el mejor museo del mundo."
+  },
+  {
+   "ar": "وفي أعين الشخص الغلط، وخا تكون ذهب، غادي يقولك تتضر في العين.",
+   "es": "Y a los ojos de la persona equivocada, aunque seas oro, te dirá que molestas a la vista."
+  },
+  {
+   "ar": "فاعرفوا شكون تختاروا دائما.",
+   "es": "Así que sabed siempre a quién elegís."
+  }
+ ]
+}

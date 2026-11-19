@@ -13,7 +13,7 @@ export type CartaProps = {
   cierre: string;
   lineas: {ar: string; es: string}[];
   portada?: boolean;
-  papel?: {dx?: number; dy?: number; s?: number; boli?: {x: number; y: number; g: number}};
+  papel?: {dx?: number; dy?: number; s?: number; negro?: boolean; boli?: {x: number; y: number; g: number}};
   fondo?: 'mesa' | 'cuaderno' | 'pergamino' | 'rosas' | 'rosasreales';
   tiempos?: number[][]; // segundo en que se dice cada palabra, por línea
   finVoz?: number;
@@ -206,6 +206,53 @@ const BoliReal: React.FC<{x: number; y: number; g: number}> = ({x, y, g}) => (
     <rect x="150" y="53" width="380" height="4" rx="2" fill="rgba(255,255,255,0.35)" />
   </svg>
 );
+
+const CuadernoNegro: React.FC<{children: React.ReactNode; papel?: {dx?: number; dy?: number; s?: number; boli?: {x: number; y: number; g: number}}}> = ({children, papel}) => {
+  const W2 = 900, H2 = 1290;
+  return (
+    <AbsoluteFill>
+      <OffthreadVideo src={staticFile('carta/fondo.mp4')} muted style={{position: 'absolute', inset: 0, width: 1080, height: 1920}} />
+      <div style={{position: 'absolute', left: 90, top: 480, width: W2, height: H2, transform: `translate(${papel?.dx ?? 0}px, ${papel?.dy ?? 0}px) rotate(-1.2deg) scale(${papel?.s ?? 0.82})`}}>
+        <svg width={W2 + 120} height={H2 + 120} viewBox={`-60 -60 ${W2 + 120} ${H2 + 120}`} style={{position: 'absolute', left: -60, top: -60, overflow: 'visible'}}>
+          <defs>
+            <filter id="negRuido"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" /><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.10 0" /><feComposite in2="SourceGraphic" operator="in" /></filter>
+            <filter id="negMancha"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="12" /><feColorMatrix values="0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.52  0 0 0 0.07 -0.01" /><feComposite in2="SourceGraphic" operator="in" /></filter>
+          </defs>
+          <rect x="14" y="26" width={W2} height={H2} rx="8" fill="rgba(0,0,0,0.6)" filter="blur(18px)" />
+          <rect x="0" y="0" width={W2} height={H2} rx="8" fill="#0c0c0f" />
+          <rect x="0" y="0" width={W2} height={H2} rx="8" filter="url(#negRuido)" fill="#000" />
+          <rect x="0" y="0" width={W2} height={H2} rx="8" filter="url(#negMancha)" fill="#000" />
+          <rect x="0" y="0" width={W2} height={H2} rx="8" fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="3" />
+          {Array.from({length: 17}, (_, i) => {
+            const y = 70 + i * 72;
+            return (
+              <g key={i}>
+                <rect x="-34" y={y - 13} width="64" height="26" rx="13" fill="#17171a" stroke="#050506" strokeWidth="3" />
+                <rect x="-30" y={y - 7} width="50" height="6" rx="3" fill="rgba(255,255,255,0.18)" />
+                <circle cx="22" cy={y} r="9" fill="#000" />
+              </g>
+            );
+          })}
+        </svg>
+        <div style={{position: 'absolute', inset: 0}}>{children}</div>
+      </div>
+      {papel?.boli && (
+        <svg width="660" height="130" viewBox="0 0 660 130" style={{position: 'absolute', left: papel.boli.x, top: papel.boli.y, transform: `rotate(${papel.boli.g}deg)`, overflow: 'visible'}}>
+          <defs>
+            <linearGradient id="boliB" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#ffffff" /><stop offset="0.45" stopColor="#e9e9ee" /><stop offset="1" stopColor="#a9a9b2" />
+            </linearGradient>
+          </defs>
+          <ellipse cx="330" cy="86" rx="300" ry="14" fill="rgba(0,0,0,0.5)" filter="blur(9px)" />
+          <path d="M40,62 L120,52 L580,46 Q624,46 624,62 Q624,78 580,78 L120,72 Z" fill="url(#boliB)" />
+          <rect x="430" y="47" width="140" height="8" rx="4" fill="#d3d3da" />
+          <path d="M40,62 L18,62 L40,60 Z" fill="#222" />
+        </svg>
+      )}
+      <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.5) 100%)'}} />
+    </AbsoluteFill>
+  );
+};
 
 const Pergamino: React.FC<{children: React.ReactNode; f: number; rosas?: boolean; real?: boolean; papel?: {dx?: number; dy?: number; s?: number; boli?: {x: number; y: number; g: number}}}> = ({children, f, rosas, real, papel}) => {
   const W2 = 900, H2 = 1290;
@@ -419,6 +466,7 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fon
   const fr = useCurrentFrame();
   const {pal: tPal, escrito, total} = tiemposCarta(lineas, tiempos, finVoz);
   const f = portada ? escrito + FPS : fr;
+  const negro = !!papel?.negro;
   const esPerg = fondo === 'pergamino' || fondo === 'rosas' || fondo === 'rosasreales';
   const zoom = interpolate(f, [0, total], [1.0, 1.07], {easing: Easing.inOut(Easing.sin)});
   const fin = portada ? 0 : interpolate(f, [total - 2.2 * FPS, total - 1.4 * FPS], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
@@ -428,9 +476,9 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fon
   const texto = (
     <>
           <div style={{position: 'absolute', top: 70, left: 0, right: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 22 * k}}>
-            <div style={{width: 150, height: 2, background: '#8a6a45'}} />
-            <div style={{fontFamily: serif, fontSize: 34, color: '#6b4a2c'}}>{firma}</div>
-            <div style={{width: 150, height: 2, background: '#8a6a45'}} />
+            <div style={{width: 150, height: 2, background: negro ? '#58585c' : '#8a6a45'}} />
+            <div style={{fontFamily: serif, fontSize: 34, color: negro ? '#d9d4c8' : '#6b4a2c'}}>{firma}</div>
+            <div style={{width: 150, height: 2, background: negro ? '#58585c' : '#8a6a45'}} />
           </div>
           <div style={{position: 'absolute', top: 140, bottom: esPerg ? 210 : 70, left: 55, right: 55, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 22 * k}}>
             {lineas.map((l, i) => {
@@ -438,7 +486,7 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fon
               const tEs = tPal[i][pal.length - 1] + 0.3 * FPS;
               return (
                 <div key={i}>
-                  <div dir="rtl" style={{fontFamily: esPerg ? amiri : ruqaa, fontWeight: esPerg ? 700 : i === 0 ? 400 : 700, fontSize: (i === 0 ? 46 : 60) * k, lineHeight: 1.35, color: esPerg ? (i === 0 ? '#5a3418' : '#2a170b') : i === 0 ? '#7a5634' : '#2b1a10', textAlign: 'center'}}>
+                  <div dir="rtl" style={{fontFamily: esPerg ? amiri : ruqaa, fontWeight: esPerg ? 700 : i === 0 ? 400 : 700, fontSize: (i === 0 ? 46 : 60) * k, lineHeight: 1.35, color: negro ? '#f7f4ee' : esPerg ? (i === 0 ? '#5a3418' : '#2a170b') : i === 0 ? '#7a5634' : '#2b1a10', textShadow: negro ? '0 0 7px rgba(255,255,255,0.28)' : undefined, textAlign: 'center'}}>
                     {pal.map((w, j) => {
                       const a = tPal[i][j] ?? tPal[i][tPal[i].length - 1];
                       const o = interpolate(f, [a, a + 0.35 * FPS], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
@@ -455,7 +503,7 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fon
                       fontFamily: serif,
                       fontSize: 28 * k,
                       lineHeight: 1.3,
-                      color: esPerg ? '#6a4224' : '#8a6a4a',
+                      color: negro ? '#b9b4a9' : esPerg ? '#6a4224' : '#8a6a4a',
                       textAlign: 'center',
                       marginTop: 4,
                       opacity: interpolate(f, [tEs, tEs + 0.5 * FPS], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}),
@@ -479,7 +527,7 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fon
     return (
       <AbsoluteFill style={{background: '#4a231c'}}>
         <AbsoluteFill style={{transform: `scale(${zoom})`, transformOrigin: '50% 45%'}}>
-          <Pergamino f={f} rosas={fondo === 'rosas'} real={fondo === 'rosasreales'} papel={papel}>{texto}</Pergamino>
+          {negro ? <CuadernoNegro papel={papel}>{texto}</CuadernoNegro> : <Pergamino f={f} rosas={fondo === 'rosas'} real={fondo === 'rosasreales'} papel={papel}>{texto}</Pergamino>}
           <Brillos f={fr} />
           {fondo === 'rosas' || fondo === 'rosasreales' ? null : <Petalos f={fr} />}
         </AbsoluteFill>
