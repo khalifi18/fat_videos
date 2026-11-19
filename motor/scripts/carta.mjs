@@ -15,7 +15,7 @@ const out = path.join(dir, 'out');
 fs.mkdirSync(out, {recursive: true});
 const cfg = config();
 const carta = JSON.parse(fs.readFileSync(path.join(dir, 'carta.json'), 'utf8'));
-const props = {firma: carta.firma || cfg.firma, cierre: cfg.cierre, lineas: carta.lineas, fondo: carta.fondo || 'mesa', escala: carta.escala || 1, papel: carta.papel};
+const props = {firma: carta.firma || cfg.firma, cierre: cfg.cierre, lineas: carta.lineas, fondo: carta.fondo || 'mesa', escala: carta.escala || 1, papel: carta.dibujo ? {...carta.papel, dibujo: 'carta/dibujo.png'} : carta.papel};
 // Con voz (voz.mjs → audio.mp3 + words.json): cada palabra aparece cuando se dice.
 const RETRASO = 0.5; // la voz empieza medio segundo después
 const TEMPO = carta.tempo || 1; // «tempo»: voz más rápida sin cambiar el tono (atempo)
@@ -36,6 +36,10 @@ const musica = fs.existsSync(mdir) ? fs.readdirSync(mdir).filter((x) => x.endsWi
 const motor = path.join(raiz, 'motor');
 const chromiumOptions = {gl: process.env.REMOTION_GL || 'angle'};
 const browserExecutable = process.env.REMOTION_BROWSER || null;
+if (carta.dibujo) {
+  fs.mkdirSync(path.join(raiz, 'motor', 'public', 'carta'), {recursive: true});
+  fs.copyFileSync(path.join(dir, carta.dibujo), path.join(raiz, 'motor', 'public', 'carta', 'dibujo.png'));
+}
 if (props.fondo === 'rosasreales' && carta.fondoImg) {
   // fondo de foto fija (mesa real): se convierte en un vídeo largo
   fs.mkdirSync(path.join(motor, 'public', 'carta'), {recursive: true});

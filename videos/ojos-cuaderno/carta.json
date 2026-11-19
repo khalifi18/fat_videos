@@ -2,7 +2,7 @@
  "fondo": "rosasreales",
  "fondoImg": "mesa-madera.png",
  "firma": "Fatima Andalusi",
- "escala": 1.0,
+ "escala": 0.68,
  "tempo": 1.05,
  "vol": 0.12,
  "duck": 0.015,
@@ -35,5 +35,6 @@
    "ar": "فاعرفوا شكون تختاروا دائما.",
    "es": "Así que sabed siempre a quién elegís."
   }
- ]
+ ],
+ "dibujo": "dibujo.png"
 }

@@ -13,7 +13,7 @@ export type CartaProps = {
   cierre: string;
   lineas: {ar: string; es: string}[];
   portada?: boolean;
-  papel?: {dx?: number; dy?: number; s?: number; negro?: boolean; boli?: {x: number; y: number; g: number}};
+  papel?: {dx?: number; dy?: number; s?: number; negro?: boolean; dibujo?: string; boli?: {x: number; y: number; g: number}};
   fondo?: 'mesa' | 'cuaderno' | 'pergamino' | 'rosas' | 'rosasreales';
   tiempos?: number[][]; // segundo en que se dice cada palabra, por línea
   finVoz?: number;
@@ -207,8 +207,9 @@ const BoliReal: React.FC<{x: number; y: number; g: number}> = ({x, y, g}) => (
   </svg>
 );
 
-const CuadernoNegro: React.FC<{children: React.ReactNode; papel?: {dx?: number; dy?: number; s?: number; boli?: {x: number; y: number; g: number}}}> = ({children, papel}) => {
+const CuadernoNegro: React.FC<{children: React.ReactNode; papel?: {dx?: number; dy?: number; s?: number; dibujo?: string; boli?: {x: number; y: number; g: number}}}> = ({children, papel}) => {
   const W2 = 900, H2 = 1290;
+  const fr = useCurrentFrame();
   return (
     <AbsoluteFill>
       <OffthreadVideo src={staticFile('carta/fondo.mp4')} muted style={{position: 'absolute', inset: 0, width: 1080, height: 1920}} />
@@ -234,6 +235,7 @@ const CuadernoNegro: React.FC<{children: React.ReactNode; papel?: {dx?: number; 
             );
           })}
         </svg>
+        {papel?.dibujo && <img src={staticFile(papel.dibujo)} style={{position: 'absolute', left: 150, bottom: 50, width: 600, opacity: interpolate(fr, [10, 60], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}), mixBlendMode: 'screen'}} />}
         <div style={{position: 'absolute', inset: 0}}>{children}</div>
       </div>
       {papel?.boli && (
@@ -480,7 +482,7 @@ export const Carta: React.FC<CartaProps> = ({firma, cierre, lineas, portada, fon
             <div style={{fontFamily: serif, fontSize: 34, color: negro ? '#d9d4c8' : '#6b4a2c'}}>{firma}</div>
             <div style={{width: 150, height: 2, background: negro ? '#58585c' : '#8a6a45'}} />
           </div>
-          <div style={{position: 'absolute', top: 140, bottom: esPerg ? 210 : 70, left: 55, right: 55, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 22 * k}}>
+          <div style={{position: 'absolute', top: negro && papel?.dibujo ? 175 : 140, bottom: negro && papel?.dibujo ? 560 : esPerg ? 210 : 70, left: 55, right: 55, display: 'flex', flexDirection: 'column', justifyContent: negro && papel?.dibujo ? 'flex-start' : 'center', gap: 22 * k}}>
             {lineas.map((l, i) => {
               const pal = l.ar.split(/\s+/);
               const tEs = tPal[i][pal.length - 1] + 0.3 * FPS;
